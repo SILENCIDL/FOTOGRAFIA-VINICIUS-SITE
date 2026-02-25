@@ -477,7 +477,7 @@
 
                 const weddings = [
                     { name: 'Bianca & Donizete',  path: 'assets/img/portfolio/casamentos/Bianca & Donizete/' },
-                    { name: 'Miellem & Alifeti',  path: 'assets/img/portfolio/casamentos/Alifeti & Miellem/' },
+                    { name: 'Miellem & Aleft',    path: 'assets/img/portfolio/casamentos/Miellem & Aleft/' },
                     { name: 'Pamela & Juliano',   path: 'assets/img/portfolio/casamentos/Pamela & Juliano/'  },
                     { name: 'Marcos & Patricia',  path: 'assets/img/portfolio/casamentos/Patricia & Marcos/' },
                 ];
@@ -551,12 +551,8 @@
                     const preGrid  = document.getElementById('pre-wedding-grid');
                     const cerGrid  = document.getElementById('ceremony-grid');
 
-                    this.loadImagesFromFolder(preGrid, customData.path, 'pré-wedding/');
-                    this.loadImagesFromFolder(preGrid, customData.path, 'pre-wedding/');
-                    this.loadImagesFromFolder(cerGrid, customData.path, 'casamento/');
-                    this.loadImagesFromFolder(cerGrid, customData.path, 'cerimonia/');
-                    this.loadImagesFromFolder(cerGrid, customData.path, 'cerimônia/');
-                    this.loadImagesFromFolder(cerGrid, customData.path, '');
+                    this.loadImagesFromFolder(preGrid, customData.path, 'Pre Wedding/');
+                    this.loadImagesFromFolder(cerGrid, customData.path, 'Cerimonia/');
 
                 } else {
                     const dataMap = {
