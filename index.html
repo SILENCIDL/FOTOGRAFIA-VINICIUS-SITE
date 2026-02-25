@@ -386,9 +386,24 @@
                 <i class="fas fa-long-arrow-alt-left mr-4 group-hover:-translate-x-3 transition-transform text-2xl"></i> Voltar
             </button>
 
-            <div class="mb-20">
+            <div class="mb-12">
                 <h3 id="gallery-title" class="font-serif text-7xl mb-6 italic tracking-tighter text-white"></h3>
                 <p id="gallery-desc" class="text-white/40 max-w-2xl border-l-2 border-mantiqueira-earth pl-8 leading-relaxed text-lg"></p>
+            </div>
+
+            <!-- Botão de navegação rápida para Cerimônia (visível apenas em álbuns de casamento) -->
+            <div id="wedding-nav-buttons" class="hidden flex flex-wrap gap-4 mb-16">
+                <a href="#pre-wedding-section"
+                   class="inline-flex items-center gap-3 border border-mantiqueira-earth text-mantiqueira-earth px-8 py-3 uppercase tracking-widest text-xs font-bold hover:bg-mantiqueira-earth hover:text-mantiqueira-dark transition-all duration-300">
+                    <i class="fas fa-images"></i>
+                    Pré-Wedding
+                </a>
+                <a href="#ceremony-section"
+                   class="inline-flex items-center gap-3 bg-mantiqueira-earth text-mantiqueira-dark px-8 py-3 uppercase tracking-widest text-xs font-bold hover:bg-white transition-all duration-300">
+                    <i class="fas fa-ring"></i>
+                    Ver Cerimônia
+                    <i class="fas fa-arrow-down"></i>
+                </a>
             </div>
 
             <!-- Pré-Wedding -->
@@ -520,6 +535,7 @@
                 });
                 document.getElementById('pre-wedding-section').classList.add('hidden');
                 document.getElementById('ceremony-section').classList.add('hidden');
+                document.getElementById('wedding-nav-buttons').classList.add('hidden');
 
                 const backBtn = document.getElementById('back-to-selector');
                 let title = '', desc = '';
@@ -528,6 +544,9 @@
                     title = customData.name;
                     desc  = `Narrativa completa de ${customData.name}. Momentos capturados com alma na Mantiqueira.`;
                     backBtn.onclick = () => app.showSection('wedding-selector');
+
+                    // Mostra botões de navegação rápida
+                    document.getElementById('wedding-nav-buttons').classList.remove('hidden');
 
                     const preGrid  = document.getElementById('pre-wedding-grid');
                     const cerGrid  = document.getElementById('ceremony-grid');
