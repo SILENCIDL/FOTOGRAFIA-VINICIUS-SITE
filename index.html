@@ -655,7 +655,9 @@
     <footer class="bg-mantiqueira-dark py-32 text-center border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6">
             <span class="font-serif text-4xl text-white block mb-4 tracking-tighter">@viniciusrafaelgs</span>
-            <span class="text-mantiqueira-earth text-xs uppercase tracking-[0.4em] block mb-10">Fotografia & Guia Turístico</span>
+            <span class="text-mantiqueira-earth text-xs uppercase tracking-[0.4em] block mb-6">Fotografia & Guia Turístico</span>
+
+            <p id="frase-footer" class="text-white/50 text-sm font-light italic mb-10 max-w-sm mx-auto leading-relaxed"></p>
 
             <div class="flex justify-center space-x-12 mb-16 text-3xl">
                 <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener" class="text-white/30 hover:text-mantiqueira-earth transition-colors">
@@ -897,9 +899,35 @@
         document.addEventListener('DOMContentLoaded', () => app.init());
     </script>
 
-    <!-- ═══════════════════ FRASES ROTATIVAS DE CONTATO ═══════════════════ -->
+    <!-- ═══════════════════ FRASES ROTATIVAS ═══════════════════ -->
     <script>
     (function () {
+        function sorteia(frases, chave) {
+            const ultimo = parseInt(localStorage.getItem(chave) ?? '-1');
+            let idx;
+            do { idx = Math.floor(Math.random() * frases.length); }
+            while (idx === ultimo && frases.length > 1);
+            localStorage.setItem(chave, idx);
+            return frases[idx];
+        }
+
+        // — Frases do footer (Instagram / WhatsApp) —
+        const frasesFooter = [
+            "Segue lá no Instagram pra não perder nenhum clique.",
+            "Chama no WhatsApp. Sem formalidade, sem formulário.",
+            "O próximo ensaio pode ser o seu. Fala comigo.",
+            "Toda semana tem foto nova lá no Instagram.",
+            "Prefere conversar? É só chamar no WhatsApp.",
+            "Aparece lá no Instagram. Prometo que vale.",
+            "Um clique no WhatsApp e a gente marca alguma coisa.",
+            "Segue o @ e vem fazer parte dessa história.",
+            "DM aberta. WhatsApp também. Escolhe o que preferir.",
+            "A Mantiqueira tá esperando. Só falta você chamar."
+        ];
+        const elFooter = document.getElementById('frase-footer');
+        if (elFooter) elFooter.textContent = sorteia(frasesFooter, 'vc_footer_frase');
+
+        // — Frases da seção de contato —
         const frases = [
             "Uma foto sua guarda mais do que você imagina. Bora fazer isso acontecer?",
             "A Mantiqueira tem história pra contar. E você, tem um momento pra eternizar?",
@@ -915,17 +943,8 @@
             "Fotografia é a única máquina do tempo que existe. Vamos usá-la?"
         ];
 
-        const KEY = 'vc_ultima_frase';
-        const ultimo = parseInt(localStorage.getItem(KEY) ?? '-1');
-
-        let idx;
-        do { idx = Math.floor(Math.random() * frases.length); }
-        while (idx === ultimo && frases.length > 1);
-
-        localStorage.setItem(KEY, idx);
-
         const el = document.getElementById('frase-contato');
-        if (el) el.textContent = frases[idx];
+        if (el) el.textContent = sorteia(frases, 'vc_contato_frase');
     })();
     </script>
 
