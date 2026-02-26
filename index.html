@@ -394,11 +394,13 @@
             <!-- Botão de navegação rápida para Cerimônia (visível apenas em álbuns de casamento) -->
             <div id="wedding-nav-buttons" class="hidden flex flex-wrap gap-4 mb-16">
                 <a href="#pre-wedding-section"
+                   onclick="event.preventDefault(); document.getElementById('pre-wedding-section').scrollIntoView({behavior:'smooth'})"
                    class="inline-flex items-center gap-3 border border-mantiqueira-earth text-mantiqueira-earth px-8 py-3 uppercase tracking-widest text-xs font-bold hover:bg-mantiqueira-earth hover:text-mantiqueira-dark transition-all duration-300">
                     <i class="fas fa-images"></i>
                     Pré-Wedding
                 </a>
                 <a href="#ceremony-section"
+                   onclick="event.preventDefault(); document.getElementById('ceremony-section').scrollIntoView({behavior:'smooth'})"
                    class="inline-flex items-center gap-3 bg-mantiqueira-earth text-mantiqueira-dark px-8 py-3 uppercase tracking-widest text-xs font-bold hover:bg-white transition-all duration-300">
                     <i class="fas fa-ring"></i>
                     Ver Cerimônia
@@ -518,8 +520,6 @@
                     img.onload = () => {
                         img.classList.replace('opacity-0', 'opacity-100');
                         item.classList.remove('loading-skeleton');
-                        const section = gridEl.parentElement;
-                        if (section) section.classList.remove('hidden');
                     };
                     img.onerror = () => item.remove();
 
@@ -545,8 +545,10 @@
                     desc  = `Narrativa completa de ${customData.name}. Momentos capturados com alma na Mantiqueira.`;
                     backBtn.onclick = () => app.showSection('wedding-selector');
 
-                    // Mostra botões de navegação rápida
+                    // Mostra botões de navegação rápida e seções imediatamente
                     document.getElementById('wedding-nav-buttons').classList.remove('hidden');
+                    document.getElementById('pre-wedding-section').classList.remove('hidden');
+                    document.getElementById('ceremony-section').classList.remove('hidden');
 
                     const preGrid  = document.getElementById('pre-wedding-grid');
                     const cerGrid  = document.getElementById('ceremony-grid');
