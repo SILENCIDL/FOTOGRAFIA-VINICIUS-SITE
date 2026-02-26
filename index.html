@@ -163,7 +163,7 @@
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#about"   onclick="app.showSection('home')" class="nav-link text-white/80 hover:text-white text-xs uppercase tracking-widest transition-all">Quem Sou</a>
                 <a href="#portfolio" onclick="app.showSection('home')" class="nav-link text-white/80 hover:text-white text-xs uppercase tracking-widest transition-all">Portfólio</a>
-                <a onclick="app.openGallery('street')" class="nav-link text-white/80 hover:text-white text-xs uppercase tracking-widest transition-all cursor-pointer">Fotografia de Rua</a>
+                <a onclick="app.openStreet()" class="nav-link text-white/80 hover:text-white text-xs uppercase tracking-widest transition-all cursor-pointer">Fotografia de Rua</a>
                 <a onclick="app.openOlhar()" class="nav-link text-white/80 hover:text-white text-xs uppercase tracking-widest transition-all cursor-pointer">Olhar Fotográfico</a>
                 <a href="#contact" onclick="app.showSection('home')" class="bg-mantiqueira-earth text-white px-8 py-2 rounded-full hover:bg-white hover:text-mantiqueira-dark transition-all duration-500 text-xs uppercase tracking-widest font-bold shadow-lg">Contato</a>
             </div>
@@ -176,7 +176,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-mantiqueira-dark/95 backdrop-blur-md text-white p-8 space-y-6 text-center">
             <a href="#about"     onclick="app.showSection('home'); document.getElementById('mobile-menu').classList.add('hidden')" class="block uppercase tracking-widest text-sm hover:text-mantiqueira-earth transition-colors">Quem Sou</a>
             <a href="#portfolio" onclick="app.showSection('home'); document.getElementById('mobile-menu').classList.add('hidden')" class="block uppercase tracking-widest text-sm hover:text-mantiqueira-earth transition-colors">Portfólio</a>
-            <a onclick="app.openGallery('street'); document.getElementById('mobile-menu').classList.add('hidden')" class="block uppercase tracking-widest text-sm hover:text-mantiqueira-earth transition-colors cursor-pointer">Fotografia de Rua</a>
+            <a onclick="app.openStreet(); document.getElementById('mobile-menu').classList.add('hidden')" class="block uppercase tracking-widest text-sm hover:text-mantiqueira-earth transition-colors cursor-pointer">Fotografia de Rua</a>
             <a onclick="app.openOlhar(); document.getElementById('mobile-menu').classList.add('hidden')" class="block uppercase tracking-widest text-sm hover:text-mantiqueira-earth transition-colors cursor-pointer">Olhar Fotográfico</a>
             <a href="#contact"   onclick="app.showSection('home'); document.getElementById('mobile-menu').classList.add('hidden')" class="block uppercase tracking-widest text-sm text-mantiqueira-earth">Contato</a>
         </div>
@@ -316,7 +316,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 text-left mt-16 max-w-4xl mx-auto">
 
                     <!-- Fotografia de Rua -->
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-stone-900 shadow-2xl" onclick="app.openGallery('street')">
+                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-stone-900 shadow-2xl" onclick="app.openStreet()">
                         <img
                             src="assets/img/portfolio/rua/capa.jpg"
                             onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'"
@@ -558,6 +558,100 @@
 
     </section>
 
+    <!-- ═══════════════════════════ FOTOGRAFIA DE RUA ═══════════════════════════ -->
+    <section id="street-view" class="hidden-content min-h-screen bg-mantiqueira-dark text-white">
+
+        <!-- Hero editorial -->
+        <div class="relative h-screen flex flex-col justify-end pb-32 overflow-hidden">
+            <img
+                src="assets/img/portfolio/rua/capa.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'"
+                alt="Fotografia de Rua"
+                class="hero-bg-img opacity-40">
+            <div class="absolute inset-0 hero-overlay z-10"></div>
+            <div class="relative z-20 max-w-7xl mx-auto px-12 w-full">
+                <button onclick="app.showSection('home')" class="text-mantiqueira-earth hover:text-white mb-16 uppercase tracking-widest text-xs font-bold flex items-center group transition-colors">
+                    <i class="fas fa-long-arrow-alt-left mr-4 group-hover:-translate-x-3 transition-transform text-2xl"></i> Voltar
+                </button>
+                <span class="text-mantiqueira-earth uppercase tracking-[0.5em] text-[10px] font-bold block mb-4">A Rua como Palco</span>
+                <h1 class="font-serif text-7xl md:text-9xl italic tracking-tighter leading-none">Fotografia<br>de Rua</h1>
+            </div>
+        </div>
+
+        <!-- Abertura -->
+        <div class="max-w-3xl mx-auto px-6 py-32 text-center">
+            <div class="divider-line mb-16"></div>
+            <blockquote class="font-serif text-2xl md:text-3xl italic text-mantiqueira-light/90 leading-relaxed">
+                "A rua não espera.<br>
+                O instante acontece e vai embora —<br>
+                ou fica para sempre."
+            </blockquote>
+            <div class="divider-line mt-16"></div>
+        </div>
+
+        <!-- Três pilares -->
+        <div class="max-w-7xl mx-auto px-6 pb-32">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <div class="bg-mantiqueira-green p-12 border-t-2 border-mantiqueira-earth">
+                    <span class="text-mantiqueira-earth text-[10px] uppercase tracking-[0.4em] font-bold block mb-6">01</span>
+                    <h3 class="font-serif text-3xl italic mb-6 text-white">O Gesto<br>Indomável</h3>
+                    <p class="text-white/60 leading-relaxed font-light">
+                        Nas vielas de São Bento do Sapucaí, a vida não posa. Ela acontece —
+                        crua, honesta e cheia de textura. Minha câmera aprende a ser invisível
+                        para que o real possa se revelar sozinho.
+                    </p>
+                </div>
+
+                <div class="bg-mantiqueira-green p-12 border-t-2 border-mantiqueira-earth">
+                    <span class="text-mantiqueira-earth text-[10px] uppercase tracking-[0.4em] font-bold block mb-6">02</span>
+                    <h3 class="font-serif text-3xl italic mb-6 text-white">Tempo<br>Suspeso</h3>
+                    <p class="text-white/60 leading-relaxed font-light">
+                        Um segundo de diferença e a foto não existe mais. A fotografia de rua
+                        me ensinou que paciência e antecipação são o mesmo músculo —
+                        e que treinar o olhar é um exercício sem fim.
+                    </p>
+                </div>
+
+                <div class="bg-mantiqueira-green p-12 border-t-2 border-mantiqueira-earth">
+                    <span class="text-mantiqueira-earth text-[10px] uppercase tracking-[0.4em] font-bold block mb-6">03</span>
+                    <h3 class="font-serif text-3xl italic mb-6 text-white">A Serra<br>nas Ruas</h3>
+                    <p class="text-white/60 leading-relaxed font-light">
+                        A Mantiqueira não vive só na paisagem. Ela vive nas mãos do artesão,
+                        no olhar do tropeiro, na criança que brinca na praça. Fotografar a rua
+                        aqui é fotografar a alma de um povo que resiste ao tempo.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Citação pessoal -->
+        <div class="bg-mantiqueira-green py-32 px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="w-px h-24 bg-mantiqueira-earth mx-auto mb-16"></div>
+                <blockquote class="font-serif text-3xl md:text-4xl italic text-mantiqueira-light leading-relaxed mb-12">
+                    "Cada esquina da minha cidade guarda<br class="hidden md:block">
+                    uma história que ninguém contou ainda.<br class="hidden md:block">
+                    Eu só preciso estar lá na hora certa."
+                </blockquote>
+                <cite class="text-mantiqueira-earth text-xs uppercase tracking-[0.5em] font-bold not-italic">— Vinícius Rafael</cite>
+                <div class="w-px h-24 bg-mantiqueira-earth mx-auto mt-16"></div>
+            </div>
+        </div>
+
+        <!-- Galeria -->
+        <div class="max-w-7xl mx-auto px-6 py-32">
+            <div class="text-center mb-16">
+                <span class="text-mantiqueira-earth uppercase tracking-[0.4em] text-xs font-bold block mb-4">Registros Urbanos</span>
+                <h2 class="font-serif text-5xl italic tracking-tighter">A Vida nas Ruas</h2>
+                <div class="divider-line mt-8"></div>
+            </div>
+            <div id="street-grid" class="masonry-grid"></div>
+        </div>
+
+    </section>
+
     <!-- ═══════════════════════════════ RODAPÉ ═══════════════════════════════ -->
     <footer class="bg-mantiqueira-dark py-32 text-center border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6">
@@ -588,7 +682,7 @@
             },
 
             showSection(id) {
-                const views = ['main-view', 'wedding-selector', 'gallery-view', 'olhar-view'];
+                const views = ['main-view', 'wedding-selector', 'gallery-view', 'olhar-view', 'street-view'];
                 views.forEach(v => {
                     const el = document.getElementById(v);
                     if (el) el.classList.add('hidden-content');
@@ -717,6 +811,26 @@
                 document.getElementById('gallery-title').innerText = title;
                 document.getElementById('gallery-desc').innerText  = desc;
                 this.showSection('gallery-view');
+            },
+
+            openStreet() {
+                if (!this._streetLoaded) {
+                    const grid = document.getElementById('street-grid');
+                    for (let i = 1; i <= 60; i++) {
+                        const item = document.createElement('div');
+                        item.className = 'masonry-item overflow-hidden rounded-sm shadow-2xl loading-skeleton min-h-[200px]';
+                        const img = document.createElement('img');
+                        img.src = encodeURI(`assets/img/portfolio/rua/${i}.jpg`);
+                        img.alt = '';
+                        img.className = 'w-full h-auto object-cover transition-all duration-700';
+                        img.onload  = () => item.classList.remove('loading-skeleton');
+                        img.onerror = () => item.remove();
+                        item.appendChild(img);
+                        grid.appendChild(item);
+                    }
+                    this._streetLoaded = true;
+                }
+                this.showSection('street-view');
             },
 
             openOlhar() {
