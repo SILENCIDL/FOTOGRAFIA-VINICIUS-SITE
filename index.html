@@ -638,7 +638,7 @@
                 this.showSection('wedding-selector');
             },
 
-            async loadImagesFromFolder(gridEl, basePath, folder, start = 1, max = 60) {
+            async loadImagesFromFolder(gridEl, basePath, folder, start = 1, max = 200) {
                 for (let i = start; i <= max; i++) {
                     const item = document.createElement('div');
                     item.className = 'masonry-item overflow-hidden rounded-sm shadow-2xl loading-skeleton min-h-[200px]';
