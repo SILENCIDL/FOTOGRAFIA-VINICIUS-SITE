@@ -354,9 +354,7 @@
                 <h2 class="font-serif text-6xl text-mantiqueira-dark mb-6">Contato</h2>
                 <div class="divider-line mb-12"></div>
 
-                <p class="text-mantiqueira-rock text-xl font-light leading-relaxed max-w-2xl mx-auto mb-20">
-                    Quer eternizar um momento especial na Mantiqueira? Entre em contato para orçamentos de casamentos, ensaios, trilhas guiadas ou qualquer projeto fotográfico.
-                </p>
+                <p id="frase-contato" class="text-mantiqueira-rock text-xl font-light leading-relaxed max-w-2xl mx-auto mb-20"></p>
 
                 <!-- Cards de contato -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
@@ -897,6 +895,38 @@
         };
 
         document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+
+    <!-- ═══════════════════ FRASES ROTATIVAS DE CONTATO ═══════════════════ -->
+    <script>
+    (function () {
+        const frases = [
+            "Uma foto sua guarda mais do que você imagina. Bora fazer isso acontecer?",
+            "A Mantiqueira tem história pra contar. E você, tem um momento pra eternizar?",
+            "Não precisa ser uma grande ocasião. Só precisa ser real.",
+            "A melhor foto da sua vida ainda não foi tirada.",
+            "Você aparece na tela do celular todo dia. Uma vez na vida, apareça no quadro certo.",
+            "Tem alguma coisa que vale a pena lembrar? Me conta.",
+            "Luz, momento e a Mantiqueira como cenário. O resto a gente resolve junto.",
+            "Não cobro pelo clique. Cobro pelo que fica depois que o momento vai embora.",
+            "Cada história merece ser fotografada do jeito certo.",
+            "A memória falha. A foto não.",
+            "Se tá esperando o momento certo, esse é ele.",
+            "Fotografia é a única máquina do tempo que existe. Vamos usá-la?"
+        ];
+
+        const KEY = 'vc_ultima_frase';
+        const ultimo = parseInt(localStorage.getItem(KEY) ?? '-1');
+
+        let idx;
+        do { idx = Math.floor(Math.random() * frases.length); }
+        while (idx === ultimo && frases.length > 1);
+
+        localStorage.setItem(KEY, idx);
+
+        const el = document.getElementById('frase-contato');
+        if (el) el.textContent = frases[idx];
+    })();
     </script>
 
 </body>
