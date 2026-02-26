@@ -816,11 +816,11 @@
             openStreet() {
                 if (!this._streetLoaded) {
                     const grid = document.getElementById('street-grid');
-                    for (let i = 1; i <= 60; i++) {
+                    for (let i = 1; i <= 69; i++) {
                         const item = document.createElement('div');
                         item.className = 'masonry-item overflow-hidden rounded-sm shadow-2xl loading-skeleton min-h-[200px]';
                         const img = document.createElement('img');
-                        img.src = encodeURI(`assets/img/portfolio/rua/${i}.jpg`);
+                        img.src = encodeURI(`assets/img/portfolio/rua/galeria/${i}.jpg`);
                         img.alt = '';
                         img.className = 'w-full h-auto object-cover transition-all duration-700';
                         img.onload  = () => item.classList.remove('loading-skeleton');
