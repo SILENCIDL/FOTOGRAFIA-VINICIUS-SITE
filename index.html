@@ -62,6 +62,11 @@
                 rgba(10,12,10,0) 100%);
         }
         .hero-content-pushed { padding-top: 48vh; }
+        .hero-slide {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .hero-slide.active { opacity: 0.9; }
         .hero-bg-img {
             object-fit: cover;
             width: 100%;
@@ -187,11 +192,12 @@
 
         <!-- ── HERO ── -->
         <section class="relative min-h-screen flex flex-col justify-start overflow-hidden bg-mantiqueira-dark">
-            <img
-                src="assets/img/hero/hero.jpg"
-                onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop'"
+            <img src="assets/img/hero/hero.jpg"
                 alt="Vinícius Rafael Fotografia — Serra da Mantiqueira"
-                class="hero-bg-img opacity-90">
+                class="hero-bg-img hero-slide active">
+            <img src="assets/img/hero/hero 2.jpg"
+                alt="Vinícius Rafael Fotografia — Vagalume"
+                class="hero-bg-img hero-slide">
 
             <div class="absolute inset-0 hero-overlay z-10"></div>
 
@@ -894,7 +900,17 @@
             }
         };
 
-        document.addEventListener('DOMContentLoaded', () => app.init());
+        document.addEventListener('DOMContentLoaded', () => {
+            app.init();
+            // Hero slideshow
+            const slides = document.querySelectorAll('.hero-slide');
+            let current = 0;
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 12000);
+        });
     </script>
 
     <!-- ═══════════════════ FRASES ROTATIVAS ═══════════════════ -->
