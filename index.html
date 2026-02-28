@@ -64,7 +64,7 @@
         .hero-content-pushed { padding-top: 48vh; }
         .hero-slide {
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            transition: opacity 1s ease-in-out;
         }
         .hero-slide.active { opacity: 0.9; }
         .hero-bg-img {
@@ -909,7 +909,7 @@
                 slides[current].classList.remove('active');
                 current = (current + 1) % slides.length;
                 slides[current].classList.add('active');
-            }, 12000);
+            }, 2000);
         });
     </script>
 
