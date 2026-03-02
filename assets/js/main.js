@@ -1,281 +1,327 @@
-/**
- * main.js — Lógica de interação do portfólio
- *
- * Módulos:
- *  1. Header scroll behavior
- *  2. Menu hambúrguer (mobile)
- *  3. Active nav link via IntersectionObserver
- *  4. Animações de entrada (reveal)
- *  5. Formulário de contato — validação client-side
- *  6. Footer — ano dinâmico
- */
+/* ============================================================
+   MAIN.JS — Vinícius Rafael Fotografia
+   Módulos:
+     1. SPA — navegação entre views
+     2. Hero — slideshow
+     3. Galeria — carregamento de imagens
+     4. Chart — gráfico radar da seção Sobre
+     5. Navbar — efeito ao rolar
+     6. Frases rotativas
+   ============================================================ */
 
-(function () {
-  'use strict';
+/* ── 1. SPA — navegação entre views ────────────────────────── */
 
-  /* ──────────────────────────────────────────────
-     1. HEADER — Efeito ao rolar
-  ────────────────────────────────────────────── */
+const VIEWS = ['main-view', 'wedding-selector', 'gallery-view', 'olhar-view', 'street-view'];
 
-  const header = document.querySelector('.header');
+const app = {
+  _streetLoaded: false,
+  _olharLoaded:  false,
 
-  if (header) {
-    const onScroll = () => {
-      header.classList.toggle('is-scrolled', window.scrollY > 40);
-    };
+  init() {
+    this.renderChart();
+    this.handleNav();
+    this.initSlideshow();
+    initRotatingPhrases();
+  },
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // estado inicial
-  }
-
-  /* ──────────────────────────────────────────────
-     2. MENU HAMBÚRGUER
-  ────────────────────────────────────────────── */
-
-  const navToggle = document.querySelector('.nav__toggle');
-  const navMenu   = document.querySelector('.nav__menu');
-  const navLinks  = document.querySelectorAll('.nav__link');
-
-  if (navToggle && navMenu) {
-    const openMenu = () => {
-      navMenu.classList.add('is-open');
-      navToggle.setAttribute('aria-expanded', 'true');
-      navToggle.setAttribute('aria-label', 'Fechar menu de navegação');
-      document.body.style.overflow = 'hidden';
-    };
-
-    const closeMenu = () => {
-      navMenu.classList.remove('is-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      navToggle.setAttribute('aria-label', 'Abrir menu de navegação');
-      document.body.style.overflow = '';
-    };
-
-    navToggle.addEventListener('click', () => {
-      const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
-      isOpen ? closeMenu() : openMenu();
+  showSection(id) {
+    VIEWS.forEach(v => {
+      const el = document.getElementById(v);
+      if (el) el.classList.add('hidden-content');
     });
 
-    // Fechar ao clicar em um link
-    navLinks.forEach((link) => {
-      link.addEventListener('click', closeMenu);
+    const targetId = id === 'home' ? 'main-view' : id;
+    const target   = document.getElementById(targetId);
+    if (target) {
+      target.classList.remove('hidden-content');
+      target.classList.add('fade-in');
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  },
+
+  /* ── Casamentos ── */
+
+  showSubGallery(type) {
+    if (type !== 'weddings') return;
+
+    const WEDDINGS = [
+      { name: 'Bianca & Donizete', path: 'assets/img/portfolio/casamentos/Bianca & Donizete/' },
+      { name: 'Miellem & Aleft',   path: 'assets/img/portfolio/casamentos/Miellem & Aleft/' },
+      { name: 'Pamela & Juliano',  path: 'assets/img/portfolio/casamentos/Pamela & Juliano/' },
+      { name: 'Marcos & Patricia', path: 'assets/img/portfolio/casamentos/Patricia & Marcos/' },
+    ];
+
+    const container = document.getElementById('wedding-albums');
+    container.innerHTML = '';
+
+    WEDDINGS.forEach(w => {
+      const card = document.createElement('div');
+      card.className = 'group relative aspect-[4/3] overflow-hidden cursor-pointer bg-stone-900 shadow-xl';
+      card.onclick   = () => app.openGallery('wedding-detail', w);
+
+      card.innerHTML = `
+        <img
+          src="${encodeURI(w.path + 'capa.jpg')}"
+          onerror="this.style.display='none'"
+          class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700"
+          alt="${w.name}">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-6 text-left">
+          <h4 class="font-serif text-2xl text-white uppercase tracking-tighter">${w.name}</h4>
+        </div>`;
+
+      container.appendChild(card);
     });
 
-    // Fechar com ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
-        closeMenu();
-        navToggle.focus();
+    this.showSection('wedding-selector');
+  },
+
+  /* ── 3. Galeria — carregamento de imagens numeradas ── */
+
+  loadImagesFromFolder(gridEl, basePath, folder, start = 1, max = 200) {
+    for (let i = start; i <= max; i++) {
+      const item = document.createElement('div');
+      item.className = 'masonry-item overflow-hidden rounded-sm shadow-2xl loading-skeleton min-h-[200px]';
+
+      const img  = document.createElement('img');
+      img.src    = encodeURI(`${basePath}${folder}(${i}).jpg`);
+      img.alt    = '';
+      img.className = 'w-full h-auto object-cover transition-all duration-700 opacity-0';
+
+      img.onload  = () => {
+        img.classList.replace('opacity-0', 'opacity-100');
+        item.classList.remove('loading-skeleton');
+      };
+      img.onerror = () => item.remove();
+
+      item.appendChild(img);
+      gridEl.appendChild(item);
+    }
+  },
+
+  openGallery(theme, customData = null) {
+    ['gallery-grid', 'pre-wedding-grid', 'ceremony-grid'].forEach(id => {
+      document.getElementById(id).innerHTML = '';
+    });
+
+    const hide = id => document.getElementById(id)?.classList.add('hidden');
+    const show = id => document.getElementById(id)?.classList.remove('hidden');
+
+    hide('pre-wedding-section');
+    hide('ceremony-section');
+    hide('wedding-nav-buttons');
+
+    const backBtn = document.getElementById('back-to-selector');
+    let title = '', desc = '';
+
+    if (theme === 'wedding-detail') {
+      title = customData.name;
+      desc  = `Narrativa completa de ${customData.name}. Momentos capturados com alma na Mantiqueira.`;
+      backBtn.onclick = () => app.showSection('wedding-selector');
+
+      show('wedding-nav-buttons');
+      show('pre-wedding-section');
+      show('ceremony-section');
+
+      this.loadImagesFromFolder(document.getElementById('pre-wedding-grid'), customData.path, 'Pre Wedding/');
+      this.loadImagesFromFolder(document.getElementById('ceremony-grid'),    customData.path, 'Cerimonia/');
+
+    } else {
+      const GALLERY_DATA = {
+        adventure: {
+          title:    'Aventura',
+          desc:     'Registros verticais na Pedra do Baú e nas trilhas da Mantiqueira.',
+          basePath: 'assets/img/portfolio/aventura/',
+        },
+        portraits: {
+          title:    'Retratos',
+          desc:     'Essência capturada na luz natural da serra.',
+          basePath: 'assets/img/portfolio/retratos/',
+        },
+        street: {
+          title:    'Fotografia de Rua',
+          desc:     'O cotidiano transformado em arte. A vida pulsando nas ruas da serra.',
+          basePath: 'assets/img/portfolio/rua/',
+        },
+      };
+
+      const cfg = GALLERY_DATA[theme];
+      title = cfg.title;
+      desc  = cfg.desc;
+      backBtn.onclick = () => app.showSection('home');
+
+      const grid = document.getElementById('gallery-grid');
+      for (let i = 1; i <= 60; i++) {
+        const item = document.createElement('div');
+        item.className = 'masonry-item overflow-hidden rounded-sm shadow-2xl loading-skeleton min-h-[200px]';
+
+        const img     = document.createElement('img');
+        img.src       = encodeURI(`${cfg.basePath}${i}.jpg`);
+        img.alt       = '';
+        img.className = 'w-full h-auto object-cover transition-all duration-700';
+        img.onload    = () => item.classList.remove('loading-skeleton');
+        img.onerror   = () => item.remove();
+
+        item.appendChild(img);
+        grid.appendChild(item);
       }
-    });
+    }
 
-    // Fechar ao redimensionar para desktop
-    const mediaQuery = window.matchMedia('(min-width: 768px)');
-    mediaQuery.addEventListener('change', (e) => {
-      if (e.matches) closeMenu();
-    });
-  }
+    document.getElementById('gallery-title').innerText = title;
+    document.getElementById('gallery-desc').innerText  = desc;
+    this.showSection('gallery-view');
+  },
 
-  /* ──────────────────────────────────────────────
-     3. ACTIVE NAV LINK via IntersectionObserver
-  ────────────────────────────────────────────── */
+  openStreet() {
+    if (!this._streetLoaded) {
+      const grid = document.getElementById('street-grid');
+      for (let i = 1; i <= 69; i++) {
+        const item = document.createElement('div');
+        item.className = 'masonry-item overflow-hidden rounded-sm shadow-2xl loading-skeleton min-h-[200px]';
 
-  const sections = document.querySelectorAll('section[id]');
+        const img     = document.createElement('img');
+        img.src       = encodeURI(`assets/img/portfolio/rua/galeria/${i}.jpg`);
+        img.alt       = '';
+        img.className = 'w-full h-auto object-cover transition-all duration-700';
+        img.onload    = () => item.classList.remove('loading-skeleton');
+        img.onerror   = () => item.remove();
 
-  if (sections.length && navLinks.length) {
-    const activateLink = (id) => {
-      navLinks.forEach((link) => {
-        const isCurrent = link.getAttribute('href') === `#${id}`;
-        link.setAttribute('aria-current', isCurrent ? 'true' : 'false');
-      });
-    };
-
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            activateLink(entry.target.id);
-          }
-        });
-      },
-      {
-        rootMargin: `-${getComputedStyle(document.documentElement)
-          .getPropertyValue('--nav-height')
-          .trim()} 0px -60% 0px`,
-        threshold: 0,
+        item.appendChild(img);
+        grid.appendChild(item);
       }
-    );
+      this._streetLoaded = true;
+    }
+    this.showSection('street-view');
+  },
 
-    sections.forEach((section) => sectionObserver.observe(section));
-  }
+  openOlhar() {
+    if (!this._olharLoaded) {
+      const grid = document.getElementById('olhar-grid');
+      for (let i = 1; i <= 60; i++) {
+        const item = document.createElement('div');
+        item.className = 'masonry-item overflow-hidden rounded-sm shadow-2xl loading-skeleton min-h-[200px]';
 
-  /* ──────────────────────────────────────────────
-     4. ANIMAÇÕES DE ENTRADA (reveal)
-  ────────────────────────────────────────────── */
+        const img     = document.createElement('img');
+        img.src       = encodeURI(`assets/img/portfolio/olhar/registros/${i}.jpg`);
+        img.alt       = '';
+        img.className = 'w-full h-auto object-cover transition-all duration-700';
+        img.onload    = () => item.classList.remove('loading-skeleton');
+        img.onerror   = () => item.remove();
 
-  const revealTargets = document.querySelectorAll(
-    '.section-header, .sobre__text, .sobre__stats, .stat-card, ' +
-    '.skill-category, .project-card, .contato__info, .contato__form'
-  );
-
-  if (revealTargets.length) {
-    // Adiciona a classe .reveal dinamicamente (não depende de HTML manual)
-    revealTargets.forEach((el, index) => {
-      el.classList.add('reveal');
-
-      // Escalonamento por grupo de elementos irmãos
-      const siblings = el.parentElement
-        ? Array.from(el.parentElement.children).filter((c) =>
-            c.classList.contains(el.classList[0])
-          )
-        : [];
-      const siblingIndex = siblings.indexOf(el);
-      if (siblingIndex > 0 && siblingIndex <= 4) {
-        el.classList.add(`reveal-delay-${siblingIndex}`);
+        item.appendChild(img);
+        grid.appendChild(item);
       }
+      this._olharLoaded = true;
+    }
+    this.showSection('olhar-view');
+  },
+
+  /* ── 4. Chart — gráfico radar ── */
+
+  renderChart() {
+    const ctx = document.getElementById('skillsChart');
+    if (!ctx) return;
+
+    new Chart(ctx.getContext('2d'), {
+      type: 'radar',
+      data: {
+        labels: ['História Local', 'Guiamento', 'Casamentos', 'Pós-Processo', 'Noturna', 'Aventura'],
+        datasets: [{
+          data: [100, 100, 95, 88, 98, 100],
+          backgroundColor: 'rgba(197, 163, 115, 0.2)',
+          borderColor:     '#c5a373',
+          pointBackgroundColor: '#0a0c0a',
+          borderWidth: 2,
+        }],
+      },
+      options: {
+        responsive:          true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            grid:        { color: 'rgba(0,0,0,0.08)' },
+            ticks:       { display: false },
+            pointLabels: { color: '#2c2f2e', font: { size: 11 } },
+          },
+        },
+        plugins: { legend: { display: false } },
+      },
     });
+  },
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target); // anima só uma vez
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    );
+  /* ── 5. Navbar — efeito ao rolar ── */
 
-    revealTargets.forEach((el) => revealObserver.observe(el));
-  }
+  handleNav() {
+    const nav = document.getElementById('navbar');
+    if (!nav) return;
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+  },
 
-  /* ──────────────────────────────────────────────
-     5. FORMULÁRIO DE CONTATO — Validação
-  ────────────────────────────────────────────── */
+  /* ── 2. Hero — slideshow ── */
 
-  const form       = document.getElementById('contact-form');
-  const formStatus = document.getElementById('form-status');
-  const formSubmit = document.getElementById('form-submit');
+  initSlideshow() {
+    const slides = document.querySelectorAll('.hero-slide');
+    if (!slides.length) return;
 
-  if (form) {
-    // Validadores individuais
-    const validators = {
-      name: (value) => {
-        if (!value.trim())           return 'Nome é obrigatório.';
-        if (value.trim().length < 2) return 'Nome deve ter ao menos 2 caracteres.';
-        return '';
-      },
-      email: (value) => {
-        if (!value.trim())              return 'E-mail é obrigatório.';
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()))
-                                        return 'Informe um e-mail válido.';
-        return '';
-      },
-      message: (value) => {
-        if (!value.trim())            return 'Mensagem é obrigatória.';
-        if (value.trim().length < 10) return 'Mensagem deve ter ao menos 10 caracteres.';
-        return '';
-      },
-    };
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 3500);
+  },
+};
 
-    const getField = (name) => form.querySelector(`[name="${name}"]`);
-    const getError = (name) => form.querySelector(`[name="${name}"]`)
-      ?.closest('.form-group')
-      ?.querySelector('.form-error');
+/* ── 6. Frases rotativas ────────────────────────────────────── */
 
-    const validateField = (name, value) => {
-      const error   = validators[name]?.(value) ?? '';
-      const input   = getField(name);
-      const errorEl = getError(name);
+function sorteia(frases, chave) {
+  const ultimo = parseInt(localStorage.getItem(chave) ?? '-1');
+  let idx;
+  do { idx = Math.floor(Math.random() * frases.length); }
+  while (idx === ultimo && frases.length > 1);
+  localStorage.setItem(chave, idx);
+  return frases[idx];
+}
 
-      if (input)   input.classList.toggle('is-invalid', !!error);
-      if (errorEl) errorEl.textContent = error;
+function initRotatingPhrases() {
+  const FRASES_FOOTER = [
+    'Segue lá no Instagram pra não perder nenhum clique.',
+    'Chama no WhatsApp. Sem formalidade, sem formulário.',
+    'O próximo ensaio pode ser o seu. Fala comigo.',
+    'Toda semana tem foto nova lá no Instagram.',
+    'Prefere conversar? É só chamar no WhatsApp.',
+    'Aparece lá no Instagram. Prometo que vale.',
+    'Um clique no WhatsApp e a gente marca alguma coisa.',
+    'Segue o @ e vem fazer parte dessa história.',
+    'DM aberta. WhatsApp também. Escolhe o que preferir.',
+    'A Mantiqueira tá esperando. Só falta você chamar.',
+  ];
 
-      return error === '';
-    };
+  const FRASES_CONTATO = [
+    'Uma foto sua guarda mais do que você imagina. Bora fazer isso acontecer?',
+    'A Mantiqueira tem história pra contar. E você, tem um momento pra eternizar?',
+    'Não precisa ser uma grande ocasião. Só precisa ser real.',
+    'A melhor foto da sua vida ainda não foi tirada.',
+    'Você aparece na tela do celular todo dia. Uma vez na vida, apareça no quadro certo.',
+    'Tem alguma coisa que vale a pena lembrar? Me conta.',
+    'Luz, momento e a Mantiqueira como cenário. O resto a gente resolve junto.',
+    'Não cobro pelo clique. Cobro pelo que fica depois que o momento vai embora.',
+    'Cada história merece ser fotografada do jeito certo.',
+    'A memória falha. A foto não.',
+    'Se tá esperando o momento certo, esse é ele.',
+    'Fotografia é a única máquina do tempo que existe. Vamos usá-la?',
+  ];
 
-    // Validação em tempo real (blur + input)
-    ['name', 'email', 'message'].forEach((fieldName) => {
-      const input = getField(fieldName);
-      if (!input) return;
+  const elFooter  = document.getElementById('frase-footer');
+  const elContato = document.getElementById('frase-contato');
 
-      input.addEventListener('blur', () => validateField(fieldName, input.value));
-      input.addEventListener('input', () => {
-        // Só revalida ao digitar se o campo já estava inválido
-        if (input.classList.contains('is-invalid')) {
-          validateField(fieldName, input.value);
-        }
-      });
-    });
+  if (elFooter)  elFooter.textContent  = sorteia(FRASES_FOOTER,  'vc_footer_frase');
+  if (elContato) elContato.textContent = sorteia(FRASES_CONTATO, 'vc_contato_frase');
+}
 
-    // Submit
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+/* ── Bootstrap ──────────────────────────────────────────────── */
 
-      const nameVal    = getField('name')?.value    ?? '';
-      const emailVal   = getField('email')?.value   ?? '';
-      const messageVal = getField('message')?.value ?? '';
-
-      const isValid = [
-        validateField('name',    nameVal),
-        validateField('email',   emailVal),
-        validateField('message', messageVal),
-      ].every(Boolean);
-
-      if (!isValid) {
-        // Foca o primeiro campo inválido
-        form.querySelector('.is-invalid')?.focus();
-        return;
-      }
-
-      // Simula envio (substituir por fetch real quando integrar backend/serviço)
-      setSubmitLoading(true);
-      simulateSend({ name: nameVal, email: emailVal, message: messageVal })
-        .then(() => {
-          showStatus('Mensagem enviada com sucesso! Retornarei em breve.', 'success');
-          form.reset();
-        })
-        .catch(() => {
-          showStatus('Falha ao enviar. Tente novamente ou use o e-mail diretamente.', 'error');
-        })
-        .finally(() => setSubmitLoading(false));
-    });
-
-    const setSubmitLoading = (loading) => {
-      if (!formSubmit) return;
-      formSubmit.disabled = loading;
-      const textEl = formSubmit.querySelector('.btn__text');
-      if (textEl) textEl.textContent = loading ? 'Enviando...' : 'Enviar mensagem';
-    };
-
-    const showStatus = (message, type) => {
-      if (!formStatus) return;
-      formStatus.textContent = message;
-      formStatus.className   = `form-status is-${type}`;
-      setTimeout(() => {
-        formStatus.textContent = '';
-        formStatus.className   = 'form-status';
-      }, 6000);
-    };
-
-    // Stub de envio — substituir por integração real (EmailJS, Formspree, etc.)
-    const simulateSend = (_data) =>
-      new Promise((resolve, reject) => {
-        setTimeout(() => {
-          // Simula 90% de sucesso durante desenvolvimento
-          Math.random() > 0.1 ? resolve() : reject(new Error('Network error'));
-        }, 1200);
-      });
-  }
-
-  /* ──────────────────────────────────────────────
-     6. FOOTER — Ano dinâmico
-  ────────────────────────────────────────────── */
-
-  const yearEl = document.getElementById('footer-year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-
-})();
+document.addEventListener('DOMContentLoaded', () => app.init());

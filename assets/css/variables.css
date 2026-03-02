@@ -1,96 +1,41 @@
 /* ============================================================
-   VARIABLES.CSS — Design Tokens (sistema de design centralizado)
+   VARIABLES.CSS — Design Tokens (Vinícius Rafael Fotografia)
    ============================================================ */
 
 :root {
 
-  /* ── Paleta de Cores ── */
-  --color-bg:          #0d0d0d;
-  --color-bg-alt:      #151515;
-  --color-surface:     #1c1c1c;
-  --color-surface-alt: #252525;
-  --color-border:      rgba(255, 255, 255, 0.08);
+  /* ── Paleta Mantiqueira ── */
+  --color-bg:          #0a0c0a;
+  --color-bg-alt:      #111311;
+  --color-surface:     #1a1a1a;
+  --color-surface-2:   #2a2a2a;
+  --color-earth:       #c5a373;
+  --color-earth-dim:   rgba(197, 163, 115, 0.2);
+  --color-rock:        #2c2f2e;
+  --color-green:       #1a241a;
+  --color-light:       #fdfcf9;
 
-  --color-primary:     #7c6df0;
-  --color-primary-dim: rgba(124, 109, 240, 0.12);
-  --color-accent:      #f06292;
-  --color-accent-dim:  rgba(240, 98, 146, 0.12);
-
-  --color-text:        #e8e8e8;
-  --color-text-muted:  #888888;
-  --color-text-subtle: #555555;
-
-  --color-success:     #4caf87;
-  --color-error:       #e05c5c;
+  /* ── Texto ── */
+  --color-text:        #fdfcf9;
+  --color-text-muted:  rgba(253, 252, 249, 0.6);
 
   /* ── Tipografia ── */
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-body:    'Inter', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
-
-  --text-xs:   clamp(0.70rem, 1.5vw, 0.75rem);
-  --text-sm:   clamp(0.82rem, 1.8vw, 0.875rem);
-  --text-base: clamp(0.95rem, 2vw, 1rem);
-  --text-lg:   clamp(1.05rem, 2.2vw, 1.125rem);
-  --text-xl:   clamp(1.15rem, 2.5vw, 1.25rem);
-  --text-2xl:  clamp(1.3rem, 3vw, 1.5rem);
-  --text-3xl:  clamp(1.6rem, 4vw, 2rem);
-  --text-4xl:  clamp(2rem, 5vw, 2.75rem);
-  --text-5xl:  clamp(2.5rem, 7vw, 4rem);
-
-  --weight-regular: 400;
-  --weight-medium:  500;
-  --weight-semibold: 600;
-  --weight-bold:    700;
-
-  /* ── Espaçamentos ── */
-  --space-1:  0.25rem;
-  --space-2:  0.5rem;
-  --space-3:  0.75rem;
-  --space-4:  1rem;
-  --space-5:  1.25rem;
-  --space-6:  1.5rem;
-  --space-8:  2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
+  --font-sans:  'Montserrat', sans-serif;
+  --font-serif: 'Lora', serif;
 
   /* ── Layout ── */
-  --container-max:    1200px;
-  --container-pad:    clamp(1rem, 5vw, 2rem);
-  --nav-height:       70px;
-
-  /* ── Bordas ── */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   16px;
-  --radius-xl:   24px;
-  --radius-full: 9999px;
-
-  /* ── Sombras ── */
-  --shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.5);
-  --shadow-lg:  0 8px 32px rgba(0, 0, 0, 0.6);
-  --shadow-glow-primary: 0 0 24px rgba(124, 109, 240, 0.25);
-  --shadow-glow-accent:  0 0 24px rgba(240, 98, 146, 0.2);
+  --nav-height: 70px;
 
   /* ── Transições ── */
-  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-fast:   150ms;
-  --duration-normal: 300ms;
-  --duration-slow:   500ms;
+  --ease-in-out:      cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast:    150ms;
+  --duration-normal:  300ms;
+  --duration-slow:    500ms;
+  --duration-gallery: 700ms;
 
   /* ── Z-index ── */
-  --z-below:   -1;
-  --z-base:     0;
-  --z-raised:   10;
-  --z-dropdown: 100;
-  --z-sticky:   200;
-  --z-overlay:  300;
-  --z-modal:    400;
-  --z-toast:    500;
+  --z-base:    0;
+  --z-gallery: 10;
+  --z-overlay: 20;
+  --z-sticky:  50;
 }

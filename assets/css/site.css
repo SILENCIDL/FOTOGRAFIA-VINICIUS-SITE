@@ -1,0 +1,147 @@
+/* ============================================================
+   SITE.CSS — Estilos do site Vinícius Rafael Fotografia
+   Ordem: Base → Scrollbar → Hero → Galeria → Navbar → Utilitários
+   ============================================================ */
+
+@import url('./variables.css');
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-earth); border-radius: 5px; }
+
+/* ── Animações ──────────────────────────────────────────────── */
+
+.fade-in {
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SPA — sistema de views ─────────────────────────────────── */
+
+.hidden-content { display: none !important; }
+
+/* ── Hero Slideshow ─────────────────────────────────────────── */
+
+.hero-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(10, 12, 10, 0.95) 0%,
+    rgba(10, 12, 10, 0.30) 60%,
+    rgba(10, 12, 10, 0)   100%
+  );
+}
+
+.hero-content-pushed { padding-top: 48vh; }
+
+.hero-slide {
+  opacity: 0;
+  transition: opacity 1s var(--ease-in-out);
+}
+.hero-slide.active { opacity: 0.9; }
+
+.hero-bg-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+}
+
+/* ── Galeria Masonry ─────────────────────────────────────────── */
+
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1.5rem;
+}
+
+@media (min-width: 640px)  { .masonry-grid { column-count: 2; } }
+@media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  transition: all var(--duration-slow) var(--ease-in-out);
+  background-color: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.masonry-item img {
+  transition: filter var(--duration-slow) ease, transform var(--duration-slow) ease;
+  filter: brightness(0.9);
+}
+
+.masonry-item:hover img,
+.masonry-item:active img {
+  filter: brightness(1.2);
+  transform: scale(1.03);
+}
+
+/* ── Loading Skeleton ────────────────────────────────────────── */
+
+.loading-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 25%,
+    var(--color-surface-2) 50%,
+    var(--color-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Category Label ──────────────────────────────────────────── */
+
+.category-label {
+  display: inline-block;
+  background: var(--color-earth);
+  color: white;
+  padding: 4px 12px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* ── Chart ───────────────────────────────────────────────────── */
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  height: 300px;
+}
+
+/* ── Navbar ao rolar ─────────────────────────────────────────── */
+
+#navbar.scrolled {
+  background: white;
+  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.12);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+#navbar.scrolled .nav-link  { color: var(--color-bg); }
+#navbar.scrolled .nav-brand { color: var(--color-bg); }
+
+/* ── Divisor decorativo ──────────────────────────────────────── */
+
+.divider-line {
+  width: 60px;
+  height: 2px;
+  background: var(--color-earth);
+  margin: 0 auto;
+}
