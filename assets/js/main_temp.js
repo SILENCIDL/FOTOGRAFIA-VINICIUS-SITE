@@ -137,7 +137,6 @@ const app = {
       this._streetLoaded = true;
     }
     this.showSection('street-view');
-    this.initStreetSlideshow();
   },
 
   openOlhar() {
@@ -149,60 +148,6 @@ const app = {
       this._olharLoaded = true;
     }
     this.showSection('olhar-view');
-    this.initOlharSlideshow();
-  },
-
-  /* ── Slideshows das páginas Olhar e Rua ───────────────────── */
-
-  _olharSlideInterval: null,
-  _streetSlideInterval: null,
-
-  initOlharSlideshow() {
-    // Limpa interval anterior se existir
-    if (this._olharSlideInterval) {
-      clearInterval(this._olharSlideInterval);
-    }
-
-    const slides = document.querySelectorAll('.olhar-slide');
-    if (!slides.length) return;
-
-    let current = 0;
-
-    // Mostra o primeiro slide
-    slides.forEach((slide, index) => {
-      slide.classList.toggle('active', index === 0);
-    });
-
-    // Inicia o slideshow (muda a cada 3 segundos)
-    this._olharSlideInterval = setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 3000);
-  },
-
-  initStreetSlideshow() {
-    // Limpa interval anterior se existir
-    if (this._streetSlideInterval) {
-      clearInterval(this._streetSlideInterval);
-    }
-
-    const slides = document.querySelectorAll('.street-slide');
-    if (!slides.length) return;
-
-    let current = 0;
-
-    // Mostra o primeiro slide
-    slides.forEach((slide, index) => {
-      slide.classList.toggle('active', index === 0);
-    });
-
-    // Inicia o slideshow (muda a cada 3 segundos)
-    this._streetSlideInterval = setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 3000);
   },
 
   openPrices()       { this.showSection('prices-view'); },
