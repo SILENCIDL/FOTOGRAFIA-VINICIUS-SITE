@@ -104,8 +104,11 @@ const app = {
   },
 
   loadImagesFromFolder(gridEl, basePath, folder, start = 1, max = 200) {
+    const cleanFolder = folder.endsWith('/') ? folder.slice(0, -1) : folder;
+    
     for (let i = start; i <= max; i++) {
-      gridEl.appendChild(this._makeItem(encodeURI(`${basePath}${folder}(${i}).jpg`), gridEl));
+      const fileName = `${folder}${cleanFolder} (${i}).jpg`;
+      gridEl.appendChild(this._makeItem(encodeURI(`${basePath}${fileName}`), gridEl));
     }
   },
 
@@ -144,9 +147,9 @@ const app = {
       this.loadImagesFromFolder(cerGrid, customData.path, 'Cerimonia/');
     } else {
       const GALLERY_DATA = {
-        adventure: { title: 'Aventura', desc: 'Registros verticais na Pedra do Baú e nas trilhas da Mantiqueira.', basePath: 'assets/img/portfolio/aventura/' },
-        portraits: { title: 'Retratos', desc: 'Essência capturada na luz natural da serra.', basePath: 'assets/img/portfolio/retratos/' },
-        street:    { title: 'Fotografia de Rua', desc: 'O cotidiano transformado em arte.', basePath: 'assets/img/portfolio/rua/' },
+        adventure: { title: 'Aventura', desc: 'Registros verticais na Pedra do Baú e nas trilhas da Mantiqueira.', basePath: 'assets/img/portfolio/aventura/', prefix: 'aventura' },
+        portraits: { title: 'Retratos', desc: 'Essência capturada na luz natural da serra.', basePath: 'assets/img/portfolio/retratos/', prefix: 'retratos' },
+        street:    { title: 'Fotografia de Rua', desc: 'O cotidiano transformado em arte.', basePath: 'assets/img/portfolio/rua/', prefix: 'rua' },
       };
       const cfg = GALLERY_DATA[theme];
       title = cfg.title; 
@@ -154,7 +157,8 @@ const app = {
       backBtn.onclick = () => app.showSection('home');
       const grid = document.getElementById('gallery-grid');
       for (let i = 1; i <= 60; i++) {
-        grid.appendChild(this._makeItem(encodeURI(`${cfg.basePath}${i}.jpg`), grid));
+        const path = `${cfg.basePath}${cfg.prefix} (${i}).jpg`;
+        grid.appendChild(this._makeItem(encodeURI(path), grid));
       }
     }
     
@@ -170,7 +174,7 @@ const app = {
     if (!this._streetLoaded) {
       const grid = document.getElementById('street-grid');
       for (let i = 1; i <= 69; i++) {
-        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/rua/galeria/${i}.jpg`), grid));
+        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/rua/galeria/rua (${i}).jpg`), grid));
       }
       this._streetLoaded = true;
     }
@@ -182,7 +186,7 @@ const app = {
     if (!this._olharLoaded) {
       const grid = document.getElementById('olhar-grid');
       for (let i = 1; i <= 60; i++) {
-        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/olhar/registros/${i}.jpg`), grid));
+        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/olhar/registros/olhar (${i}).jpg`), grid));
       }
       this._olharLoaded = true;
     }
@@ -190,7 +194,6 @@ const app = {
     this.initOlharSlideshow();
   },
 
-  /* ── Slideshows das páginas Olhar e Rua ───────────────────── */
   initOlharSlideshow() {
     if (this._olharSlideInterval) {
       clearInterval(this._olharSlideInterval);
@@ -311,7 +314,6 @@ const app = {
   },
 };
 
-/* ── Lightbox ──────────────────────────────────────────────── */
 const lightbox = {
   el: null, 
   imgEl: null, 
@@ -327,7 +329,7 @@ const lightbox = {
       <button id="lb-prev" aria-label="Anterior">&#x2039;</button>
       <button id="lb-next" aria-label="Próximo">&#x203A;</button>
       <div id="lb-img-wrap">
-        <img id="lb-img" src="" alt="" style="transition:opacity .3s ease">
+        <img id="lb-img" src="" alt="" class="lb-img-transition">
         <div id="lb-loader"></div>
       </div>
       <div id="lb-counter"></div>`;
@@ -401,7 +403,6 @@ const lightbox = {
 
 function initLightbox() { lightbox.init(); }
 
-/* ── Scroll Reveal ─────────────────────────────────────────── */
 function initScrollReveal() {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => { 
@@ -423,7 +424,6 @@ function initScrollReveal() {
   }).observe(document.body, { childList: true, subtree: true });
 }
 
-/* ── Mobile Menu ───────────────────────────────────────────── */
 function initMobileMenu() {
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
@@ -455,7 +455,6 @@ function initMobileMenu() {
   });
 }
 
-/* ── Frases rotativas ─────────────────────────────────────── */
 function initRotatingPhrases() {
   const FRASES_FOOTER = [
     'Segue lá no Instagram pra não perder nenhum clique.',
@@ -488,5 +487,4 @@ function initRotatingPhrases() {
   } catch(e) { /* silencioso */ }
 }
 
-/* ── Bootstrap ──────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => app.init());

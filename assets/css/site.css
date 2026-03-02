@@ -572,3 +572,11 @@ img {
     background-attachment: scroll;
   }
 }
+/* ── Estilos extraídos do HTML e JS (Limpeza de Inline Styles) ── */
+.hero-title-max {
+  max-width: 90vw;
+}
+
+.lb-img-transition {
+  transition: opacity 0.3s ease;
+}
