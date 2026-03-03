@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/site.css">
 
+    <link rel="preload" as="image" href="assets/img/hero/hero(1).jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="assets/js/tailwind-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -50,10 +52,10 @@
     <div id="main-view" class="fade-in block">
         
         <section class="relative min-h-screen flex flex-col justify-start overflow-hidden bg-mantiqueira-dark">
-            <img src="assets/img/hero/hero(1).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide active">
-            <img src="assets/img/hero/hero(2).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide">
-            <img src="assets/img/hero/hero(3).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide">
-            <img src="assets/img/hero/hero(4).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide">
+            <img src="assets/img/hero/hero(1).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide active" fetchpriority="high" decoding="async">
+            <img src="assets/img/hero/hero(2).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide" loading="lazy" decoding="async">
+            <img src="assets/img/hero/hero(3).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide" loading="lazy" decoding="async">
+            <img src="assets/img/hero/hero(4).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide" loading="lazy" decoding="async">
             
             <div class="absolute inset-0 hero-overlay z-10"></div>
             
@@ -79,7 +81,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
                     <div class="lg:col-span-5 reveal relative">
                         <div class="absolute -inset-4 border border-white/5 z-0"></div>
-                        <img src="assets/img/sobre/vinicius.jpg" onerror="this.src='https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop'" alt="Vinícius Rafael" class="w-full shadow-2xl transition-all duration-1000 grayscale hover:grayscale-0">
+                        <img src="assets/img/sobre/vinicius.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop'" alt="Vinícius Rafael" class="w-full shadow-2xl transition-all duration-1000 grayscale hover:grayscale-0">
                     </div>
                     <div class="lg:col-span-7 reveal">
                         <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-6">O Fotógrafo</span>
@@ -105,7 +107,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                     
                     <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card" onclick="app.showSubGallery('weddings')">
-                        <img src="assets/img/portfolio/casamentos/capa.jpg" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Casamentos">
+                        <img src="assets/img/portfolio/casamentos/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Casamentos">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                         <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
                             <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Casamentos</h3>
@@ -114,7 +116,7 @@
                     </div>
 
                     <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card" onclick="app.openGallery('adventure')">
-                        <img src="assets/img/portfolio/aventura/capa.jpg" onerror="this.src='https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Aventura">
+                        <img src="assets/img/portfolio/aventura/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Aventura">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                         <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
                             <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Aventura</h3>
@@ -123,7 +125,7 @@
                     </div>
 
                     <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card" onclick="app.openGallery('portraits')">
-                        <img src="assets/img/portfolio/retratos/capa.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Retratos">
+                        <img src="assets/img/portfolio/retratos/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Retratos">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                         <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
                             <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Retratos</h3>
@@ -132,7 +134,7 @@
                     </div>
 
                     <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card md:col-span-2 lg:col-span-1" onclick="app.openStreet()">
-                        <img src="assets/img/portfolio/rua/capa.jpg" onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Fotografia de Rua">
+                        <img src="assets/img/portfolio/rua/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Fotografia de Rua">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                         <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
                             <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Rua</h3>
@@ -141,7 +143,7 @@
                     </div>
 
                     <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card md:col-span-2 lg:col-span-1" onclick="app.openOlhar()">
-                        <img src="assets/img/portfolio/olhar/capa.jpg" onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Olhar Fotográfico">
+                        <img src="assets/img/portfolio/olhar/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Olhar Fotográfico">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                         <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
                             <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">O Olhar</h3>
@@ -292,10 +294,10 @@
     <div id="olhar-view" class="hidden-content bg-[#0a0c0a] min-h-screen">
         <div class="relative h-[70vh] md:h-screen flex flex-col justify-end pb-16 md:pb-32 overflow-hidden">
             <div class="olhar-slideshow absolute inset-0 z-0">
-                <img src="assets/img/olhar/slides/slide (1).jpg" class="olhar-slide active" alt="Olhar 1" onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'">
-                <img src="assets/img/olhar/slides/slide (2).jpg" class="olhar-slide" alt="Olhar 2" onerror="this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2074&auto=format&fit=crop'">
-                <img src="assets/img/olhar/slides/slide (3).jpg" class="olhar-slide" alt="Olhar 3" onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2074&auto=format&fit=crop'">
-                <img src="assets/img/olhar/slides/slide (4).jpg" class="olhar-slide" alt="Olhar 4" onerror="this.src='https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070&auto=format&fit=crop'">
+                <img src="assets/img/olhar/slides/slide (1).jpg" class="olhar-slide active" alt="Olhar 1" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'">
+                <img src="assets/img/olhar/slides/slide (2).jpg" class="olhar-slide" alt="Olhar 2" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2074&auto=format&fit=crop'">
+                <img src="assets/img/olhar/slides/slide (3).jpg" class="olhar-slide" alt="Olhar 3" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2074&auto=format&fit=crop'">
+                <img src="assets/img/olhar/slides/slide (4).jpg" class="olhar-slide" alt="Olhar 4" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070&auto=format&fit=crop'">
             </div>
             <div class="absolute inset-0 hero-overlay z-10"></div>
             <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
@@ -319,10 +321,10 @@
     <div id="street-view" class="hidden-content bg-[#0d0f0d] min-h-screen">
         <div class="relative h-[70vh] md:h-screen flex flex-col justify-end pb-16 md:pb-32 overflow-hidden">
             <div class="street-slideshow absolute inset-0 z-0">
-                <img src="assets/img/rua/slides/slide (1).jpg" class="street-slide active" alt="Rua 1" onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'">
-                <img src="assets/img/rua/slides/slide (2).jpg" class="street-slide" alt="Rua 2" onerror="this.src='https://images.unsplash.com/photo-1517732306149-e8f829eb588a?q=80&w=2072&auto=format&fit=crop'">
-                <img src="assets/img/rua/slides/slide (3).jpg" class="street-slide" alt="Rua 3" onerror="this.src='https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop'">
-                <img src="assets/img/rua/slides/slide (4).jpg" class="street-slide" alt="Rua 4" onerror="this.src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop'">
+                <img src="assets/img/rua/slides/slide (1).jpg" class="street-slide active" alt="Rua 1" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'">
+                <img src="assets/img/rua/slides/slide (2).jpg" class="street-slide" alt="Rua 2" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1517732306149-e8f829eb588a?q=80&w=2072&auto=format&fit=crop'">
+                <img src="assets/img/rua/slides/slide (3).jpg" class="street-slide" alt="Rua 3" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop'">
+                <img src="assets/img/rua/slides/slide (4).jpg" class="street-slide" alt="Rua 4" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop'">
             </div>
             <div class="absolute inset-0 hero-overlay z-10"></div>
             <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">

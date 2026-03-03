@@ -92,24 +92,58 @@ const app = {
     const img = document.createElement('img');
     img.src = src;
     img.alt = '';
-    img.className = 'w-full h-auto object-cover transition-all duration-700 opacity-0 cursor-pointer';
+    img.decoding = 'async';
     img.loading = 'lazy';
-    img.onload = () => { 
-      img.classList.replace('opacity-0', 'opacity-100'); 
-      item.classList.remove('loading-skeleton'); 
-    };
+    img.className = 'w-full h-auto object-cover transition-all duration-700 opacity-0 cursor-pointer';
+    img.onload  = () => { img.classList.replace('opacity-0', 'opacity-100'); item.classList.remove('loading-skeleton'); };
     img.onerror = () => item.remove();
     img.addEventListener('click', () => lightbox.open(img, gridRef));
     item.appendChild(img);
     return item;
   },
 
+  /* Carrega lista de paths em lotes — evita flood de requests simultâneos.
+     Usa um sentinel invisível + IntersectionObserver para buscar o próximo
+     lote somente quando o usuário se aproxima do final do conteúdo atual.
+     Para automaticamente após 5 falhas consecutivas (fim real das imagens). */
+  _batchLoad(gridEl, paths, batchSize = 20) {
+    if (!gridEl || !paths.length) return;
+    let idx = 0, consecutiveFails = 0;
+
+    const sentinel = document.createElement('div');
+    sentinel.style.cssText = 'height:1px;width:100%;pointer-events:none;';
+    gridEl.appendChild(sentinel);
+
+    const loadBatch = () => {
+      if (idx >= paths.length || consecutiveFails >= 5) { sentinel.remove(); return; }
+      const slice = paths.slice(idx, idx + batchSize);
+      idx += batchSize;
+      const frag = document.createDocumentFragment();
+      slice.forEach(src => {
+        const item = this._makeItem(src, gridEl);
+        const img  = item.querySelector('img');
+        if (img) {
+          const origLoad  = img.onload;
+          const origError = img.onerror;
+          img.onload  = function () { consecutiveFails = 0; origLoad?.call(this); };
+          img.onerror = function () { consecutiveFails++; origError?.call(this); };
+        }
+        frag.appendChild(item);
+      });
+      gridEl.insertBefore(frag, sentinel);
+    };
+
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) loadBatch(); },
+      { rootMargin: '500px' }).observe(sentinel);
+
+    loadBatch(); /* carrega primeiro lote imediatamente */
+  },
+
   loadImagesFromFolder(gridEl, basePath, folder, start = 1, max = 200) {
     if (!gridEl) return;
-    for (let i = start; i <= max; i++) {
-      const src = `${basePath}${folder}(${i}).jpg`;
-      gridEl.appendChild(this._makeItem(encodeURI(src), gridEl));
-    }
+    const paths = Array.from({ length: max - start + 1 },
+      (_, i) => encodeURI(`${basePath}${folder}(${start + i}).jpg`));
+    this._batchLoad(gridEl, paths);
   },
 
   openGallery(theme, customData = null) {
@@ -156,9 +190,10 @@ const app = {
       desc = cfg.desc;
       backBtn.onclick = () => app.showSection('home');
       const grid = document.getElementById('gallery-grid');
-      for (let i = 1; i <= 60; i++) {
-        const path = `${cfg.basePath}${cfg.prefix} (${i}).jpg`;
-        grid.appendChild(this._makeItem(encodeURI(path), grid));
+      if (grid) {
+        const paths = Array.from({ length: 60 },
+          (_, i) => encodeURI(`${cfg.basePath}${cfg.prefix} (${i + 1}).jpg`));
+        this._batchLoad(grid, paths);
       }
     }
     
@@ -174,9 +209,9 @@ const app = {
     if (!this._streetLoaded) {
       const grid = document.getElementById('street-grid');
       if (!grid) return;
-      for (let i = 1; i <= 138; i++) {
-        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/rua/galeria/${i}.jpg`), grid));
-      }
+      const paths = Array.from({ length: 138 },
+        (_, i) => encodeURI(`assets/img/portfolio/rua/galeria/${i + 1}.jpg`));
+      this._batchLoad(grid, paths);
       this._streetLoaded = true;
     }
     this.showSection('street-view');
@@ -187,9 +222,9 @@ const app = {
     if (!this._olharLoaded) {
       const grid = document.getElementById('olhar-grid');
       if (!grid) return;
-      for (let i = 1; i <= 31; i++) {
-        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/olhar/registros/${i}.jpg`), grid));
-      }
+      const paths = Array.from({ length: 31 },
+        (_, i) => encodeURI(`assets/img/portfolio/olhar/registros/${i + 1}.jpg`));
+      this._batchLoad(grid, paths);
       this._olharLoaded = true;
     }
     this.showSection('olhar-view');
