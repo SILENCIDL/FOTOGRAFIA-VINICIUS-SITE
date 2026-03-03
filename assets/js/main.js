@@ -62,19 +62,20 @@ const app = {
   showSubGallery(type) {
     if (type !== 'weddings') return;
     const WEDDINGS = [
-      { name: 'Bianca & Donizete', path: 'assets/img/portfolio/casamentos/Bianca & Donizete/' },
-      { name: 'Miellem & Aleft',   path: 'assets/img/portfolio/casamentos/Miellem & Aleft/' },
-      { name: 'Pamela & Juliano',  path: 'assets/img/portfolio/casamentos/Pamela & Juliano/' },
-      { name: 'Marcos & Patricia', path: 'assets/img/portfolio/casamentos/Patricia & Marcos/' },
+      { name: 'Bianca & Donizete', path: 'assets/img/portfolio/casamentos/Bianca & Donizete/', fallback: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop' },
+      { name: 'Miellem & Aleft',   path: 'assets/img/portfolio/casamentos/Miellem & Aleft/',   fallback: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop' },
+      { name: 'Pamela & Juliano',  path: 'assets/img/portfolio/casamentos/Pamela & Juliano/',  fallback: 'https://images.unsplash.com/photo-1464093515883-ec948246accb?q=80&w=2069&auto=format&fit=crop' },
+      { name: 'Marcos & Patricia', path: 'assets/img/portfolio/casamentos/Patricia & Marcos/', fallback: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2070&auto=format&fit=crop' },
     ];
     const container = document.getElementById('wedding-albums');
+    if (!container) return;
     container.innerHTML = '';
     WEDDINGS.forEach(w => {
       const card = document.createElement('div');
       card.className = 'group relative aspect-[4/3] overflow-hidden cursor-pointer bg-stone-900 shadow-xl reveal';
       card.onclick = () => app.openGallery('wedding-detail', w);
       card.innerHTML = `
-        <img src="${encodeURI(w.path + 'capa.jpg')}" onerror="this.style.display='none'"
+        <img src="${encodeURI(w.path + 'capa.jpg')}" onerror="this.onerror=null; this.src='${w.fallback}'"
           class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700" alt="${w.name}">
         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 text-left">
@@ -104,11 +105,10 @@ const app = {
   },
 
   loadImagesFromFolder(gridEl, basePath, folder, start = 1, max = 200) {
-    const cleanFolder = folder.endsWith('/') ? folder.slice(0, -1) : folder;
-    
+    if (!gridEl) return;
     for (let i = start; i <= max; i++) {
-      const fileName = `${folder}${cleanFolder} (${i}).jpg`;
-      gridEl.appendChild(this._makeItem(encodeURI(`${basePath}${fileName}`), gridEl));
+      const src = `${basePath}${folder}(${i}).jpg`;
+      gridEl.appendChild(this._makeItem(encodeURI(src), gridEl));
     }
   },
 
@@ -173,8 +173,9 @@ const app = {
   openStreet() {
     if (!this._streetLoaded) {
       const grid = document.getElementById('street-grid');
-      for (let i = 1; i <= 69; i++) {
-        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/rua/galeria/rua (${i}).jpg`), grid));
+      if (!grid) return;
+      for (let i = 1; i <= 138; i++) {
+        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/rua/galeria/${i}.jpg`), grid));
       }
       this._streetLoaded = true;
     }
@@ -185,8 +186,9 @@ const app = {
   openOlhar() {
     if (!this._olharLoaded) {
       const grid = document.getElementById('olhar-grid');
-      for (let i = 1; i <= 60; i++) {
-        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/olhar/registros/olhar (${i}).jpg`), grid));
+      if (!grid) return;
+      for (let i = 1; i <= 31; i++) {
+        grid.appendChild(this._makeItem(encodeURI(`assets/img/portfolio/olhar/registros/${i}.jpg`), grid));
       }
       this._olharLoaded = true;
     }
