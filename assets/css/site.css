@@ -148,14 +148,14 @@
 
 /* ── Navbar ao rolar ─────────────────────────────────────────── */
 #navbar.scrolled {
-  background: white;
-  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.12);
+  background: rgba(10, 12, 10, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }
-
-#navbar.scrolled .nav-link  { color: var(--color-bg); }
-#navbar.scrolled .nav-brand { color: var(--color-bg); }
 
 /* Menu mobile */
 #mobile-menu {
