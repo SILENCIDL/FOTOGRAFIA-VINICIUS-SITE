@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio | Vinícius Rafael Fotografia</title>
+  <meta name="description" content="Portfólio completo - casamentos, aventura, retratos, rua e olhar fotográfico.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body style="background-color: var(--color-bg); color: var(--color-light); font-family: var(--font-sans);">
+
+  <!-- Header -->
+  <header id="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-height); background: transparent; transition: background 0.3s, backdrop-filter 0.3s;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between;">
+      <a href="index.html" style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; color: var(--color-light); text-decoration: none;">
+        VR<span style="color: var(--color-earth);">.</span>
+      </a>
+      
+      <nav style="display: flex; gap: 2rem;">
+        <a href="index.html" style="font-size: 0.875rem; font-weight: 500; color: rgba(253,252,249,0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s;">Início</a>
+        <a href="index.html#sobre" style="font-size: 0.875rem; font-weight: 500; color: rgba(253,252,249,0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s;">Sobre</a>
+        <a href="portfolio.html" style="font-size: 0.875rem; font-weight: 500; color: var(--color-earth); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em;">Portfólio</a>
+        <a href="index.html#servicos" style="font-size: 0.875rem; font-weight: 500; color: rgba(253,252,249,0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s;">Serviços</a>
+        <a href="index.html#contato" style="font-size: 0.875rem; font-weight: 500; color: rgba(253,252,249,0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s;">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section style="min-height: 60vh; display: flex; align-items: center; justify-content: center; padding-top: var(--nav-height); background: var(--color-bg-alt);">
+    <div style="text-align: center; max-width: 800px; padding: 4rem 1.5rem;">
+      <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-earth); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 1rem;">Portfólio</span>
+      <h1 style="font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; color: var(--color-light); margin-bottom: 1.5rem; line-height: 1.2;">Cada história merece ser contada</h1>
+      <p style="font-size: 1.125rem; color: rgba(253,252,249,0.6); line-height: 1.7;">Explore meus trabalhos por categoria e encontre inspiração para o seu momento especial</p>
+    </div>
+  </section>
+
+  <!-- Categorias -->
+  <section style="padding: 4rem 0; background: var(--color-bg);">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+      <div style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        
+        <!-- Casamentos -->
+        <a href="casamentos.html" style="position: relative; display: block; border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; text-decoration: none;">
+          <img src="(1).jpg" alt="Casamentos" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: transform 0.5s;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,12,10,0.9) 0%, rgba(10,12,10,0.3) 50%, transparent 100%);"></div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;">
+            <span style="font-size: 0.625rem; font-weight: 600; color: var(--color-earth); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.5rem;">Categoria</span>
+            <h2 style="font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; color: var(--color-light); margin-bottom: 0.5rem;">Casamentos</h2>
+            <p style="font-size: 0.9375rem; color: rgba(253,252,249,0.6); line-height: 1.5;">O dia mais especial da sua vida</p>
+          </div>
+        </a>
+
+        <!-- Aventura -->
+        <a href="aventura.html" style="position: relative; display: block; border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; text-decoration: none;">
+          <img src="(5).jpg" alt="Aventura" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: transform 0.5s;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,12,10,0.9) 0%, rgba(10,12,10,0.3) 50%, transparent 100%);"></div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;">
+            <span style="font-size: 0.625rem; font-weight: 600; color: var(--color-earth); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.5rem;">Categoria</span>
+            <h2 style="font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; color: var(--color-light); margin-bottom: 0.5rem;">Aventura</h2>
+            <p style="font-size: 0.9375rem; color: rgba(253,252,249,0.6); line-height: 1.5;">Ensaios em locais incríveis</p>
+          </div>
+        </a>
+
+        <!-- Retratos -->
+        <a href="retratos.html" style="position: relative; display: block; border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; text-decoration: none;">
+          <img src="(9).jpg" alt="Retratos" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: transform 0.5s;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,12,10,0.9) 0%, rgba(10,12,10,0.3) 50%, transparent 100%);"></div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;">
+            <span style="font-size: 0.625rem; font-weight: 600; color: var(--color-earth); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.5rem;">Categoria</span>
+            <h2 style="font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; color: var(--color-light); margin-bottom: 0.5rem;">Retratos</h2>
+            <p style="font-size: 0.9375rem; color: rgba(253,252,249,0.6); line-height: 1.5;">Sua essência capturada</p>
+          </div>
+        </a>
+
+        <!-- Rua -->
+        <a href="rua.html" style="position: relative; display: block; border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; text-decoration: none;">
+          <img src="(11).jpg" alt="Rua" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: transform 0.5s;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,12,10,0.9) 0%, rgba(10,12,10,0.3) 50%, transparent 100%);"></div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;">
+            <span style="font-size: 0.625rem; font-weight: 600; color: var(--color-earth); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.5rem;">Categoria</span>
+            <h2 style="font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; color: var(--color-light); margin-bottom: 0.5rem;">Rua</h2>
+            <p style="font-size: 0.9375rem; color: rgba(253,252,249,0.6); line-height: 1.5;">Street photography urbana</p>
+          </div>
+        </a>
+
+        <!-- Olhar -->
+        <a href="olhar.html" style="position: relative; display: block; border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; text-decoration: none;">
+          <img src="(13).jpg" alt="Olhar" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: transform 0.5s;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,12,10,0.9) 0%, rgba(10,12,10,0.3) 50%, transparent 100%);"></div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;">
+            <span style="font-size: 0.625rem; font-weight: 600; color: var(--color-earth); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.5rem;">Categoria</span>
+            <h2 style="font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; color: var(--color-light); margin-bottom: 0.5rem;">Olhar</h2>
+            <p style="font-size: 0.9375rem; color: rgba(253,252,249,0.6); line-height: 1.5;">Projeto artístico pessoal</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: var(--color-bg-alt); border-top: 1px solid rgba(255,255,255,0.05); padding: 2.5rem 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; text-align: center;">
+      <p style="font-size: 0.875rem; color: rgba(253,252,249,0.5);">
+        © 2024 <strong style="color: var(--color-earth); font-weight: 600;">Vinícius Rafael</strong> Fotografia
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
