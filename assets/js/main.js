@@ -66,7 +66,7 @@ const app = {
       { name: 'Bianca & Donizete', path: 'assets/img/portfolio/casamentos/Bianca%20%26%20Donizete/', fallback: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop' },
       { name: 'Miellem & Aleft',   path: 'assets/img/portfolio/casamentos/Miellem%20%26%20Aleft/',   fallback: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop' },
       { name: 'Pamela & Juliano',  path: 'assets/img/portfolio/casamentos/Pamela%20%26%20Juliano/',  fallback: 'https://images.unsplash.com/photo-1464093515883-ec948246accb?q=80&w=2069&auto=format&fit=crop' },
-      { name: 'Marcos & Patricia', path: 'assets/img/portfolio/casamentos/Marcos%20%26%20Patricia/', fallback: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2070&auto=format&fit=crop' },
+      { name: 'Patricia & Marcos', path: 'assets/img/portfolio/casamentos/Patricia%20%26%20Marcos/', fallback: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2070&auto=format&fit=crop' },
     ];
     const container = document.getElementById('wedding-albums');
     if (!container) return;
