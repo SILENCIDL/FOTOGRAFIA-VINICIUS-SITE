@@ -275,8 +275,6 @@ const app = {
   },
 
   openPrices() { this.showSection('prices-view'); },
-  openTestimonials() { this.showSection('testimonials-view'); },
-  openBlog() { this.showSection('blog-view'); },
 
   renderChart() {
     const ctx = document.getElementById('skillsChart');
@@ -401,7 +399,9 @@ const lightbox = {
   },
 
   open(clickedImg, gridEl) {
+    if (!gridEl) return;
     this.allImgs = Array.from(gridEl.querySelectorAll('img')).filter(img => img.complete && img.naturalWidth > 0);
+    if (!this.allImgs.length) return;
     this.currentIndex = this.allImgs.indexOf(clickedImg);
     if (this.currentIndex === -1) this.currentIndex = 0;
     this.el.classList.add('lb-active');
