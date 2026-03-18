@@ -2,13 +2,14 @@
    MAIN.JS — Vinícius Rafael Fotografia (v3.0 Responsivo)
    ============================================================ */
 
-const VIEWS = ['main-view', 'wedding-selector', 'gallery-view', 'olhar-view', 'street-view', 'prices-view', 'testimonials-view', 'blog-view'];
+const VIEWS = ['main-view', 'wedding-selector', 'gallery-view', 'olhar-view', 'street-view', 'prices-view'];
 
 const app = {
   _streetLoaded: false,
   _olharLoaded: false,
   _olharSlideInterval: null,
   _streetSlideInterval: null,
+  _heroSlideInterval: null,
 
   init() {
     this.renderChart();
@@ -62,10 +63,10 @@ const app = {
   showSubGallery(type) {
     if (type !== 'weddings') return;
     const WEDDINGS = [
-      { name: 'Bianca & Donizete', path: 'assets/img/portfolio/casamentos/Bianca & Donizete/', fallback: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop' },
-      { name: 'Miellem & Aleft',   path: 'assets/img/portfolio/casamentos/Miellem & Aleft/',   fallback: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop' },
-      { name: 'Pamela & Juliano',  path: 'assets/img/portfolio/casamentos/Pamela & Juliano/',  fallback: 'https://images.unsplash.com/photo-1464093515883-ec948246accb?q=80&w=2069&auto=format&fit=crop' },
-      { name: 'Marcos & Patricia', path: 'assets/img/portfolio/casamentos/Patricia & Marcos/', fallback: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2070&auto=format&fit=crop' },
+      { name: 'Bianca & Donizete', path: 'assets/img/portfolio/casamentos/Bianca%20%26%20Donizete/', fallback: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop' },
+      { name: 'Miellem & Aleft',   path: 'assets/img/portfolio/casamentos/Miellem%20%26%20Aleft/',   fallback: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop' },
+      { name: 'Pamela & Juliano',  path: 'assets/img/portfolio/casamentos/Pamela%20%26%20Juliano/',  fallback: 'https://images.unsplash.com/photo-1464093515883-ec948246accb?q=80&w=2069&auto=format&fit=crop' },
+      { name: 'Marcos & Patricia', path: 'assets/img/portfolio/casamentos/Marcos%20%26%20Patricia/', fallback: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2070&auto=format&fit=crop' },
     ];
     const container = document.getElementById('wedding-albums');
     if (!container) return;
@@ -280,6 +281,8 @@ const app = {
   renderChart() {
     const ctx = document.getElementById('skillsChart');
     if (!ctx) return;
+    const existingChart = Chart.getChart(ctx);
+    if (existingChart) existingChart.destroy();
     
     const isMobile = window.innerWidth < 768;
     
@@ -326,7 +329,8 @@ const app = {
     const slides = document.querySelectorAll('.hero-slide');
     if (!slides.length) return;
     let current = 0;
-    setInterval(() => {
+    if (this._heroSlideInterval) clearInterval(this._heroSlideInterval);
+    this._heroSlideInterval = setInterval(() => {
       slides[current].classList.remove('active');
       current = (current + 1) % slides.length;
       slides[current].classList.add('active');
