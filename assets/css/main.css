@@ -172,7 +172,7 @@ section {
     transform var(--duration-slow) var(--ease-out);
 }
 
-.reveal.is-visible {
+.reveal.revealed {
   opacity: 1;
   transform: translateY(0);
 }

@@ -120,19 +120,6 @@
   100% { background-position: -200% 0; }
 }
 
-/* ── Category Label ──────────────────────────────────────────── */
-.category-label {
-  display: inline-block;
-  background: var(--color-earth);
-  color: white;
-  padding: 4px 12px;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
 /* ── Chart ───────────────────────────────────────────────────── */
 .chart-container {
   position: relative;
@@ -199,132 +186,6 @@
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
-
-/* ── Formulário de contato ───────────────────────────────────── */
-.cf-input {
-  width: 100%;
-  background: white;
-  border: 1px solid #e7e5e0;
-  padding: 0.75rem 1rem;
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--color-rock);
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  border-radius: 0;
-}
-
-@media (min-width: 768px) {
-  .cf-input { padding: 1rem 1.25rem; }
-}
-
-.cf-input:focus {
-  border-color: var(--color-earth);
-  box-shadow: 0 0 0 3px rgba(197,163,115,0.15);
-}
-
-.cf-input::placeholder { color: #aaa; }
-
-/* ── Cards de preços ─────────────────────────────────────────── */
-.price-card {
-  background: white;
-  border: 1px solid #e7e5e0;
-  padding: 1.5rem;
-  position: relative;
-  transition: transform 0.4s var(--ease-in-out), box-shadow 0.4s;
-}
-
-@media (min-width: 768px) {
-  .price-card { padding: 2.5rem; }
-}
-
-.price-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.12);
-}
-
-.price-card.featured {
-  border-color: var(--color-earth);
-  border-width: 2px;
-}
-
-.price-card.featured::before {
-  content: 'MAIS POPULAR';
-  position: absolute;
-  top: -1px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--color-earth);
-  color: white;
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  padding: 4px 16px;
-  font-family: var(--font-sans);
-  font-weight: 700;
-}
-
-/* ── Cards de depoimento ─────────────────────────────────────── */
-.testimonial-card {
-  background: var(--color-green);
-  border-top: 2px solid var(--color-earth);
-  padding: 1.5rem;
-  position: relative;
-  transition: transform 0.4s var(--ease-in-out);
-}
-
-@media (min-width: 768px) {
-  .testimonial-card { padding: 2.5rem; }
-}
-
-.testimonial-card:hover { transform: translateY(-4px); }
-
-.testimonial-card::before {
-  content: '"';
-  font-family: var(--font-serif);
-  font-size: 4rem;
-  color: var(--color-earth);
-  opacity: 0.3;
-  position: absolute;
-  top: -0.5rem;
-  left: 1rem;
-  line-height: 1;
-}
-
-@media (min-width: 768px) {
-  .testimonial-card::before {
-    font-size: 6rem;
-    top: -1rem;
-    left: 1.5rem;
-  }
-}
-
-/* ── Cards de blog ───────────────────────────────────────────── */
-.blog-card {
-  background: white;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.4s var(--ease-in-out), box-shadow 0.4s;
-  border: 1px solid #e7e5e0;
-}
-
-.blog-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-}
-
-.blog-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  filter: brightness(0.9);
-  transition: transform 0.6s var(--ease-in-out), filter 0.4s;
-}
-
-@media (min-width: 768px) {
-  .blog-card img { height: 260px; }
-}
-
-.blog-card:hover img { transform: scale(1.05); filter: brightness(1); }
 
 /* ── cursor zoom nas fotos ───────────────────────────────────── */
 .masonry-item img { cursor: zoom-in; }
@@ -550,11 +411,6 @@
     filter: brightness(0.9);
   }
   
-  .price-card:hover,
-  .blog-card:hover,
-  .testimonial-card:hover {
-    transform: none;
-  }
 }
 
 /* Prevenir scroll horizontal */
