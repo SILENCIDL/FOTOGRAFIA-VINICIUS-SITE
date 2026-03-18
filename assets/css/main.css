@@ -166,10 +166,10 @@ section {
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
   transition:
-    opacity  var(--duration-slow) var(--ease-out),
-    transform var(--duration-slow) var(--ease-out);
+    opacity   0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
 }
 
 .reveal.revealed {
@@ -495,7 +495,7 @@ section {
   height: 48px;
   background: linear-gradient(to bottom, var(--color-primary), transparent);
   margin-inline: auto;
-  animation: scroll-hint 1.8s ease-in-out infinite;
+  animation: scroll-hint 2.5s ease-in-out infinite;
 }
 
 @keyframes scroll-hint {
