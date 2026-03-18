@@ -528,4 +528,57 @@ function initRotatingPhrases() {
   } catch(e) { /* silencioso */ }
 }
 
-document.addEventListener('DOMContentLoaded', () => app.init());
+/* ── Multi-step Form ─────────────────────────────────────────── */
+function initMultiStepForm() {
+  const step1 = document.getElementById('form-step-1');
+  const step2 = document.getElementById('form-step-2');
+  const nextBtn = document.getElementById('form-next-btn');
+  const backBtn = document.getElementById('form-back-btn');
+  const ind2 = document.getElementById('step-indicator-2');
+  const progressBar = document.getElementById('step-progress-bar');
+  if (!step1 || !step2 || !nextBtn || !backBtn) return;
+
+  nextBtn.addEventListener('click', () => {
+    const nome = document.getElementById('cf-nome');
+    if (!nome || !nome.value.trim()) { nome.focus(); return; }
+    step1.classList.add('hidden');
+    step2.classList.remove('hidden');
+    if (ind2) ind2.classList.remove('opacity-40');
+    if (progressBar) progressBar.style.width = '100%';
+    const ind2Span = ind2?.querySelector('span:first-child');
+    if (ind2Span) { ind2Span.classList.replace('border','bg-mantiqueira-earth'); ind2Span.classList.add('text-black','font-bold'); ind2Span.textContent = '2'; }
+  });
+
+  backBtn.addEventListener('click', () => {
+    step2.classList.add('hidden');
+    step1.classList.remove('hidden');
+    if (ind2) ind2.classList.add('opacity-40');
+    if (progressBar) progressBar.style.width = '0%';
+  });
+}
+
+/* ── Parallax no Hero ────────────────────────────────────────── */
+function initHeroParallax() {
+  const slides = document.querySelectorAll('.hero-bg-img');
+  if (!slides.length) return;
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      const limit = window.innerHeight;
+      if (scrollY <= limit) {
+        const offset = scrollY * 0.35;
+        slides.forEach(slide => { slide.style.transform = `translateY(${offset}px) scale(1.05)`; });
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }, { passive: true });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  app.init();
+  initMultiStepForm();
+  initHeroParallax();
+});

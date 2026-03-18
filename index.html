@@ -19,12 +19,21 @@
     <link rel="stylesheet" href="assets/css/site.css">
 
     <link rel="preload" as="image" href="assets/img/hero/hero(1).jpg">
+    <link rel="preload" as="image" href="assets/img/hero/hero(2).jpg">
+    <link rel="preload" as="image" href="assets/img/hero/hero(3).jpg">
+    <link rel="preload" as="image" href="assets/img/hero/hero(4).jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="assets/js/tailwind-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-mantiqueira-dark text-white font-sans antialiased selection:bg-mantiqueira-earth selection:text-white">
+
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/5512981771665?text=Oi%20Vinícius!%20Vi%20seu%20site%20e%20quero%20saber%20mais." target="_blank" rel="noopener noreferrer" id="whatsapp-float" aria-label="Falar no WhatsApp" class="fixed bottom-6 right-6 z-[9998] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all duration-300 group">
+        <i class="fab fa-whatsapp text-white text-2xl"></i>
+        <span class="absolute right-16 bg-[#0a0c0a] text-white text-xs tracking-widest uppercase px-3 py-2 whitespace-nowrap border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">Falar agora</span>
+    </a>
 
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 md:py-6 border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
@@ -55,10 +64,10 @@
     <div id="main-view" class="fade-in block">
         
         <section class="relative min-h-screen flex flex-col justify-start overflow-hidden bg-mantiqueira-dark">
-            <img src="assets/img/hero/hero(1).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide active" fetchpriority="high" decoding="async">
-            <img src="assets/img/hero/hero(2).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide" loading="lazy" decoding="async">
-            <img src="assets/img/hero/hero(3).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide" loading="lazy" decoding="async">
-            <img src="assets/img/hero/hero(4).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide" loading="lazy" decoding="async">
+            <img src="assets/img/hero/hero(1).jpg" alt="Fotógrafo Vinícius Rafael na Serra da Mantiqueira — casamentos e ensaios em São Bento do Sapucaí" class="hero-bg-img hero-slide active" fetchpriority="high" decoding="async">
+            <img src="assets/img/hero/hero(2).jpg" alt="Fotografia de casamento na neblina da Serra da Mantiqueira" class="hero-bg-img hero-slide" decoding="async">
+            <img src="assets/img/hero/hero(3).jpg" alt="Ensaio fotográfico de casal nas trilhas da Pedra do Baú — São Bento do Sapucaí" class="hero-bg-img hero-slide" decoding="async">
+            <img src="assets/img/hero/hero(4).jpg" alt="Fotografia de aventura e natureza na Serra da Mantiqueira" class="hero-bg-img hero-slide" decoding="async">
             
             <div class="absolute inset-0 hero-overlay z-10"></div>
             
@@ -84,7 +93,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
                     <div class="lg:col-span-5 reveal relative">
                         <div class="absolute -inset-4 border border-white/5 z-0"></div>
-                        <img src="assets/img/sobre/vinicius.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop'" alt="Vinícius Rafael" class="w-full shadow-2xl transition-all duration-1000 grayscale hover:grayscale-0">
+                        <img src="assets/img/sobre/vinicius.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop'" alt="Vinícius Rafael — fotógrafo e guia turístico em São Bento do Sapucaí, Serra da Mantiqueira" class="w-full shadow-2xl transition-all duration-1000 grayscale hover:grayscale-0">
                     </div>
                     <div class="lg:col-span-7 reveal">
                         <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-6">O Fotógrafo</span>
@@ -107,50 +116,61 @@
                     <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter">Portfólio</h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                    
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal" onclick="app.showSubGallery('weddings')">
-                        <img src="assets/img/portfolio/casamentos/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" alt="Casamentos">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Casamentos</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Ver Álbuns</span>
+                <!-- Bento Grid Assimétrico -->
+                <div class="grid grid-cols-1 md:grid-cols-12 auto-rows-[280px] md:auto-rows-[320px] gap-3 md:gap-4">
+
+                    <!-- Casamentos — destaque principal (grande) -->
+                    <div class="group relative overflow-hidden cursor-pointer bg-black shadow-xl reveal col-span-1 md:col-span-7 md:row-span-2" onclick="app.showSubGallery('weddings')">
+                        <img src="assets/img/portfolio/casamentos/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" alt="Casamentos na Serra da Mantiqueira — fotógrafo Vinícius Rafael">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
+                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+                            <span class="text-mantiqueira-earth text-[9px] uppercase tracking-[0.4em] mb-2 font-light">Casamentos</span>
+                            <h3 class="font-serif text-3xl md:text-5xl text-white tracking-tighter leading-none mb-4">Amor na<br>Mantiqueira.</h3>
+                            <span class="text-white/60 text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 flex items-center gap-2">Ver álbuns <i class="fas fa-arrow-right text-mantiqueira-earth"></i></span>
                         </div>
                     </div>
 
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal" onclick="app.openGallery('adventure')">
-                        <img src="assets/img/portfolio/aventura/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" alt="Aventura">
+                    <!-- Aventura -->
+                    <div class="group relative overflow-hidden cursor-pointer bg-black shadow-xl reveal col-span-1 md:col-span-5 md:row-span-1" onclick="app.openGallery('adventure')">
+                        <img src="assets/img/portfolio/aventura/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" alt="Fotografia de aventura e trilhas na Serra da Mantiqueira">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Aventura</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Explorar</span>
+                        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                            <span class="text-mantiqueira-earth text-[9px] uppercase tracking-[0.4em] mb-1 font-light">Aventura</span>
+                            <h3 class="font-serif text-2xl md:text-3xl text-white tracking-tighter">Pedra do Baú.</h3>
+                            <span class="text-white/60 text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 mt-2 flex items-center gap-2">Explorar <i class="fas fa-arrow-right text-mantiqueira-earth"></i></span>
                         </div>
                     </div>
 
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal" onclick="app.openGallery('portraits')">
-                        <img src="assets/img/portfolio/retratos/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" alt="Retratos">
+                    <!-- Retratos -->
+                    <div class="group relative overflow-hidden cursor-pointer bg-black shadow-xl reveal col-span-1 md:col-span-5 md:row-span-1" onclick="app.openGallery('portraits')">
+                        <img src="assets/img/portfolio/retratos/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" alt="Retratos fotográficos na luz natural da serra">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Retratos</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Visualizar</span>
+                        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                            <span class="text-mantiqueira-earth text-[9px] uppercase tracking-[0.4em] mb-1 font-light">Retratos</span>
+                            <h3 class="font-serif text-2xl md:text-3xl text-white tracking-tighter">Luz natural.</h3>
+                            <span class="text-white/60 text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 mt-2 flex items-center gap-2">Visualizar <i class="fas fa-arrow-right text-mantiqueira-earth"></i></span>
                         </div>
                     </div>
 
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal md:col-span-2 lg:col-span-1" onclick="app.openStreet()">
-                        <img src="assets/img/portfolio/rua/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" alt="Fotografia de Rua">
+                    <!-- Rua -->
+                    <div class="group relative overflow-hidden cursor-pointer bg-black shadow-xl reveal col-span-1 md:col-span-6 md:row-span-1" onclick="app.openStreet()">
+                        <img src="assets/img/portfolio/rua/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" alt="Fotografia de rua — cotidiano e geometria urbana">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Rua</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Ver Galeria</span>
+                        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                            <span class="text-mantiqueira-earth text-[9px] uppercase tracking-[0.4em] mb-1 font-light">Fotografia de Rua</span>
+                            <h3 class="font-serif text-2xl md:text-3xl text-white tracking-tighter">O cotidiano.</h3>
+                            <span class="text-white/60 text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 mt-2 flex items-center gap-2">Ver galeria <i class="fas fa-arrow-right text-mantiqueira-earth"></i></span>
                         </div>
                     </div>
 
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal md:col-span-2 lg:col-span-1" onclick="app.openOlhar()">
-                        <img src="assets/img/portfolio/olhar/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" alt="Olhar Fotográfico">
+                    <!-- O Olhar -->
+                    <div class="group relative overflow-hidden cursor-pointer bg-black shadow-xl reveal col-span-1 md:col-span-6 md:row-span-1" onclick="app.openOlhar()">
+                        <img src="assets/img/portfolio/olhar/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" alt="O olhar fotográfico — percepção e autoria visual">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">O Olhar</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Descobrir</span>
+                        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                            <span class="text-mantiqueira-earth text-[9px] uppercase tracking-[0.4em] mb-1 font-light">O Olhar</span>
+                            <h3 class="font-serif text-2xl md:text-3xl text-white tracking-tighter">Percepção pura.</h3>
+                            <span class="text-white/60 text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 mt-2 flex items-center gap-2">Descobrir <i class="fas fa-arrow-right text-mantiqueira-earth"></i></span>
                         </div>
                     </div>
 
@@ -182,44 +202,71 @@
         <div class="max-w-5xl mx-auto px-4 md:px-6">
             <div class="text-center mb-16 md:mb-20 reveal">
                 <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-4">Contato</span>
-                <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter mb-6">Vamos conversar?</h2>
+                <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter mb-6">Verifique disponibilidade para sua data.</h2>
                 <p id="frase-contato" class="text-white/50 text-sm md:text-base font-light max-w-xl mx-auto italic"></p>
             </div>
 
             <div class="bg-[#0a0c0a] p-6 md:p-12 border border-white/5 shadow-2xl reveal">
-                <form id="contact-form" class="space-y-6 md:space-y-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                        <div class="space-y-2">
-                            <label for="cf-nome" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Nome</label>
-                            <input type="text" id="cf-nome" required class="w-full bg-white/[0.03] border-b border-white/20 pb-2 px-1 text-white focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none">
+                <!-- Indicador de progresso -->
+                <div class="flex items-center gap-3 mb-10">
+                    <div id="step-indicator-1" class="flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-mantiqueira-earth text-black text-[10px] flex items-center justify-center font-bold">1</span>
+                        <span class="text-[10px] uppercase tracking-widest text-white/50">Sobre você</span>
+                    </div>
+                    <div class="flex-1 h-[1px] bg-white/10 mx-2">
+                        <div id="step-progress-bar" class="h-full bg-mantiqueira-earth transition-all duration-500" style="width:0%"></div>
+                    </div>
+                    <div id="step-indicator-2" class="flex items-center gap-2 opacity-40">
+                        <span class="w-6 h-6 rounded-full border border-white/30 text-white/50 text-[10px] flex items-center justify-center">2</span>
+                        <span class="text-[10px] uppercase tracking-widest text-white/50">Sua história</span>
+                    </div>
+                </div>
+
+                <form id="contact-form">
+                    <!-- Passo 1 -->
+                    <div id="form-step-1" class="space-y-6 md:space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                            <div class="space-y-2">
+                                <label for="cf-nome" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Nome</label>
+                                <input type="text" id="cf-nome" required class="w-full bg-white/[0.03] border-b border-white/20 pb-2 px-1 text-white focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none">
+                            </div>
+                            <div class="space-y-2">
+                                <label for="cf-servico" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Interesse</label>
+                                <select id="cf-servico" class="w-full bg-white/[0.03] border-b border-white/20 pb-2 px-1 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none appearance-none cursor-pointer select-arrow">
+                                    <option value="Casamento" class="bg-[#0a0c0a]">Casamento</option>
+                                    <option value="Pre Wedding" class="bg-[#0a0c0a]">Pre Wedding</option>
+                                    <option value="Ensaio de Casal" class="bg-[#0a0c0a]">Ensaio de Casal</option>
+                                    <option value="Retrato Individual" class="bg-[#0a0c0a]">Retrato Individual</option>
+                                    <option value="Aventura / Trilha" class="bg-[#0a0c0a]">Aventura / Trilha</option>
+                                    <option value="Outro" class="bg-[#0a0c0a]">Outro</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="space-y-2">
-                            <label for="cf-servico" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Interesse</label>
-                            <select id="cf-servico" class="w-full bg-white/[0.03] border-b border-white/20 pb-2 px-1 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none appearance-none cursor-pointer select-arrow">
-                                <option value="Casamento" class="bg-[#0a0c0a]">Casamento</option>
-                                <option value="Pre Wedding" class="bg-[#0a0c0a]">Pre Wedding</option>
-                                <option value="Ensaio de Casal" class="bg-[#0a0c0a]">Ensaio de Casal</option>
-                                <option value="Retrato Individual" class="bg-[#0a0c0a]">Retrato Individual</option>
-                                <option value="Aventura / Trilha" class="bg-[#0a0c0a]">Aventura / Trilha</option>
-                                <option value="Outro" class="bg-[#0a0c0a]">Outro</option>
-                            </select>
+                            <label for="cf-data" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Data Prevista (Opcional)</label>
+                            <input type="date" id="cf-data" class="w-full bg-white/[0.03] border-b border-white/20 pb-2 px-1 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert">
+                        </div>
+                        <div class="pt-4">
+                            <button type="button" id="form-next-btn" class="w-full md:w-auto bg-mantiqueira-earth text-black px-12 py-4 text-xs uppercase tracking-widest hover:bg-white transition-all duration-300 font-medium">
+                                Próximo →
+                            </button>
                         </div>
                     </div>
 
-                    <div class="space-y-2">
-                        <label for="cf-data" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Data Prevista (Opcional)</label>
-                        <input type="date" id="cf-data" class="w-full bg-white/[0.03] border-b border-white/20 pb-2 px-1 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert">
-                    </div>
-
-                    <div class="space-y-2">
-                        <label for="cf-mensagem" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Mensagem</label>
-                        <textarea id="cf-mensagem" rows="4" class="w-full bg-white/[0.03] border-b border-white/20 pb-2 px-1 text-white focus:outline-none focus:border-mantiqueira-earth transition-colors resize-none rounded-none" placeholder="Conte um pouco sobre o que você imagina..."></textarea>
-                    </div>
-
-                    <div class="pt-4 text-center md:text-left">
-                        <button type="submit" class="w-full md:w-auto bg-white text-black px-12 py-4 text-xs uppercase tracking-widest hover:bg-mantiqueira-earth hover:text-white transition-all duration-300 font-medium">
-                            Enviar via WhatsApp
-                        </button>
+                    <!-- Passo 2 -->
+                    <div id="form-step-2" class="space-y-6 md:space-y-8 hidden">
+                        <div class="space-y-2">
+                            <label for="cf-mensagem" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Conte sua história</label>
+                            <textarea id="cf-mensagem" rows="5" class="w-full bg-white/[0.03] border-b border-white/20 pb-2 px-1 text-white focus:outline-none focus:border-mantiqueira-earth transition-colors resize-none rounded-none" placeholder="O que você imagina para esse momento? Onde, como, com quem..."></textarea>
+                        </div>
+                        <div class="pt-4 flex flex-col md:flex-row gap-4 md:items-center">
+                            <button type="button" id="form-back-btn" class="text-white/40 hover:text-white text-xs uppercase tracking-widest transition-colors">
+                                ← Voltar
+                            </button>
+                            <button type="submit" class="w-full md:w-auto bg-white text-black px-12 py-4 text-xs uppercase tracking-widest hover:bg-mantiqueira-earth hover:text-white transition-all duration-300 font-medium">
+                                Começar minha história
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
