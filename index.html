@@ -27,11 +27,11 @@
         <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
             <a href="#" onclick="app.showSection('home'); return false;" class="text-xl md:text-2xl font-serif tracking-tighter z-50 hover:text-mantiqueira-earth transition-colors">VR<span class="text-mantiqueira-earth">.</span></a>
             
-            <div class="hidden md:flex space-x-12 text-sm tracking-widest uppercase items-center">
+            <div class="hidden md:flex space-x-10 text-sm tracking-widest uppercase items-center">
                 <a href="#sobre" onclick="app.scrollToSection('sobre'); return false;" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Sobre</a>
-                <a href="portfolio.html" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Portfólio</a>
-                <a href="#experiencia" onclick="app.scrollToSection('experiencia'); return false;" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Experiência</a>
-                <a href="#" onclick="app.openPrices(); return false;" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Valores</a>
+                <a href="index.html#portfolio" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Portfólio</a>
+                <a href="servicos.html" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Serviços</a>
+                <a href="blog.html" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Blog</a>
                 <a href="#contato" onclick="app.scrollToSection('contato'); return false;" class="border border-white/20 px-6 py-2 hover:bg-white hover:text-black transition-all duration-300">Contato</a>
             </div>
 
@@ -43,9 +43,9 @@
 
     <div id="mobile-menu" class="hidden fixed inset-0 bg-mantiqueira-dark/95 backdrop-blur-md z-40 flex flex-col justify-center items-center space-y-8 text-xl tracking-widest uppercase">
         <a href="#sobre" onclick="app.scrollToSection('sobre'); app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Sobre</a>
-        <a href="portfolio.html" onclick="app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Portfólio</a>
-        <a href="#experiencia" onclick="app.scrollToSection('experiencia'); app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Experiência</a>
-        <a href="#" onclick="app.openPrices(); app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Valores</a>
+        <a href="index.html#portfolio" onclick="app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Portfólio</a>
+        <a href="servicos.html" onclick="app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Serviços</a>
+        <a href="blog.html" onclick="app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Blog</a>
         <a href="#contato" onclick="app.scrollToSection('contato'); app.closeMobileMenu(); return false;" class="text-mantiqueira-earth">Contato</a>
     </div>
 
@@ -175,6 +175,73 @@
             </div>
         </section>
 
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos" class="py-20 md:py-32 bg-[#0a0c0a] relative border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="text-center mb-16 md:mb-20 reveal">
+                <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-4">Quem Viveu</span>
+                <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter">O que dizem sobre a experiência</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+
+                <div class="reveal border border-white/10 p-8 bg-[#0d0f0d] hover:border-mantiqueira-earth/30 transition-colors duration-500 flex flex-col">
+                    <div class="flex gap-1 mb-6">
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                    </div>
+                    <p class="text-white/60 text-sm font-light leading-relaxed mb-8 flex-grow italic">"O Vinícius transformou nosso pre wedding em uma aventura de verdade. A gente subiu a trilha da Pedra do Baú e ele capturou cada momento com uma naturalidade incrível. As fotos parecem de filme — luz, composição, emoção. Ficamos sem palavras."</p>
+                    <div class="flex items-center gap-4 border-t border-white/10 pt-6">
+                        <div class="w-10 h-10 rounded-full bg-mantiqueira-earth/20 flex items-center justify-center text-mantiqueira-earth font-serif text-lg">B</div>
+                        <div>
+                            <span class="text-white text-sm font-medium block">Bianca & Donizete</span>
+                            <span class="text-white/40 text-xs uppercase tracking-widest">Pre Wedding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal border border-mantiqueira-earth/30 p-8 bg-mantiqueira-earth/5 hover:border-mantiqueira-earth/60 transition-colors duration-500 flex flex-col">
+                    <div class="flex gap-1 mb-6">
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                    </div>
+                    <p class="text-white/60 text-sm font-light leading-relaxed mb-8 flex-grow italic">"Contratar o Vinícius para o nosso casamento foi a melhor decisão. Ele é discreto, criativo e tem um olhar único. As fotos da cerimônia têm uma poesia que a gente não esperava — cada detalhe registrado com muito cuidado e sensibilidade."</p>
+                    <div class="flex items-center gap-4 border-t border-white/10 pt-6">
+                        <div class="w-10 h-10 rounded-full bg-mantiqueira-earth/20 flex items-center justify-center text-mantiqueira-earth font-serif text-lg">M</div>
+                        <div>
+                            <span class="text-white text-sm font-medium block">Miellem & Aleft</span>
+                            <span class="text-white/40 text-xs uppercase tracking-widest">Casamento</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal border border-white/10 p-8 bg-[#0d0f0d] hover:border-mantiqueira-earth/30 transition-colors duration-500 flex flex-col">
+                    <div class="flex gap-1 mb-6">
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                        <i class="fas fa-star text-mantiqueira-earth text-xs"></i>
+                    </div>
+                    <p class="text-white/60 text-sm font-light leading-relaxed mb-8 flex-grow italic">"Fiz um ensaio individual com o Vinícius e foi uma das experiências mais transformadoras que já tive. Ele sabe criar um ambiente de confiança que faz a gente esquecer a câmera. Resultado: fotos autênticas que realmente me representam."</p>
+                    <div class="flex items-center gap-4 border-t border-white/10 pt-6">
+                        <div class="w-10 h-10 rounded-full bg-mantiqueira-earth/20 flex items-center justify-center text-mantiqueira-earth font-serif text-lg">C</div>
+                        <div>
+                            <span class="text-white text-sm font-medium block">Camila S.</span>
+                            <span class="text-white/40 text-xs uppercase tracking-widest">Retrato Individual</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <section id="contato" class="py-20 md:py-32 bg-[#0d0f0d] relative border-t border-white/5">
         <div class="max-w-5xl mx-auto px-4 md:px-6">
             <div class="text-center mb-16 md:mb-20 reveal">
@@ -187,13 +254,21 @@
                 <form id="contact-form" class="space-y-6 md:space-y-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         <div class="space-y-2">
-                            <label for="cf-nome" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Nome</label>
-                            <input type="text" id="cf-nome" required class="w-full bg-transparent border-b border-white/20 pb-2 text-white focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none">
+                            <label for="cf-nome" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Nome <span class="text-mantiqueira-earth">*</span></label>
+                            <input type="text" id="cf-nome" required placeholder="Seu nome completo" class="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder:text-white/20 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none">
                         </div>
                         <div class="space-y-2">
-                            <label for="cf-servico" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Interesse</label>
-                            <select id="cf-servico" class="w-full bg-transparent border-b border-white/20 pb-2 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none appearance-none">
-                                <option value="Casamento" class="bg-[#0a0c0a]">Casamento</option>
+                            <label for="cf-whatsapp" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">WhatsApp <span class="text-mantiqueira-earth">*</span></label>
+                            <input type="tel" id="cf-whatsapp" required placeholder="(12) 99999-9999" class="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder:text-white/20 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <div class="space-y-2">
+                            <label for="cf-servico" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Tipo de Serviço <span class="text-mantiqueira-earth">*</span></label>
+                            <select id="cf-servico" required class="w-full bg-[#0a0c0a] border-b border-white/20 pb-2 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none appearance-none">
+                                <option value="" class="bg-[#0a0c0a]" disabled selected>Selecione...</option>
+                                <option value="Casamento Completo" class="bg-[#0a0c0a]">Casamento Completo</option>
                                 <option value="Pre Wedding" class="bg-[#0a0c0a]">Pre Wedding</option>
                                 <option value="Ensaio de Casal" class="bg-[#0a0c0a]">Ensaio de Casal</option>
                                 <option value="Retrato Individual" class="bg-[#0a0c0a]">Retrato Individual</option>
@@ -201,22 +276,40 @@
                                 <option value="Outro" class="bg-[#0a0c0a]">Outro</option>
                             </select>
                         </div>
+                        <div class="space-y-2">
+                            <label for="cf-data" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Data Prevista</label>
+                            <input type="date" id="cf-data" class="w-full bg-transparent border-b border-white/20 pb-2 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert">
+                        </div>
                     </div>
 
-                    <div class="space-y-2">
-                        <label for="cf-data" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Data Prevista (Opcional)</label>
-                        <input type="date" id="cf-data" class="w-full bg-transparent border-b border-white/20 pb-2 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <div class="space-y-2">
+                            <label for="cf-local" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Cidade / Local</label>
+                            <input type="text" id="cf-local" placeholder="Ex: São Bento do Sapucaí, Campos do Jordão..." class="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder:text-white/20 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="cf-origem" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Como me encontrou?</label>
+                            <select id="cf-origem" class="w-full bg-[#0a0c0a] border-b border-white/20 pb-2 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none appearance-none">
+                                <option value="" class="bg-[#0a0c0a]" disabled selected>Selecione...</option>
+                                <option value="Instagram" class="bg-[#0a0c0a]">Instagram</option>
+                                <option value="Indicação de amigo" class="bg-[#0a0c0a]">Indicação de amigo</option>
+                                <option value="Google" class="bg-[#0a0c0a]">Google</option>
+                                <option value="Outro site" class="bg-[#0a0c0a]">Outro site</option>
+                                <option value="Outro" class="bg-[#0a0c0a]">Outro</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="space-y-2">
                         <label for="cf-mensagem" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Mensagem</label>
-                        <textarea id="cf-mensagem" rows="4" class="w-full bg-transparent border-b border-white/20 pb-2 text-white focus:outline-none focus:border-mantiqueira-earth transition-colors resize-none rounded-none" placeholder="Conte um pouco sobre o que você imagina..."></textarea>
+                        <textarea id="cf-mensagem" rows="4" class="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder:text-white/20 focus:outline-none focus:border-mantiqueira-earth transition-colors resize-none rounded-none" placeholder="Conte um pouco sobre o que você imagina, o estilo que busca ou qualquer detalhe que queira compartilhar..."></textarea>
                     </div>
 
-                    <div class="pt-4 text-center md:text-left">
-                        <button type="submit" class="w-full md:w-auto bg-white text-black px-12 py-4 text-xs uppercase tracking-widest hover:bg-mantiqueira-earth hover:text-white transition-all duration-300 font-medium">
-                            Enviar via WhatsApp
+                    <div class="pt-4 flex flex-col md:flex-row items-start md:items-center gap-4">
+                        <button type="submit" class="w-full md:w-auto bg-white text-black px-12 py-4 text-xs uppercase tracking-widest hover:bg-mantiqueira-earth hover:text-white transition-all duration-300 font-medium inline-flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
                         </button>
+                        <span class="text-white/30 text-xs font-light">Respondo em até 24h.</span>
                     </div>
                 </form>
             </div>

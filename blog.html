@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Blog | Vinícius Rafael Fotografia</title>
+    <meta name="description" content="Diário de ensaios, bastidores e histórias da fotografia na Serra da Mantiqueira. Por Vinícius Rafael.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind-config.js"></script>
+
+    <style>
+        .post-card img {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+        }
+        .post-card:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.75);
+        }
+        .post-card .post-overlay {
+            transition: opacity 0.4s ease;
+        }
+        .post-card:hover .post-overlay {
+            opacity: 1;
+        }
+        .category-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border: 1px solid rgba(197,163,115,0.5);
+            color: var(--color-earth);
+        }
+        .featured-post {
+            background: linear-gradient(to top, rgba(10,12,10,0.98) 0%, rgba(10,12,10,0.5) 50%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-mantiqueira-dark text-white font-sans antialiased">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 md:py-5 bg-mantiqueira-dark/95 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-serif tracking-tighter hover:text-mantiqueira-earth transition-colors">VR<span class="text-mantiqueira-earth">.</span></a>
+
+            <div class="hidden md:flex space-x-10 text-sm tracking-widest uppercase items-center">
+                <a href="index.html#sobre" class="text-white/70 hover:text-white transition-colors">Sobre</a>
+                <a href="index.html#portfolio" class="text-white/70 hover:text-white transition-colors">Portfólio</a>
+                <a href="servicos.html" class="text-white/70 hover:text-white transition-colors">Serviços</a>
+                <a href="blog.html" class="text-mantiqueira-earth">Blog</a>
+                <a href="index.html#contato" class="border border-white/20 px-6 py-2 hover:bg-white hover:text-black transition-all duration-300">Contato</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden z-50 text-white p-2" aria-label="Menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-mantiqueira-dark/97 backdrop-blur-md z-40 flex flex-col justify-center items-center space-y-8 text-xl tracking-widest uppercase">
+        <button id="mobile-menu-close" class="absolute top-6 right-6 text-white/50 hover:text-white text-2xl"><i class="fas fa-times"></i></button>
+        <a href="index.html#sobre" class="hover:text-mantiqueira-earth transition-colors">Sobre</a>
+        <a href="index.html#portfolio" class="hover:text-mantiqueira-earth transition-colors">Portfólio</a>
+        <a href="servicos.html" class="hover:text-mantiqueira-earth transition-colors">Serviços</a>
+        <a href="blog.html" class="text-mantiqueira-earth">Blog</a>
+        <a href="index.html#contato" class="border border-mantiqueira-earth px-8 py-3 text-mantiqueira-earth hover:bg-mantiqueira-earth hover:text-black transition-all">Contato</a>
+    </div>
+
+    <!-- HERO / POST EM DESTAQUE -->
+    <section class="relative min-h-[70vh] md:min-h-screen flex flex-col justify-end overflow-hidden bg-black">
+        <img src="assets/img/portfolio/rua/capa.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2074&auto=format&fit=crop'"
+             alt="Post em destaque"
+             class="absolute inset-0 w-full h-full object-cover opacity-50"
+             fetchpriority="high" decoding="async">
+        <div class="featured-post absolute inset-0 z-10"></div>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 md:px-6 pb-16 md:pb-24 w-full">
+            <div class="max-w-2xl">
+                <span class="category-tag mb-4 block">Ensaio em Destaque</span>
+                <h1 class="font-serif text-3xl sm:text-4xl md:text-6xl text-white mb-4 tracking-tighter leading-tight">
+                    A neblina da madrugada e a Pedra do Baú: um ensaio ao nascer do sol
+                </h1>
+                <p class="text-white/60 text-sm md:text-base font-light leading-relaxed mb-6 max-w-lg">
+                    Acordamos às 4h da manhã. A temperatura estava em torno de 8°C e a trilha estava coberta de orvalho. Mas quando o sol começou a rachar entre as nuvens, entendi por que esse lugar é mágico.
+                </p>
+                <div class="flex items-center gap-4 text-white/40 text-xs uppercase tracking-widest mb-8">
+                    <span><i class="far fa-calendar mr-1"></i> Março 2026</span>
+                    <span class="w-1 h-1 rounded-full bg-white/20"></span>
+                    <span><i class="far fa-clock mr-1"></i> 5 min de leitura</span>
+                </div>
+                <a href="#posts" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest border border-mantiqueira-earth text-mantiqueira-earth px-6 py-3 hover:bg-mantiqueira-earth hover:text-black transition-all">
+                    Ler Mais <i class="fas fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+    <!-- FILTROS DE CATEGORIA -->
+    <section class="py-8 md:py-10 bg-[#0d0f0d] sticky top-[70px] z-30 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="flex flex-wrap gap-3 md:gap-6 items-center">
+                <span class="text-white/30 text-xs uppercase tracking-widest hidden md:block">Filtrar:</span>
+                <button onclick="filterPosts('all')" class="filter-btn active text-xs uppercase tracking-widest text-mantiqueira-earth border-b border-mantiqueira-earth pb-1 transition-all">Todos</button>
+                <button onclick="filterPosts('casamentos')" class="filter-btn text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors">Casamentos</button>
+                <button onclick="filterPosts('aventura')" class="filter-btn text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors">Aventura</button>
+                <button onclick="filterPosts('retratos')" class="filter-btn text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors">Retratos</button>
+                <button onclick="filterPosts('bastidores')" class="filter-btn text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors">Bastidores</button>
+                <button onclick="filterPosts('mantiqueira')" class="filter-btn text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors">Mantiqueira</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- GRID DE POSTS -->
+    <section id="posts" class="py-16 md:py-24 bg-[#0a0c0a]">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+
+            <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+                <!-- Post 1 -->
+                <article class="post-card group cursor-pointer" data-category="aventura mantiqueira">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-[#111] mb-5">
+                        <img src="assets/img/portfolio/aventura/capa.jpg"
+                             onerror="this.src='https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop'"
+                             alt="Trilha na Mantiqueira" loading="lazy" decoding="async"
+                             class="w-full h-full object-cover opacity-70">
+                        <div class="post-overlay absolute inset-0 bg-black/30 opacity-0 flex items-center justify-center">
+                            <span class="text-white text-xs uppercase tracking-widest border border-white/50 px-4 py-2">Ler Post</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex gap-2 mb-3">
+                            <span class="category-tag">Aventura</span>
+                            <span class="category-tag">Mantiqueira</span>
+                        </div>
+                        <h2 class="font-serif text-xl md:text-2xl text-white mb-3 tracking-tighter leading-tight group-hover:text-mantiqueira-earth transition-colors">
+                            Três dias na Macela: fotografia e trilha no coração da serra
+                        </h2>
+                        <p class="text-white/50 text-sm font-light leading-relaxed mb-4">
+                            A Pedra da Macela oferece uma das vistas mais dramáticas da região. Fui com um grupo de 8 pessoas e cada ângulo era uma nova descoberta. Aqui estão os bastidores dessa expedição.
+                        </p>
+                        <div class="flex items-center gap-3 text-white/30 text-[10px] uppercase tracking-widest">
+                            <span><i class="far fa-calendar mr-1"></i>Fevereiro 2026</span>
+                            <span>·</span>
+                            <span>4 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="post-card group cursor-pointer" data-category="casamentos">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-[#111] mb-5">
+                        <img src="assets/img/portfolio/casamentos/Bianca & Donizete/capa.jpg"
+                             onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'"
+                             alt="Casamento" loading="lazy" decoding="async"
+                             class="w-full h-full object-cover opacity-70">
+                        <div class="post-overlay absolute inset-0 bg-black/30 opacity-0 flex items-center justify-center">
+                            <span class="text-white text-xs uppercase tracking-widest border border-white/50 px-4 py-2">Ler Post</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex gap-2 mb-3">
+                            <span class="category-tag">Casamentos</span>
+                        </div>
+                        <h2 class="font-serif text-xl md:text-2xl text-white mb-3 tracking-tighter leading-tight group-hover:text-mantiqueira-earth transition-colors">
+                            Bianca & Donizete: o casamento na neblina que virou obra de arte
+                        </h2>
+                        <p class="text-white/50 text-sm font-light leading-relaxed mb-4">
+                            Quando chegamos à fazenda e vimos a neblina cobrindo tudo, os noivos ficaram preocupados. Eu fiquei animado. A neblina da Mantiqueira transformou cada foto em algo cinematográfico.
+                        </p>
+                        <div class="flex items-center gap-3 text-white/30 text-[10px] uppercase tracking-widest">
+                            <span><i class="far fa-calendar mr-1"></i>Janeiro 2026</span>
+                            <span>·</span>
+                            <span>6 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post 3 -->
+                <article class="post-card group cursor-pointer" data-category="bastidores">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-[#111] mb-5">
+                        <img src="assets/img/hero/hero(2).jpg"
+                             onerror="this.src='https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop'"
+                             alt="Bastidores" loading="lazy" decoding="async"
+                             class="w-full h-full object-cover opacity-70">
+                        <div class="post-overlay absolute inset-0 bg-black/30 opacity-0 flex items-center justify-center">
+                            <span class="text-white text-xs uppercase tracking-widest border border-white/50 px-4 py-2">Ler Post</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex gap-2 mb-3">
+                            <span class="category-tag">Bastidores</span>
+                        </div>
+                        <h2 class="font-serif text-xl md:text-2xl text-white mb-3 tracking-tighter leading-tight group-hover:text-mantiqueira-earth transition-colors">
+                            Meu equipamento para fotografia de montanha: o que carrego na mochila
+                        </h2>
+                        <p class="text-white/50 text-sm font-light leading-relaxed mb-4">
+                            Muita gente me pergunta o que levo nas trilhas com câmera. A resposta não é simples: tem que equilibrar qualidade de imagem com leveza e resistência. Aqui está tudo que uso no dia a dia.
+                        </p>
+                        <div class="flex items-center gap-3 text-white/30 text-[10px] uppercase tracking-widest">
+                            <span><i class="far fa-calendar mr-1"></i>Dezembro 2025</span>
+                            <span>·</span>
+                            <span>7 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post 4 -->
+                <article class="post-card group cursor-pointer" data-category="retratos">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-[#111] mb-5">
+                        <img src="assets/img/portfolio/retratos/capa.jpg"
+                             onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop'"
+                             alt="Retrato" loading="lazy" decoding="async"
+                             class="w-full h-full object-cover opacity-70">
+                        <div class="post-overlay absolute inset-0 bg-black/30 opacity-0 flex items-center justify-center">
+                            <span class="text-white text-xs uppercase tracking-widest border border-white/50 px-4 py-2">Ler Post</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex gap-2 mb-3">
+                            <span class="category-tag">Retratos</span>
+                        </div>
+                        <h2 class="font-serif text-xl md:text-2xl text-white mb-3 tracking-tighter leading-tight group-hover:text-mantiqueira-earth transition-colors">
+                            Como criar retratos autênticos: o método que uso para fazer as pessoas esquecerem a câmera
+                        </h2>
+                        <p class="text-white/50 text-sm font-light leading-relaxed mb-4">
+                            A maior dificuldade de um retrato não é técnica — é emocional. A pessoa precisa se sentir segura. Aqui explico o processo que desenvolvi para criar retratos que realmente representam quem você é.
+                        </p>
+                        <div class="flex items-center gap-3 text-white/30 text-[10px] uppercase tracking-widest">
+                            <span><i class="far fa-calendar mr-1"></i>Novembro 2025</span>
+                            <span>·</span>
+                            <span>5 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post 5 -->
+                <article class="post-card group cursor-pointer" data-category="mantiqueira bastidores">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-[#111] mb-5">
+                        <img src="assets/img/olhar/capa.jpg"
+                             onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'"
+                             alt="Mantiqueira" loading="lazy" decoding="async"
+                             class="w-full h-full object-cover opacity-70">
+                        <div class="post-overlay absolute inset-0 bg-black/30 opacity-0 flex items-center justify-center">
+                            <span class="text-white text-xs uppercase tracking-widest border border-white/50 px-4 py-2">Ler Post</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex gap-2 mb-3">
+                            <span class="category-tag">Mantiqueira</span>
+                            <span class="category-tag">Bastidores</span>
+                        </div>
+                        <h2 class="font-serif text-xl md:text-2xl text-white mb-3 tracking-tighter leading-tight group-hover:text-mantiqueira-earth transition-colors">
+                            Os 5 melhores horários para fotografar em São Bento do Sapucaí
+                        </h2>
+                        <p class="text-white/50 text-sm font-light leading-relaxed mb-4">
+                            Depois de anos fotografando nessa região, aprendi que a luz certa faz toda a diferença. Neste post compartilho os horários e locações onde a magia acontece com mais frequência.
+                        </p>
+                        <div class="flex items-center gap-3 text-white/30 text-[10px] uppercase tracking-widest">
+                            <span><i class="far fa-calendar mr-1"></i>Outubro 2025</span>
+                            <span>·</span>
+                            <span>4 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post 6 -->
+                <article class="post-card group cursor-pointer" data-category="casamentos bastidores">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-[#111] mb-5">
+                        <img src="assets/img/hero/hero(3).jpg"
+                             onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'"
+                             alt="Casamento bastidores" loading="lazy" decoding="async"
+                             class="w-full h-full object-cover opacity-70">
+                        <div class="post-overlay absolute inset-0 bg-black/30 opacity-0 flex items-center justify-center">
+                            <span class="text-white text-xs uppercase tracking-widest border border-white/50 px-4 py-2">Ler Post</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex gap-2 mb-3">
+                            <span class="category-tag">Casamentos</span>
+                            <span class="category-tag">Bastidores</span>
+                        </div>
+                        <h2 class="font-serif text-xl md:text-2xl text-white mb-3 tracking-tighter leading-tight group-hover:text-mantiqueira-earth transition-colors">
+                            Por que o making of é tão importante quanto a cerimônia
+                        </h2>
+                        <p class="text-white/50 text-sm font-light leading-relaxed mb-4">
+                            A preparação revela uma intimidade que a cerimônia não consegue capturar. Os nervos, o riso, os detalhes que somem em segundos. Aqui explico por que sempre começo cedo e termino tarde.
+                        </p>
+                        <div class="flex items-center gap-3 text-white/30 text-[10px] uppercase tracking-widest">
+                            <span><i class="far fa-calendar mr-1"></i>Setembro 2025</span>
+                            <span>·</span>
+                            <span>5 min</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Mensagem quando filtro não encontra posts -->
+            <div id="no-posts" class="hidden text-center py-16">
+                <p class="text-white/40 text-sm font-light">Nenhum post nessa categoria ainda.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NEWSLETTER / CTA -->
+    <section class="py-20 md:py-24 bg-[#0d0f0d] border-t border-white/5">
+        <div class="max-w-2xl mx-auto px-4 md:px-6 text-center">
+            <span class="text-mantiqueira-earth text-[10px] uppercase tracking-[0.4em] block mb-6">Acompanhe</span>
+            <h2 class="font-serif text-3xl md:text-4xl text-white tracking-tighter mb-4">
+                Bastidores no Instagram
+            </h2>
+            <p class="text-white/50 text-sm font-light mb-8 leading-relaxed">
+                Acompanhe os ensaios em tempo real, as paisagens da Mantiqueira e os bastidores do processo criativo no Instagram.
+            </p>
+            <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-3 bg-mantiqueira-earth text-black px-8 py-4 text-xs uppercase tracking-widest hover:bg-white transition-all font-semibold">
+                <i class="fab fa-instagram"></i> @viniciusrafaelgs
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-mantiqueira-dark py-12 text-center border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <a href="index.html" class="font-serif text-xl text-white block mb-2 tracking-tighter hover:text-mantiqueira-earth transition-colors">VR<span class="text-mantiqueira-earth">.</span></a>
+            <span class="text-mantiqueira-earth text-[10px] uppercase tracking-[0.4em] block mb-6">Fotografia & Guia Turístico</span>
+            <div class="flex justify-center space-x-8 mb-8 text-xl">
+                <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener" class="text-white/30 hover:text-mantiqueira-earth transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5512981771665" target="_blank" rel="noopener" class="text-white/30 hover:text-mantiqueira-earth transition-colors"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:contato@viniciusrafael.com" class="text-white/30 hover:text-mantiqueira-earth transition-colors"><i class="far fa-envelope"></i></a>
+            </div>
+            <p class="text-white/20 text-[10px] font-light tracking-widest uppercase">&copy; 2026 Vinícius Rafael Fotografia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileClose = document.getElementById('mobile-menu-close');
+        if (mobileBtn) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        if (mobileClose) mobileClose.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+
+        // Filter posts
+        function filterPosts(category) {
+            const posts = document.querySelectorAll('.post-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const noPostsEl = document.getElementById('no-posts');
+
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active', 'text-mantiqueira-earth', 'border-b', 'border-mantiqueira-earth');
+                btn.classList.add('text-white/50');
+            });
+            event.target.classList.add('active', 'text-mantiqueira-earth', 'border-b', 'border-mantiqueira-earth');
+            event.target.classList.remove('text-white/50');
+
+            let visible = 0;
+            posts.forEach(post => {
+                const cats = post.dataset.category || '';
+                if (category === 'all' || cats.includes(category)) {
+                    post.style.display = '';
+                    visible++;
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+
+            noPostsEl.classList.toggle('hidden', visible > 0);
+        }
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            nav.style.boxShadow = window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,0.4)' : 'none';
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.05 });
+
+        document.querySelectorAll('.post-card').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

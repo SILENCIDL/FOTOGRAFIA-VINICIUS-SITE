@@ -339,13 +339,19 @@ const app = {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const nome = document.getElementById('cf-nome')?.value || '';
+      const whatsapp = document.getElementById('cf-whatsapp')?.value || '';
       const servico = document.getElementById('cf-servico')?.value || '';
       const data = document.getElementById('cf-data')?.value || '';
+      const local = document.getElementById('cf-local')?.value || '';
+      const origem = document.getElementById('cf-origem')?.value || '';
       const mensagem = document.getElementById('cf-mensagem')?.value || '';
       let texto = `Olá Vinícius! Meu nome é ${nome}.`;
+      if (whatsapp) texto += ` Meu WhatsApp: ${whatsapp}.`;
       if (servico) texto += ` Tenho interesse em: ${servico}.`;
       if (data) texto += ` Data prevista: ${data}.`;
+      if (local) texto += ` Local/Cidade: ${local}.`;
       if (mensagem) texto += ` Mensagem: ${mensagem}`;
+      if (origem) texto += ` (Me encontrou via: ${origem})`;
       window.open(`https://wa.me/5512981771665?text=${encodeURIComponent(texto)}`, '_blank');
     });
   },

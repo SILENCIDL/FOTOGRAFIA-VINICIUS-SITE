@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Serviços & Investimento | Vinícius Rafael Fotografia</title>
+    <meta name="description" content="Conheça os serviços de fotografia de Vinícius Rafael: casamentos, ensaios, retratos e aventura na Serra da Mantiqueira. Pacotes transparentes e personalizados.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind-config.js"></script>
+
+    <style>
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .faq-content.open {
+            max-height: 500px;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+        .step-line::after {
+            content: '';
+            position: absolute;
+            top: 2.5rem;
+            left: 50%;
+            width: 1px;
+            height: calc(100% + 2rem);
+            background: linear-gradient(to bottom, rgba(197,163,115,0.4), transparent);
+        }
+        .step-line:last-child::after { display: none; }
+        .service-card:hover .service-card-inner {
+            border-color: rgba(197,163,115,0.5);
+        }
+        .tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            border: 1px solid rgba(197,163,115,0.4);
+            color: var(--color-earth);
+        }
+    </style>
+</head>
+<body class="bg-mantiqueira-dark text-white font-sans antialiased">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 md:py-5 bg-mantiqueira-dark/95 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-serif tracking-tighter hover:text-mantiqueira-earth transition-colors">VR<span class="text-mantiqueira-earth">.</span></a>
+
+            <div class="hidden md:flex space-x-10 text-sm tracking-widest uppercase items-center">
+                <a href="index.html#sobre" class="text-white/70 hover:text-white transition-colors">Sobre</a>
+                <a href="index.html#portfolio" class="text-white/70 hover:text-white transition-colors">Portfólio</a>
+                <a href="servicos.html" class="text-mantiqueira-earth">Serviços</a>
+                <a href="blog.html" class="text-white/70 hover:text-white transition-colors">Blog</a>
+                <a href="index.html#contato" class="border border-white/20 px-6 py-2 hover:bg-white hover:text-black transition-all duration-300">Contato</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden z-50 text-white p-2" aria-label="Menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-mantiqueira-dark/97 backdrop-blur-md z-40 flex flex-col justify-center items-center space-y-8 text-xl tracking-widest uppercase">
+        <button id="mobile-menu-close" class="absolute top-6 right-6 text-white/50 hover:text-white text-2xl"><i class="fas fa-times"></i></button>
+        <a href="index.html#sobre" class="hover:text-mantiqueira-earth transition-colors">Sobre</a>
+        <a href="index.html#portfolio" class="hover:text-mantiqueira-earth transition-colors">Portfólio</a>
+        <a href="servicos.html" class="text-mantiqueira-earth">Serviços</a>
+        <a href="blog.html" class="hover:text-mantiqueira-earth transition-colors">Blog</a>
+        <a href="index.html#contato" class="border border-mantiqueira-earth px-8 py-3 text-mantiqueira-earth hover:bg-mantiqueira-earth hover:text-black transition-all">Contato</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-[#0a0c0a] overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background: radial-gradient(ellipse at 60% 50%, rgba(197,163,115,0.3) 0%, transparent 70%);"></div>
+        <div class="max-w-7xl mx-auto px-4 md:px-6 relative">
+            <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.4em] block mb-6">Investimento</span>
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl text-white mb-8 tracking-tighter leading-none max-w-3xl">
+                Experiências que<br><span class="text-mantiqueira-earth italic">ficam para sempre.</span>
+            </h1>
+            <p class="text-white/50 text-sm md:text-lg font-light max-w-2xl leading-relaxed mb-10">
+                Cada serviço é pensado para ser uma experiência completa — não apenas fotos, mas memórias construídas com cuidado, luz natural e muito respeito pela sua história.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <a href="#pacotes" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest border border-mantiqueira-earth text-mantiqueira-earth px-6 py-3 hover:bg-mantiqueira-earth hover:text-black transition-all">
+                    Ver Pacotes <i class="fas fa-arrow-down text-[10px]"></i>
+                </a>
+                <a href="#agendar" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest border border-white/20 text-white/70 px-6 py-3 hover:border-white hover:text-white transition-all">
+                    Agendar Conversa <i class="fas fa-calendar-alt text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+    <!-- PACOTES PRINCIPAIS -->
+    <section id="pacotes" class="py-20 md:py-32 bg-[#0d0f0d]">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+
+            <div class="text-center mb-16 md:mb-24">
+                <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-4">Pacotes</span>
+                <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter mb-4">Escolha sua experiência</h2>
+                <p class="text-white/50 text-sm font-light max-w-xl mx-auto">Transparência desde o primeiro contato. Todos os pacotes incluem consultoria prévia e galeria online privada.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+
+                <!-- Retrato / Casal -->
+                <div class="service-card border border-white/10 p-8 flex flex-col bg-[#0a0c0a] hover:border-mantiqueira-earth/40 transition-all duration-500 group">
+                    <span class="tag mb-6">Retrato & Casal</span>
+                    <h3 class="font-serif text-2xl text-white mb-2">Ensaio Intimista</h3>
+                    <p class="text-white/40 text-sm mb-8 font-light leading-relaxed">Ensaio na natureza, com luz natural e locações exclusivas na Serra da Mantiqueira. Individual ou em casal.</p>
+                    <div class="mb-8">
+                        <span class="text-xs text-white/40 uppercase tracking-widest block mb-1">A partir de</span>
+                        <span class="font-serif text-4xl text-mantiqueira-earth">R$ 800</span>
+                    </div>
+                    <ul class="space-y-3 text-white/60 text-sm font-light mb-10 flex-grow">
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>2 horas de ensaio</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>40 fotos editadas em alta resolução</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Consultoria de locação e figurino</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Galeria online privada com download</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Entrega em até 15 dias</li>
+                    </ul>
+                    <a href="https://wa.me/5512981771665?text=Olá!%20Tenho%20interesse%20no%20Ensaio%20de%20Retrato/Casal.%20Pode%20me%20contar%20mais?" target="_blank" class="block w-full text-center border border-white/20 py-3 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                        Solicitar Orçamento
+                    </a>
+                </div>
+
+                <!-- Pre Wedding (destaque) -->
+                <div class="service-card border border-mantiqueira-earth p-8 flex flex-col bg-mantiqueira-earth/5 relative transform md:-translate-y-4 shadow-2xl">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-mantiqueira-earth text-black text-[10px] uppercase tracking-widest px-4 py-1 font-semibold whitespace-nowrap">Mais Escolhido</div>
+                    <span class="tag border-mantiqueira-earth/60 mb-6">Pré Casamento</span>
+                    <h3 class="font-serif text-2xl text-white mb-2">Pre Wedding</h3>
+                    <p class="text-white/40 text-sm mb-8 font-light leading-relaxed">A jornada antes do grande dia. Aventura, romance e a beleza bruta das montanhas como cenário da sua história.</p>
+                    <div class="mb-8">
+                        <span class="text-xs text-white/40 uppercase tracking-widest block mb-1">A partir de</span>
+                        <span class="font-serif text-4xl text-mantiqueira-earth">R$ 1.500</span>
+                    </div>
+                    <ul class="space-y-3 text-white/60 text-sm font-light mb-10 flex-grow">
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Até 4 horas de cobertura</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Mínimo 80 fotos editadas em alta resolução</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Guiamento em trilhas quando necessário</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Slideshow emocional em vídeo</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Galeria online privada com download</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Entrega em até 21 dias</li>
+                    </ul>
+                    <a href="https://wa.me/5512981771665?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Pre%20Wedding%20na%20Mantiqueira." target="_blank" class="block w-full text-center bg-mantiqueira-earth text-black py-3 text-xs uppercase tracking-widest hover:bg-white transition-all duration-300 font-semibold">
+                        Reservar Minha Data
+                    </a>
+                </div>
+
+                <!-- Casamento -->
+                <div class="service-card border border-white/10 p-8 flex flex-col bg-[#0a0c0a] hover:border-mantiqueira-earth/40 transition-all duration-500">
+                    <span class="tag mb-6">Grande Dia</span>
+                    <h3 class="font-serif text-2xl text-white mb-2">Casamento Completo</h3>
+                    <p class="text-white/40 text-sm mb-8 font-light leading-relaxed">Cobertura documental e artística do seu casamento do início ao fim, com atenção a cada detalhe e emoção.</p>
+                    <div class="mb-8">
+                        <span class="text-xs text-white/40 uppercase tracking-widest block mb-1">Investimento</span>
+                        <span class="font-serif text-3xl text-mantiqueira-earth">Personalizado</span>
+                    </div>
+                    <ul class="space-y-3 text-white/60 text-sm font-light mb-10 flex-grow">
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Cobertura total (Making of → Festa)</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Segundo fotógrafo incluso</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Mínimo 500 fotos editadas</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Álbum impresso Fine Art (opcional)</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Galeria online premium por 2 anos</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-mantiqueira-earth mt-0.5 text-[10px] shrink-0"></i>Entrega em até 45 dias</li>
+                    </ul>
+                    <a href="https://wa.me/5512981771665?text=Olá!%20Gostaria%20de%20conversar%20sobre%20a%20fotografia%20do%20meu%20casamento." target="_blank" class="block w-full text-center border border-white/20 py-3 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                        Conversar sobre o Projeto
+                    </a>
+                </div>
+
+            </div>
+
+            <p class="text-center text-white/30 text-xs font-light mt-12 px-4">
+                * Valores sujeitos a alteração. Taxa de deslocamento pode ser aplicada para locais fora de São Bento do Sapucaí e região.
+            </p>
+        </div>
+    </section>
+
+    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+    <!-- AVENTURA & GUIAMENTO -->
+    <section id="aventura" class="py-20 md:py-32 bg-[#0a0c0a]">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+                <div>
+                    <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-6">Exclusivo</span>
+                    <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter mb-8 leading-tight">
+                        Fotografia de<br><span class="text-mantiqueira-earth italic">Aventura & Trilha</span>
+                    </h2>
+                    <p class="text-white/50 text-sm md:text-base font-light leading-relaxed mb-8 max-w-lg">
+                        Um serviço único na região: como guia turístico e fotógrafo, levo você aos pontos mais fotogênicos e isolados da Serra da Mantiqueira com total segurança. Pedra do Baú, Pedra da Macela, cachoeiras escondidas — cada trilha tem um ângulo que poucos já viram.
+                    </p>
+                    <p class="text-white/50 text-sm md:text-base font-light leading-relaxed mb-10 max-w-lg">
+                        Ideal para casais aventureiros, famílias, grupos de amigos ou qualquer pessoa que queira transformar uma experiência na natureza em imagens que contam uma história real.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-10">
+                        <div class="border border-white/10 p-6 bg-[#0d0f0d]">
+                            <span class="text-mantiqueira-earth font-serif text-2xl block mb-1">Meio Dia</span>
+                            <span class="text-white/40 text-xs uppercase tracking-widest block mb-4">Até 4h</span>
+                            <ul class="space-y-2 text-white/50 text-xs font-light">
+                                <li><i class="fas fa-check text-mantiqueira-earth mr-2 text-[9px]"></i>1 locação</li>
+                                <li><i class="fas fa-check text-mantiqueira-earth mr-2 text-[9px]"></i>30+ fotos editadas</li>
+                                <li><i class="fas fa-check text-mantiqueira-earth mr-2 text-[9px]"></i>Guiamento incluso</li>
+                            </ul>
+                            <span class="font-serif text-xl text-mantiqueira-earth block mt-4">R$ 600</span>
+                        </div>
+                        <div class="border border-mantiqueira-earth/50 p-6 bg-mantiqueira-earth/5">
+                            <span class="text-mantiqueira-earth font-serif text-2xl block mb-1">Dia Inteiro</span>
+                            <span class="text-white/40 text-xs uppercase tracking-widest block mb-4">Até 8h</span>
+                            <ul class="space-y-2 text-white/50 text-xs font-light">
+                                <li><i class="fas fa-check text-mantiqueira-earth mr-2 text-[9px]"></i>Múltiplas locações</li>
+                                <li><i class="fas fa-check text-mantiqueira-earth mr-2 text-[9px]"></i>60+ fotos editadas</li>
+                                <li><i class="fas fa-check text-mantiqueira-earth mr-2 text-[9px]"></i>Guiamento + alimentação inclusa</li>
+                            </ul>
+                            <span class="font-serif text-xl text-mantiqueira-earth block mt-4">R$ 1.100</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/5512981771665?text=Olá!%20Tenho%20interesse%20na%20Fotografia%20de%20Aventura/Trilha.%20Pode%20me%20contar%20mais?" target="_blank" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest border border-mantiqueira-earth text-mantiqueira-earth px-6 py-3 hover:bg-mantiqueira-earth hover:text-black transition-all">
+                        Planejar Minha Aventura <i class="fas fa-mountain text-[10px]"></i>
+                    </a>
+                </div>
+
+                <div class="relative">
+                    <div class="aspect-[3/4] overflow-hidden bg-[#111]">
+                        <img src="assets/img/portfolio/aventura/capa.jpg"
+                             onerror="this.src='https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop'"
+                             alt="Fotografia de aventura na Mantiqueira"
+                             class="w-full h-full object-cover opacity-70 hover:opacity-90 transition-opacity duration-700"
+                             loading="lazy" decoding="async">
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 border border-mantiqueira-earth/30 w-full h-full -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+    <!-- COMO FUNCIONA -->
+    <section id="como-funciona" class="py-20 md:py-32 bg-[#0d0f0d]">
+        <div class="max-w-4xl mx-auto px-4 md:px-6">
+            <div class="text-center mb-16 md:mb-20">
+                <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-4">Processo</span>
+                <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter mb-4">Como funciona?</h2>
+                <p class="text-white/50 text-sm font-light max-w-xl mx-auto">Do primeiro contato à entrega das fotos, cada etapa é pensada para que você se sinta seguro e entusiasmado.</p>
+            </div>
+
+            <div class="space-y-0">
+
+                <div class="relative flex gap-6 md:gap-10 pb-12">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full border border-mantiqueira-earth flex items-center justify-center text-mantiqueira-earth font-serif text-lg shrink-0">1</div>
+                        <div class="flex-1 w-[1px] bg-gradient-to-b from-mantiqueira-earth/40 to-transparent mt-4"></div>
+                    </div>
+                    <div class="pb-8">
+                        <span class="text-mantiqueira-earth text-[10px] uppercase tracking-widest block mb-2">Primeiro Contato</span>
+                        <h3 class="font-serif text-xl md:text-2xl text-white mb-3">A Conversa Inicial</h3>
+                        <p class="text-white/50 text-sm font-light leading-relaxed max-w-lg">Você me manda uma mensagem pelo WhatsApp ou preenchendo o formulário. A gente conversa sobre a sua ideia, a data, o estilo, suas expectativas. Sem pressão, sem jargões — apenas uma conversa honesta sobre o que você quer eternizar.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex gap-6 md:gap-10 pb-12">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full border border-mantiqueira-earth flex items-center justify-center text-mantiqueira-earth font-serif text-lg shrink-0">2</div>
+                        <div class="flex-1 w-[1px] bg-gradient-to-b from-mantiqueira-earth/40 to-transparent mt-4"></div>
+                    </div>
+                    <div class="pb-8">
+                        <span class="text-mantiqueira-earth text-[10px] uppercase tracking-widest block mb-2">Planejamento</span>
+                        <h3 class="font-serif text-xl md:text-2xl text-white mb-3">Definindo Cada Detalhe</h3>
+                        <p class="text-white/50 text-sm font-light leading-relaxed max-w-lg">Definimos juntos a locação ideal, o melhor horário de luz, o roteiro do dia e o figurino. No caso de trilhas, faço um reconhecimento prévio da rota para garantir segurança e os melhores ângulos. Tudo documentado em contrato transparente.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex gap-6 md:gap-10 pb-12">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full border border-mantiqueira-earth flex items-center justify-center text-mantiqueira-earth font-serif text-lg shrink-0">3</div>
+                        <div class="flex-1 w-[1px] bg-gradient-to-b from-mantiqueira-earth/40 to-transparent mt-4"></div>
+                    </div>
+                    <div class="pb-8">
+                        <span class="text-mantiqueira-earth text-[10px] uppercase tracking-widest block mb-2">O Dia</span>
+                        <h3 class="font-serif text-xl md:text-2xl text-white mb-3">A Experiência em Si</h3>
+                        <p class="text-white/50 text-sm font-light leading-relaxed max-w-lg">Chegamos no horário combinado. Sem pressa. Sem poses forçadas. Meu papel é criar um ambiente de leveza para que a sua essência apareça naturalmente. A câmera entra em cena quase que invisível — o que fica é o momento real.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex gap-6 md:gap-10">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-mantiqueira-earth flex items-center justify-center text-black font-serif text-lg shrink-0">4</div>
+                    </div>
+                    <div>
+                        <span class="text-mantiqueira-earth text-[10px] uppercase tracking-widest block mb-2">Entrega</span>
+                        <h3 class="font-serif text-xl md:text-2xl text-white mb-3">Suas Memórias Prontas</h3>
+                        <p class="text-white/50 text-sm font-light leading-relaxed max-w-lg">Após a edição cuidadosa de cada imagem — correção de luz, cor e tratamento de skin — você recebe um link para a sua galeria online privada. Pode baixar, compartilhar e guardar para sempre. Opções de álbum impresso Fine Art também disponíveis.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+    <!-- AGENDAMENTO -->
+    <section id="agendar" class="py-20 md:py-32 bg-[#0a0c0a]">
+        <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+            <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-6">Agenda</span>
+            <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter mb-6">
+                Agende uma<br><span class="text-mantiqueira-earth italic">conversa rápida</span>
+            </h2>
+            <p class="text-white/50 text-sm md:text-base font-light max-w-xl mx-auto mb-12 leading-relaxed">
+                Prefere falar antes de decidir? Agende uma conversa de 15 minutos — sem compromisso. Posso tirar suas dúvidas, mostrar mais do meu trabalho e entender melhor o que você imagina.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="border border-white/10 p-6 text-center hover:border-mantiqueira-earth/30 transition-colors">
+                    <i class="fab fa-whatsapp text-mantiqueira-earth text-3xl mb-4"></i>
+                    <h4 class="font-serif text-lg text-white mb-2">WhatsApp</h4>
+                    <p class="text-white/40 text-xs font-light mb-4">Resposta rápida no dia a dia</p>
+                    <a href="https://wa.me/5512981771665?text=Oi%20Vinícius!%20Vi%20seus%20serviços%20no%20site%20e%20gostaria%20de%20conversar." target="_blank" class="text-mantiqueira-earth text-xs uppercase tracking-widest hover:underline">Mandar Mensagem</a>
+                </div>
+                <div class="border border-mantiqueira-earth/50 p-6 text-center bg-mantiqueira-earth/5">
+                    <i class="fas fa-calendar-check text-mantiqueira-earth text-3xl mb-4"></i>
+                    <h4 class="font-serif text-lg text-white mb-2">Agendar Online</h4>
+                    <p class="text-white/40 text-xs font-light mb-4">Escolha o melhor horário para você</p>
+                    <!-- Substitua o link abaixo pelo seu link do Calendly -->
+                    <a href="https://calendly.com/viniciusrafaelgs" target="_blank" class="inline-flex items-center gap-2 bg-mantiqueira-earth text-black text-xs uppercase tracking-widest px-5 py-2 hover:bg-white transition-all font-semibold">
+                        Abrir Calendário <i class="fas fa-external-link-alt text-[9px]"></i>
+                    </a>
+                </div>
+                <div class="border border-white/10 p-6 text-center hover:border-mantiqueira-earth/30 transition-colors">
+                    <i class="fab fa-instagram text-mantiqueira-earth text-3xl mb-4"></i>
+                    <h4 class="font-serif text-lg text-white mb-2">Instagram</h4>
+                    <p class="text-white/40 text-xs font-light mb-4">Acompanhe os bastidores do trabalho</p>
+                    <a href="https://instagram.com/viniciusrafaelgs" target="_blank" class="text-mantiqueira-earth text-xs uppercase tracking-widest hover:underline">@viniciusrafaelgs</a>
+                </div>
+            </div>
+
+            <p class="text-white/30 text-xs font-light">
+                Datas de alta temporada (outubro a março) costumam esgotar com meses de antecedência. <span class="text-mantiqueira-earth">Reserve com antecedência.</span>
+            </p>
+        </div>
+    </section>
+
+    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 md:py-32 bg-[#0d0f0d]">
+        <div class="max-w-3xl mx-auto px-4 md:px-6">
+            <div class="text-center mb-16">
+                <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-4">Dúvidas</span>
+                <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter">Perguntas frequentes</h2>
+            </div>
+
+            <div class="space-y-0 border-t border-white/10">
+
+                <div class="faq-item border-b border-white/10">
+                    <button class="w-full text-left py-6 flex justify-between items-center group" onclick="toggleFaq(this)">
+                        <span class="text-white/80 text-sm md:text-base font-light group-hover:text-white transition-colors pr-4">Vocês viajam para fora de São Bento do Sapucaí?</span>
+                        <i class="faq-icon fas fa-plus text-mantiqueira-earth text-sm shrink-0"></i>
+                    </button>
+                    <div class="faq-content text-white/50 text-sm font-light leading-relaxed">
+                        <p class="pb-6">Sim! Trabalho em toda a Serra da Mantiqueira e já fotografei em Campos do Jordão, Gonçalves, Piranguçu e outras cidades da região. Para locais mais distantes, uma taxa de deslocamento é aplicada conforme a distância. Me conta onde você imagina o ensaio e a gente resolve!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-white/10">
+                    <button class="w-full text-left py-6 flex justify-between items-center group" onclick="toggleFaq(this)">
+                        <span class="text-white/80 text-sm md:text-base font-light group-hover:text-white transition-colors pr-4">Quanto tempo antes preciso reservar minha data?</span>
+                        <i class="faq-icon fas fa-plus text-mantiqueira-earth text-sm shrink-0"></i>
+                    </button>
+                    <div class="faq-content text-white/50 text-sm font-light leading-relaxed">
+                        <p class="pb-6">Para casamentos, o ideal é reservar com 6 a 12 meses de antecedência, principalmente em alta temporada (outubro a março). Para ensaios e retratos, geralmente consigo encaixar em 2 a 4 semanas. Entre em contato para verificar a disponibilidade da sua data.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-white/10">
+                    <button class="w-full text-left py-6 flex justify-between items-center group" onclick="toggleFaq(this)">
+                        <span class="text-white/80 text-sm md:text-base font-light group-hover:text-white transition-colors pr-4">Como é o processo de pagamento?</span>
+                        <i class="faq-icon fas fa-plus text-mantiqueira-earth text-sm shrink-0"></i>
+                    </button>
+                    <div class="faq-content text-white/50 text-sm font-light leading-relaxed">
+                        <p class="pb-6">Trabalhamos com sinal de 50% para reservar a data, com o restante pago antes do dia do ensaio ou casamento. Aceitamos Pix, transferência bancária e cartão de crédito. Tudo é formalizado em contrato para segurança de ambas as partes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-white/10">
+                    <button class="w-full text-left py-6 flex justify-between items-center group" onclick="toggleFaq(this)">
+                        <span class="text-white/80 text-sm md:text-base font-light group-hover:text-white transition-colors pr-4">E se chover no dia do ensaio?</span>
+                        <i class="faq-icon fas fa-plus text-mantiqueira-earth text-sm shrink-0"></i>
+                    </button>
+                    <div class="faq-content text-white/50 text-sm font-light leading-relaxed">
+                        <p class="pb-6">A chuva na Mantiqueira cria paisagens únicas — névoa, luz difusa e aquela atmosfera mágica das montanhas. Mas se o tempo realmente não colaborar, reagendamos sem custo adicional. O mais importante é você se sentir bem e confiante no dia.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-white/10">
+                    <button class="w-full text-left py-6 flex justify-between items-center group" onclick="toggleFaq(this)">
+                        <span class="text-white/80 text-sm md:text-base font-light group-hover:text-white transition-colors pr-4">Como recebo as fotos editadas?</span>
+                        <i class="faq-icon fas fa-plus text-mantiqueira-earth text-sm shrink-0"></i>
+                    </button>
+                    <div class="faq-content text-white/50 text-sm font-light leading-relaxed">
+                        <p class="pb-6">As fotos são entregues em galeria online privada com link exclusivo para você. Todas em alta resolução, prontas para impressão. A galeria fica disponível por 6 meses (casamentos: 2 anos), com download ilimitado. Também é possível solicitar álbum impresso Fine Art como complemento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-white/10">
+                    <button class="w-full text-left py-6 flex justify-between items-center group" onclick="toggleFaq(this)">
+                        <span class="text-white/80 text-sm md:text-base font-light group-hover:text-white transition-colors pr-4">Vocês fazem filmagem de casamento também?</span>
+                        <i class="faq-icon fas fa-plus text-mantiqueira-earth text-sm shrink-0"></i>
+                    </button>
+                    <div class="faq-content text-white/50 text-sm font-light leading-relaxed">
+                        <p class="pb-6">Atualmente meu foco é exclusivamente na fotografia, onde posso garantir o máximo de qualidade e atenção. Mas tenho parceiros de confiança que trabalham com filmagem e posso indicar profissionais excelentes para complementar a cobertura do seu casamento.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-20 md:py-32 bg-[#0a0c0a] text-center">
+        <div class="max-w-2xl mx-auto px-4 md:px-6">
+            <p class="text-mantiqueira-earth text-[10px] uppercase tracking-[0.4em] mb-6">Próximo Passo</p>
+            <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter mb-6 leading-tight">
+                Sua história merece<br>ser contada com cuidado.
+            </h2>
+            <p class="text-white/50 text-sm md:text-base font-light mb-10">
+                Me manda uma mensagem. Sem compromisso. Vamos conversar e ver se faz sentido a gente trabalhar juntos.
+            </p>
+            <a href="index.html#contato" class="inline-flex items-center gap-3 bg-mantiqueira-earth text-black px-10 py-4 text-xs uppercase tracking-widest hover:bg-white transition-all font-semibold">
+                <i class="fas fa-envelope"></i> Entrar em Contato
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-mantiqueira-dark py-12 text-center border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <a href="index.html" class="font-serif text-xl text-white block mb-2 tracking-tighter hover:text-mantiqueira-earth transition-colors">VR<span class="text-mantiqueira-earth">.</span></a>
+            <span class="text-mantiqueira-earth text-[10px] uppercase tracking-[0.4em] block mb-6">Fotografia & Guia Turístico</span>
+            <div class="flex justify-center space-x-8 mb-8 text-xl">
+                <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener" class="text-white/30 hover:text-mantiqueira-earth transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5512981771665" target="_blank" rel="noopener" class="text-white/30 hover:text-mantiqueira-earth transition-colors"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:contato@viniciusrafael.com" class="text-white/30 hover:text-mantiqueira-earth transition-colors"><i class="far fa-envelope"></i></a>
+            </div>
+            <p class="text-white/20 text-[10px] font-light tracking-widest uppercase">&copy; 2026 Vinícius Rafael Fotografia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileClose = document.getElementById('mobile-menu-close');
+        if (mobileBtn) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        if (mobileClose) mobileClose.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+
+        // FAQ accordion
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const content = item.querySelector('.faq-content');
+            const isOpen = item.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(el => {
+                el.classList.remove('open');
+                el.querySelector('.faq-content').classList.remove('open');
+            });
+
+            // Toggle clicked
+            if (!isOpen) {
+                item.classList.add('open');
+                content.classList.add('open');
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.4)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section > div, .service-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
