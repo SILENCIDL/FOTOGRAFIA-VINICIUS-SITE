@@ -3,418 +3,738 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Vinícius Rafael | Fotografia na Serra da Mantiqueira</title>
-    <meta name="description" content="Fotógrafo em São Bento do Sapucaí. Especializado em casamentos, retratos e fotografia de aventura na Serra da Mantiqueira.">
-    <meta property="og:title" content="Vinícius Rafael | Fotografia">
-    <meta property="og:description" content="Fotografia de casamentos, retratos e aventura na Serra da Mantiqueira.">
+    <title>Fotop — Vinícius Rafael | Serra da Mantiqueira</title>
+    <meta name="description" content="Fotografia que respira altitude. Vinícius Rafael, fotógrafo em São Bento do Sapucaí — paisagem, esportes e eventos na Serra da Mantiqueira.">
+    <meta property="og:title" content="Fotop — Vinícius Rafael | Serra da Mantiqueira">
+    <meta property="og:description" content="Fotografia que respira altitude. Especializado em paisagem, esportes e eventos.">
     <meta property="og:type" content="website">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Tipografia: Playfair Display (editorial) + DM Sans (UI) + DM Mono (detalhe técnico) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/site.css">
 
+    <!-- Preload da primeira imagem do hero para performance -->
     <link rel="preload" as="image" href="assets/img/hero/hero(1).jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="assets/js/tailwind-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-mantiqueira-dark text-white font-sans antialiased selection:bg-mantiqueira-earth selection:text-white">
+<body class="antialiased" style="background-color:#0d0d0b; color:#f0ede6; font-family:'DM Sans',sans-serif;">
 
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 md:py-6 border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
-            <a href="#" onclick="app.showSection('home'); return false;" class="text-xl md:text-2xl font-serif tracking-tighter z-50 hover:text-mantiqueira-earth transition-colors">VR<span class="text-mantiqueira-earth">.</span></a>
-            
-            <div class="hidden md:flex space-x-12 text-sm tracking-widest uppercase items-center">
-                <a href="#sobre" onclick="app.scrollToSection('sobre'); return false;" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Sobre</a>
-                <a href="portfolio.html" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Portfólio</a>
-                <a href="#experiencia" onclick="app.scrollToSection('experiencia'); return false;" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Experiência</a>
-                <a href="#" onclick="app.openPrices(); return false;" class="text-white/70 hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-mantiqueira-earth hover:after:w-full after:transition-all after:duration-300">Valores</a>
-                <a href="#contato" onclick="app.scrollToSection('contato'); return false;" class="border border-white/20 px-6 py-2 hover:bg-white hover:text-black transition-all duration-300">Contato</a>
-            </div>
+<!-- ============================================================
+     ETAPA 1 — NAVBAR
+     Transparente → bg-secondary com backdrop-blur ao scroll.
+     Logo FOTOP em Playfair Display, cor accent.
+     Links: Portfólio / Serviços / Sobre / Contato
+     ============================================================ -->
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-5">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 flex justify-between items-center">
 
-            <button id="mobile-menu-btn" class="md:hidden z-50 text-white p-2" aria-label="Menu">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+        <!-- Logo: FOTOP em Playfair Display -->
+        <a href="#" onclick="app.showSection('home'); return false;" class="fotop-logo z-50">FOTOP</a>
+
+        <!-- Desktop navigation -->
+        <div class="hidden md:flex items-center space-x-10">
+            <a href="#portfolio" onclick="app.scrollToSection('portfolio'); return false;" class="nav-link-fotop">Portfólio</a>
+            <a href="#servicos"  onclick="app.scrollToSection('servicos');  return false;" class="nav-link-fotop">Serviços</a>
+            <a href="#sobre"     onclick="app.scrollToSection('sobre');     return false;" class="nav-link-fotop">Sobre</a>
+            <a href="#contato"   onclick="app.scrollToSection('contato');   return false;" class="nav-cta-fotop">Contato</a>
         </div>
-    </nav>
 
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-mantiqueira-dark/95 backdrop-blur-md z-40 flex flex-col justify-center items-center space-y-8 text-xl tracking-widest uppercase">
-        <a href="#sobre" onclick="app.scrollToSection('sobre'); app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Sobre</a>
-        <a href="portfolio.html" onclick="app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Portfólio</a>
-        <a href="#experiencia" onclick="app.scrollToSection('experiencia'); app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Experiência</a>
-        <a href="#" onclick="app.openPrices(); app.closeMobileMenu(); return false;" class="hover:text-mantiqueira-earth transition-colors">Valores</a>
-        <a href="#contato" onclick="app.scrollToSection('contato'); app.closeMobileMenu(); return false;" class="text-mantiqueira-earth">Contato</a>
+        <!-- Hamburger mobile -->
+        <button id="mobile-menu-btn" class="md:hidden z-50 p-2" aria-label="Abrir menu">
+            <i class="fas fa-bars text-xl" style="color:#f0ede6;"></i>
+        </button>
     </div>
+</nav>
 
-    <div id="main-view" class="fade-in block">
-        
-        <section class="relative min-h-screen flex flex-col justify-start overflow-hidden bg-mantiqueira-dark">
-            <img src="assets/img/hero/hero(1).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide active" fetchpriority="high" decoding="async">
-            <img src="assets/img/hero/hero(2).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide" loading="lazy" decoding="async">
-            <img src="assets/img/hero/hero(3).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide" loading="lazy" decoding="async">
-            <img src="assets/img/hero/hero(4).jpg" alt="Vinícius Rafael Fotografia" class="hero-bg-img hero-slide" loading="lazy" decoding="async">
-            
-            <div class="absolute inset-0 hero-overlay z-10"></div>
-            
-            <div class="relative z-20 text-center px-4 md:px-6 hero-content-pushed pb-16 md:pb-24">
-                <p class="text-mantiqueira-earth text-[10px] md:text-sm uppercase tracking-[0.4em] mb-4 md:mb-6 reveal font-light">São Bento do Sapucaí</p>
-                <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] reveal mx-auto hero-title-max">
-                    VINÍCIUS RAFAEL
-                </h1>
-                <p class="text-white/60 text-xs md:text-base font-light tracking-widest uppercase mb-10 md:mb-12 max-w-xl mx-auto reveal leading-relaxed px-2">
-                    Fotografia &<br class="md:hidden"> Experiência na Mantiqueira
-                </p>
-            </div>
-            
-            <div class="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-20 reveal flex flex-col items-center">
-                <span class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4 font-light">Descubra</span>
-                <div class="w-[1px] h-12 md:h-16 bg-gradient-to-b from-mantiqueira-earth/50 to-transparent"></div>
-            </div>
-        </section>
+<!-- Mobile menu overlay -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-40 flex flex-col justify-center items-center space-y-8"
+     style="background:rgba(13,13,11,0.97); backdrop-filter:blur(16px);">
+    <a href="#portfolio" onclick="app.scrollToSection('portfolio'); app.closeMobileMenu(); return false;" class="mobile-nav-link">Portfólio</a>
+    <a href="#servicos"  onclick="app.scrollToSection('servicos');  app.closeMobileMenu(); return false;" class="mobile-nav-link">Serviços</a>
+    <a href="#sobre"     onclick="app.scrollToSection('sobre');     app.closeMobileMenu(); return false;" class="mobile-nav-link">Sobre</a>
+    <a href="#contato"   onclick="app.scrollToSection('contato');   app.closeMobileMenu(); return false;" class="mobile-nav-link" style="color:#8B6F47;">Contato</a>
+</div>
 
-        <section id="sobre" class="py-20 md:py-32 bg-[#0a0c0a] relative">
-            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-            <div class="max-w-7xl mx-auto px-4 md:px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
-                    <div class="lg:col-span-5 reveal relative">
-                        <div class="absolute -inset-4 border border-white/5 z-0"></div>
-                        <img src="assets/img/sobre/vinicius.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop'" alt="Vinícius Rafael" class="w-full shadow-2xl transition-all duration-1000 grayscale hover:grayscale-0">
-                    </div>
-                    <div class="lg:col-span-7 reveal">
-                        <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-6">O Fotógrafo</span>
-                        <h2 class="font-serif text-3xl md:text-5xl lg:text-6xl text-white mb-8 md:mb-12 tracking-tighter leading-none">
-                            A <span class="text-mantiqueira-earth italic">alma</span> da serra,<br>no seu tempo.
-                        </h2>
-                        <div class="space-y-6 md:space-y-8 text-white/60 text-sm md:text-base font-light leading-relaxed max-w-2xl">
-                            <p>Mais do que fotografar, eu vivo a Mantiqueira. Como guia e fotógrafo em São Bento do Sapucaí, meu trabalho é conectar você à essência bruta e silenciosa dessas montanhas.</p>
-                            <p>De casamentos íntimos na neblina matinal a retratos sinceros na pedra, minha busca é por imagens que respirem. Sem pressa. Sem poses artificiais. Apenas a luz natural e a verdade do momento.</p>
-                        </div>
+
+<!-- ============================================================
+     MAIN VIEW (seções visíveis na home)
+     ============================================================ -->
+<div id="main-view" class="fade-in block">
+
+    <!-- ============================================================
+         ETAPA 1 — HERO FULLSCREEN
+         100vh, imagens em slideshow, parallax leve via JS.
+         Conteúdo alinhado à esquerda na base da tela.
+         Hierarquia visual: coords DM Mono → linha accent → título Playfair → CTA
+         ============================================================ -->
+    <section class="fotop-hero" id="hero">
+
+        <!-- Slideshow de imagens de fundo -->
+        <img src="assets/img/hero/hero(1).jpg" alt="Serra da Mantiqueira"
+             class="hero-bg-img hero-slide active hero-parallax" fetchpriority="high" decoding="async">
+        <img src="assets/img/hero/hero(2).jpg" alt="Pedra do Baú"
+             class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async">
+        <img src="assets/img/hero/hero(3).jpg" alt="Trilhas da Mantiqueira"
+             class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async">
+        <img src="assets/img/hero/hero(4).jpg" alt="Paisagem da Serra"
+             class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async">
+
+        <!-- Overlay: escuro de baixo para cima, cria profundidade sem eliminar a foto -->
+        <div class="fotop-hero-overlay"></div>
+
+        <!-- Conteúdo: posicionado na base esquerda -->
+        <div class="fotop-hero-content">
+            <!-- Subtítulo técnico em DM Mono — localização geográfica -->
+            <span class="hero-coords hero-anim-1">
+                SERRA DA MANTIQUEIRA · SÃO BENTO DO SAPUCAÍ
+            </span>
+
+            <!-- Linha decorativa horizontal accent -->
+            <div class="hero-line hero-anim-2"></div>
+
+            <!-- Tagline principal em Playfair Display — impacto imediato -->
+            <h1 class="hero-title hero-anim-3">
+                Fotografia que<br>
+                <em>respira altitude.</em>
+            </h1>
+
+            <!-- CTA: bordado, hover preenche com accent -->
+            <a href="#portfolio" onclick="app.scrollToSection('portfolio'); return false;"
+               class="hero-cta hero-anim-4">
+                Ver portfólio
+            </a>
+        </div>
+
+        <!-- Scroll indicator: canto inferior direito, pulsa suavemente -->
+        <div class="hero-scroll-indicator">
+            <span class="hero-scroll-label">Descubra</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         ETAPA 2 — PORTFÓLIO
+         Grid assimétrico: card grande (2 colunas) + 4 menores.
+         Hover: overlay escuro + título sobe + ícone de ação aparece.
+         Lazy loading em todas as imagens secundárias.
+         ============================================================ -->
+    <section id="portfolio" class="py-20 md:py-32 relative" style="background:#0d0d0b;">
+        <!-- Linha decorativa no topo da seção -->
+        <div class="absolute top-0 left-0 w-full h-px"
+             style="background:linear-gradient(90deg,transparent,rgba(139,111,71,0.35),transparent);"></div>
+
+        <div class="max-w-[1400px] mx-auto px-5 md:px-8">
+
+            <div class="text-center mb-14 md:mb-20 reveal">
+                <span class="section-tag-fotop">Trabalhos</span>
+                <h2 class="section-title-fotop">Portfólio</h2>
+            </div>
+
+            <!-- Grid assimétrico -->
+            <div class="portfolio-grid">
+
+                <!-- Card GRANDE: Casamentos — ocupa 2 colunas no desktop -->
+                <div class="portfolio-card portfolio-card--large group reveal"
+                     onclick="app.showSubGallery('weddings')" role="button" aria-label="Ver álbuns de casamento">
+                    <img src="assets/img/portfolio/casamentos/Bianca & Donizete/capa.jpg"
+                         decoding="async" loading="eager"
+                         onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'"
+                         class="portfolio-card-img" alt="Casamentos na Serra">
+                    <div class="portfolio-card-overlay"></div>
+                    <div class="portfolio-card-content">
+                        <span class="portfolio-card-title">Casamentos</span>
+                        <span class="portfolio-card-action">
+                            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" class="inline mr-1.5 -mt-0.5">
+                                <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.3"/>
+                                <path d="M4 6h4M6 4l2 2-2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                            </svg>
+                            Ver Álbuns
+                        </span>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section id="portfolio" class="py-20 md:py-32 bg-[#0d0f0d] relative">
-            <div class="max-w-[1400px] mx-auto px-4 md:px-6">
-                <div class="text-center mb-16 md:mb-24 reveal">
-                    <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-4">Trabalhos</span>
-                    <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter">Portfólio</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                    
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card" onclick="app.showSubGallery('weddings')">
-                        <img src="assets/img/portfolio/casamentos/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Casamentos">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Casamentos</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Ver Álbuns</span>
-                        </div>
-                    </div>
-
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card" onclick="app.openGallery('adventure')">
-                        <img src="assets/img/portfolio/aventura/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Aventura">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Aventura</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Explorar</span>
-                        </div>
-                    </div>
-
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card" onclick="app.openGallery('portraits')">
-                        <img src="assets/img/portfolio/retratos/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Retratos">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Retratos</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Visualizar</span>
-                        </div>
-                    </div>
-
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card md:col-span-2 lg:col-span-1" onclick="app.openStreet()">
-                        <img src="assets/img/portfolio/rua/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Fotografia de Rua">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">Rua</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Ver Galeria</span>
-                        </div>
-                    </div>
-
-                    <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer bg-black shadow-xl reveal portfolio-card md:col-span-2 lg:col-span-1" onclick="app.openOlhar()">
-                        <img src="assets/img/portfolio/olhar/capa.jpg" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110" alt="Olhar Fotográfico">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10 text-center">
-                            <h3 class="font-serif text-2xl md:text-3xl text-white mb-3 tracking-tighter">O Olhar</h3>
-                            <span class="text-mantiqueira-earth text-[9px] md:text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Descobrir</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="experiencia" class="py-20 md:py-32 bg-[#0a0c0a] relative border-t border-white/5">
-            <div class="max-w-7xl mx-auto px-4 md:px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                    <div class="reveal order-2 lg:order-1">
-                        <div class="relative w-full aspect-square max-w-[500px] mx-auto">
-                            <canvas id="skillsChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="reveal order-1 lg:order-2">
-                        <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-6">Expertise</span>
-                        <h2 class="font-serif text-3xl md:text-5xl text-white mb-8 md:mb-10 tracking-tighter leading-tight">Conhecimento que vai além da câmera.</h2>
-                        <div class="space-y-6 md:space-y-8 text-white/60 text-sm md:text-base font-light leading-relaxed">
-                            <p>Ser um fotógrafo na Mantiqueira exige mais do que saber operar equipamentos. Exige respeito pela montanha e conhecimento profundo da região.</p>
-                            <p>Como guia turístico local, conheço os horários exatos em que a luz abraça a Pedra do Baú, os caminhos menos óbvios para um ensaio isolado e as histórias que dão alma a cada cenário.</p>
-                        </div>
+                <!-- Card: Aventura -->
+                <div class="portfolio-card group reveal reveal-delay-1"
+                     onclick="app.openGallery('adventure')" role="button" aria-label="Ver galeria de aventura">
+                    <img src="assets/img/portfolio/aventura/capa.jpg"
+                         decoding="async" loading="lazy"
+                         onerror="this.src='https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop'"
+                         class="portfolio-card-img" alt="Aventura e trilhas">
+                    <div class="portfolio-card-overlay"></div>
+                    <div class="portfolio-card-content">
+                        <span class="portfolio-card-title">Aventura</span>
+                        <span class="portfolio-card-action">Explorar</span>
                     </div>
                 </div>
-            </div>
-        </section>
 
-    <section id="contato" class="py-20 md:py-32 bg-[#0d0f0d] relative border-t border-white/5">
-        <div class="max-w-5xl mx-auto px-4 md:px-6">
-            <div class="text-center mb-16 md:mb-20 reveal">
-                <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-4">Contato</span>
-                <h2 class="font-serif text-3xl md:text-5xl text-white tracking-tighter mb-6">Vamos conversar?</h2>
-                <p id="frase-contato" class="text-white/50 text-sm md:text-base font-light max-w-xl mx-auto italic"></p>
-            </div>
-
-            <div class="bg-[#0a0c0a] p-6 md:p-12 border border-white/5 shadow-2xl reveal">
-                <form id="contact-form" class="space-y-6 md:space-y-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                        <div class="space-y-2">
-                            <label for="cf-nome" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Nome</label>
-                            <input type="text" id="cf-nome" required class="w-full bg-transparent border-b border-white/20 pb-2 text-white focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none">
-                        </div>
-                        <div class="space-y-2">
-                            <label for="cf-servico" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Interesse</label>
-                            <select id="cf-servico" class="w-full bg-transparent border-b border-white/20 pb-2 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none appearance-none">
-                                <option value="Casamento" class="bg-[#0a0c0a]">Casamento</option>
-                                <option value="Pre Wedding" class="bg-[#0a0c0a]">Pre Wedding</option>
-                                <option value="Ensaio de Casal" class="bg-[#0a0c0a]">Ensaio de Casal</option>
-                                <option value="Retrato Individual" class="bg-[#0a0c0a]">Retrato Individual</option>
-                                <option value="Aventura / Trilha" class="bg-[#0a0c0a]">Aventura / Trilha</option>
-                                <option value="Outro" class="bg-[#0a0c0a]">Outro</option>
-                            </select>
-                        </div>
+                <!-- Card: Retratos -->
+                <div class="portfolio-card group reveal reveal-delay-2"
+                     onclick="app.openGallery('portraits')" role="button" aria-label="Ver galeria de retratos">
+                    <img src="assets/img/portfolio/retratos/capa.jpg"
+                         decoding="async" loading="lazy"
+                         onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop'"
+                         class="portfolio-card-img" alt="Retratos">
+                    <div class="portfolio-card-overlay"></div>
+                    <div class="portfolio-card-content">
+                        <span class="portfolio-card-title">Retratos</span>
+                        <span class="portfolio-card-action">Visualizar</span>
                     </div>
+                </div>
 
-                    <div class="space-y-2">
-                        <label for="cf-data" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Data Prevista (Opcional)</label>
-                        <input type="date" id="cf-data" class="w-full bg-transparent border-b border-white/20 pb-2 text-white/80 focus:outline-none focus:border-mantiqueira-earth transition-colors rounded-none [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert">
+                <!-- Card: Rua -->
+                <div class="portfolio-card group reveal reveal-delay-1"
+                     onclick="app.openStreet()" role="button" aria-label="Ver galeria de fotografia de rua">
+                    <img src="assets/img/portfolio/rua/capa.jpg"
+                         decoding="async" loading="lazy"
+                         onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'"
+                         class="portfolio-card-img" alt="Fotografia de Rua">
+                    <div class="portfolio-card-overlay"></div>
+                    <div class="portfolio-card-content">
+                        <span class="portfolio-card-title">Rua</span>
+                        <span class="portfolio-card-action">Ver Galeria</span>
                     </div>
+                </div>
 
-                    <div class="space-y-2">
-                        <label for="cf-mensagem" class="text-[10px] md:text-xs uppercase tracking-widest text-white/50">Mensagem</label>
-                        <textarea id="cf-mensagem" rows="4" class="w-full bg-transparent border-b border-white/20 pb-2 text-white focus:outline-none focus:border-mantiqueira-earth transition-colors resize-none rounded-none" placeholder="Conte um pouco sobre o que você imagina..."></textarea>
+                <!-- Card: O Olhar -->
+                <div class="portfolio-card group reveal reveal-delay-2"
+                     onclick="app.openOlhar()" role="button" aria-label="Ver projeto O Olhar">
+                    <img src="assets/img/portfolio/olhar/capa.jpg"
+                         decoding="async" loading="lazy"
+                         onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'"
+                         class="portfolio-card-img" alt="O Olhar">
+                    <div class="portfolio-card-overlay"></div>
+                    <div class="portfolio-card-content">
+                        <span class="portfolio-card-title">O Olhar</span>
+                        <span class="portfolio-card-action">Descobrir</span>
                     </div>
+                </div>
 
-                    <div class="pt-4 text-center md:text-left">
-                        <button type="submit" class="w-full md:w-auto bg-white text-black px-12 py-4 text-xs uppercase tracking-widest hover:bg-mantiqueira-earth hover:text-white transition-all duration-300 font-medium">
-                            Enviar via WhatsApp
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </section>
 
-    <footer class="bg-mantiqueira-dark py-16 md:py-32 text-center border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <span class="font-serif text-2xl md:text-4xl text-white block mb-4 tracking-tighter">@viniciusrafaelgs</span>
-            <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.4em] block mb-6">Fotografia & Guia Turístico</span>
-            <p id="frase-footer" class="text-white/50 text-xs md:text-sm font-light italic mb-8 md:mb-10 max-w-sm mx-auto leading-relaxed px-4"></p>
-            <div class="flex justify-center space-x-8 md:space-x-12 mb-12 md:mb-16 text-2xl md:text-3xl">
-                <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener" class="text-white/30 hover:text-mantiqueira-earth transition-colors"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/5512981771665?text=Oi%20Vinícius!%20Vi%20seu%20site%20e%20quero%20saber%20mais." target="_blank" rel="noopener" class="text-white/30 hover:text-mantiqueira-earth transition-colors"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:contato@viniciusrafael.com" class="text-white/30 hover:text-mantiqueira-earth transition-colors"><i class="far fa-envelope"></i></a>
+
+    <!-- ============================================================
+         ETAPA 4 — SERVIÇOS
+         4 cards: Paisagem / Esporte / Eventos / Redes Sociais.
+         Grid 2×2 desktop, 1 coluna mobile.
+         Cada card tem ícone SVG + título + descrição + CTA WhatsApp.
+         Hover: translateY(-4px) + border accent.
+         ============================================================ -->
+    <section id="servicos" class="py-20 md:py-32 relative" style="background:#1a1915;">
+        <div class="absolute top-0 left-0 w-full h-px"
+             style="background:linear-gradient(90deg,transparent,rgba(139,111,71,0.35),transparent);"></div>
+
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+
+            <div class="text-center mb-14 md:mb-20 reveal">
+                <span class="section-tag-fotop">O que eu faço</span>
+                <h2 class="section-title-fotop">Serviços</h2>
             </div>
-            <p class="text-white/20 text-[10px] font-light tracking-widest uppercase">&copy; 2026 Vinícius Rafael Fotografia. Todos os direitos reservados.</p>
+
+            <div class="servicos-grid">
+
+                <!-- Fotografia de Paisagem -->
+                <div class="servico-card reveal">
+                    <div class="servico-icon">
+                        <!-- Ícone montanha + sol -->
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 30L14 17L20 24L27 13L35 30H5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+                            <circle cx="31" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="servico-title">Fotografia de Paisagem</h3>
+                    <p class="servico-desc">Pedra do Baú, trilhas e a Serra da Mantiqueira capturadas no horário certo. Imagens para turismo, guias e memórias de altitude que nenhum celular consegue reproduzir.</p>
+                    <a href="https://wa.me/5512981771665?text=Olá%20Vinícius!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento%20para%20Fotografia%20de%20Paisagem."
+                       target="_blank" rel="noopener" class="servico-cta">Solicitar orçamento →</a>
+                </div>
+
+                <!-- Cobertura Esportiva -->
+                <div class="servico-card reveal reveal-delay-1">
+                    <div class="servico-icon">
+                        <!-- Ícone figura humana em salto / atleta -->
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M12 36L15 26L20 20L25 26L28 36" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+                            <path d="M13 18l7-4 7 4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+                            <path d="M8 22h8M24 22h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="servico-title">Cobertura Esportiva</h3>
+                    <p class="servico-desc">Vôlei, torneios e eventos esportivos com olho clínico para o momento decisivo. Imagens que capturam o esforço, a emoção e a história de cada competição.</p>
+                    <a href="https://wa.me/5512981771665?text=Olá%20Vinícius!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento%20para%20Cobertura%20Esportiva."
+                       target="_blank" rel="noopener" class="servico-cta">Solicitar orçamento →</a>
+                </div>
+
+                <!-- Eventos -->
+                <div class="servico-card reveal reveal-delay-2">
+                    <div class="servico-icon">
+                        <!-- Ícone calendário / evento -->
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="11" width="28" height="23" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M6 19h28" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M14 7v8M26 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="14" cy="27" r="1.5" fill="currentColor"/>
+                            <circle cx="20" cy="27" r="1.5" fill="currentColor"/>
+                            <circle cx="26" cy="27" r="1.5" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 class="servico-title">Eventos</h3>
+                    <p class="servico-desc">Casamentos, formaturas e comemorações na Serra com narrativa visual completa. Do making of às últimas danças — nenhum momento perdido, cada memória preservada.</p>
+                    <a href="https://wa.me/5512981771665?text=Olá%20Vinícius!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento%20para%20cobertura%20de%20Evento."
+                       target="_blank" rel="noopener" class="servico-cta">Solicitar orçamento →</a>
+                </div>
+
+                <!-- Gestão de Redes Sociais -->
+                <div class="servico-card reveal reveal-delay-3">
+                    <div class="servico-icon">
+                        <!-- Ícone grade de imagens / feed -->
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="7"  y="7"  width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                            <rect x="22" y="7"  width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                            <rect x="7"  y="22" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                            <rect x="22" y="22" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="servico-title">Gestão de Redes Sociais</h3>
+                    <p class="servico-desc">Conteúdo visual estratégico para Instagram e outras plataformas. Edição com IA, planejamento de feed e identidade visual para marcas e profissionais que querem se destacar.</p>
+                    <a href="https://wa.me/5512981771665?text=Olá%20Vinícius!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento%20para%20Gestão%20de%20Redes%20Sociais."
+                       target="_blank" rel="noopener" class="servico-cta">Solicitar orçamento →</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         ETAPA 5 — SOBRE
+         Layout 2 colunas desktop: foto (com stats sobrepostos) + texto.
+         Tom pessoal, não currículo.
+         Foto: borda accent sutil, grayscale leve que some no hover.
+         ============================================================ -->
+    <section id="sobre" class="py-20 md:py-32 relative" style="background:#0d0d0b;">
+        <div class="absolute top-0 left-0 w-full h-px"
+             style="background:linear-gradient(90deg,transparent,rgba(139,111,71,0.35),transparent);"></div>
+
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+                <!-- Foto com números de impacto -->
+                <div class="lg:col-span-5 reveal">
+                    <div class="sobre-foto-container">
+                        <img src="assets/img/sobre/vinicius.jpg"
+                             decoding="async" loading="lazy"
+                             onerror="this.src='https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop'"
+                             alt="Vinícius Rafael, fotógrafo"
+                             class="sobre-foto">
+                        <!-- Stats sobrepostos na base da foto -->
+                        <div class="sobre-stats">
+                            <div class="sobre-stat">
+                                <span class="sobre-stat-number">3+</span>
+                                <span class="sobre-stat-label">Anos</span>
+                            </div>
+                            <div class="sobre-stat-divider"></div>
+                            <div class="sobre-stat">
+                                <span class="sobre-stat-number">50+</span>
+                                <span class="sobre-stat-label">Eventos</span>
+                            </div>
+                            <div class="sobre-stat-divider"></div>
+                            <div class="sobre-stat">
+                                <span class="sobre-stat-number">∞</span>
+                                <span class="sobre-stat-label">Altitude</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Texto sobre -->
+                <div class="lg:col-span-7 reveal reveal-delay-1">
+                    <span class="section-tag-fotop">O Fotógrafo</span>
+                    <h2 class="sobre-title">
+                        Cresci olhando<br>
+                        <em>a Pedra do Baú.</em>
+                    </h2>
+                    <div class="sobre-text">
+                        <p>Sou Vinícius, 19 anos, de São Bento do Sapucaí. Fotografar a Serra da Mantiqueira não é trabalho pra mim — é uma obsessão territorial. Conheço os horários em que a neblina abraça a Pedra do Baú, os atalhos que nenhum turista descobre e as histórias que dão alma a cada cenário.</p>
+                        <p>Especializado em paisagem, trilhas, esportes e eventos, meu olhar combina a poesia visual de quem nasceu nessas montanhas com uma estética cinematográfica moderna. Cada foto é uma prova de que altitude e emoção andam juntas.</p>
+                    </div>
+                    <a href="#contato" onclick="app.scrollToSection('contato'); return false;"
+                       class="btn-fotop-outline mt-8 inline-block">
+                        Vamos conversar
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         ETAPA 5 — CONTATO
+         Formulário simples → abre WhatsApp com mensagem pré-preenchida.
+         ============================================================ -->
+    <section id="contato" class="py-20 md:py-32 relative" style="background:#1a1915;">
+        <div class="absolute top-0 left-0 w-full h-px"
+             style="background:linear-gradient(90deg,transparent,rgba(139,111,71,0.35),transparent);"></div>
+
+        <div class="max-w-4xl mx-auto px-5 md:px-8">
+
+            <div class="text-center mb-14 md:mb-18 reveal">
+                <span class="section-tag-fotop">Contato</span>
+                <h2 class="section-title-fotop">Vamos criar algo juntos?</h2>
+                <p id="frase-contato" class="contato-frase"></p>
+            </div>
+
+            <div class="contato-form-container reveal">
+                <form id="contact-form" class="contato-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <div class="form-field-fotop">
+                            <label for="cf-nome" class="form-label-fotop">Nome</label>
+                            <input type="text" id="cf-nome" required
+                                   class="form-input-fotop" placeholder="Seu nome completo">
+                        </div>
+                        <div class="form-field-fotop">
+                            <label for="cf-servico" class="form-label-fotop">Interesse</label>
+                            <select id="cf-servico" class="form-input-fotop form-select-fotop">
+                                <option value="Casamento"              style="background:#1a1915;">Casamento</option>
+                                <option value="Pre Wedding"            style="background:#1a1915;">Pre Wedding</option>
+                                <option value="Ensaio de Casal"        style="background:#1a1915;">Ensaio de Casal</option>
+                                <option value="Paisagem / Trilha"      style="background:#1a1915;">Paisagem / Trilha</option>
+                                <option value="Evento Esportivo"       style="background:#1a1915;">Evento Esportivo</option>
+                                <option value="Gestão de Redes Sociais" style="background:#1a1915;">Gestão de Redes Sociais</option>
+                                <option value="Outro"                  style="background:#1a1915;">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-field-fotop">
+                        <label for="cf-data" class="form-label-fotop">Data Prevista (Opcional)</label>
+                        <input type="date" id="cf-data" class="form-input-fotop form-date-fotop">
+                    </div>
+
+                    <div class="form-field-fotop">
+                        <label for="cf-mensagem" class="form-label-fotop">Mensagem</label>
+                        <textarea id="cf-mensagem" rows="4"
+                                  class="form-input-fotop form-textarea-fotop"
+                                  placeholder="Conta um pouco sobre o que você imagina..."></textarea>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 pt-1">
+                        <button type="submit" class="btn-fotop-primary">
+                            <!-- Ícone WhatsApp inline SVG -->
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="mr-2 flex-shrink-0">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            Enviar via WhatsApp
+                        </button>
+
+                        <!-- Redes sociais -->
+                        <div class="contato-sociais">
+                            <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener"
+                               class="contato-social-link" aria-label="Instagram @viniciusrafaelgs">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://wa.me/5512981771665" target="_blank" rel="noopener"
+                               class="contato-social-link" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Localização discreta em DM Mono -->
+            <div class="text-center mt-8 reveal">
+                <p style="font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.22em; text-transform:uppercase; color:#7a7870;">
+                    São Bento do Sapucaí · SP · Brasil
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer style="background:#0d0d0b; border-top:1px solid rgba(139,111,71,0.12);" class="py-12 md:py-16 text-center">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+            <span style="font-family:'Playfair Display',serif; font-size:1.75rem; color:#8B6F47; display:block; margin-bottom:0.375rem; letter-spacing:0.05em;">FOTOP</span>
+            <span style="font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#7a7870; display:block; margin-bottom:1.5rem;">Vinícius Rafael · Serra da Mantiqueira</span>
+            <p id="frase-footer" class="text-xs font-light italic mb-8 max-w-xs mx-auto leading-relaxed px-4" style="color:#7a7870;"></p>
+            <div class="flex justify-center space-x-8 mb-8 text-xl">
+                <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5512981771665?text=Oi%20Vinícius!%20Vi%20seu%20site%20e%20quero%20saber%20mais." target="_blank" rel="noopener" class="footer-social"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:contato@fotop.com.br" class="footer-social"><i class="far fa-envelope"></i></a>
+            </div>
+            <p style="font-size:0.625rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(122,120,112,0.35);">&copy; 2026 Fotop — Vinícius Rafael. Todos os direitos reservados.</p>
         </div>
     </footer>
-    </div><!-- /#main-view -->
 
-    <div id="wedding-selector" class="hidden-content pt-32 pb-20 md:py-40 bg-mantiqueira-dark min-h-screen">
-        <div class="max-w-[1400px] mx-auto px-4 md:px-6 text-center">
-            <div class="mb-12 md:mb-20">
-                <button onclick="app.showSection('home')" class="text-white/50 hover:text-white text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group">
-                    <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Voltar
-                </button>
-                <h2 class="font-serif text-3xl md:text-5xl lg:text-6xl text-white tracking-tighter mb-4">Histórias Reais</h2>
-                <p class="text-white/50 text-sm font-light max-w-xl mx-auto">Cada casamento é um universo único. Escolha uma história para vivenciar a narrativa completa.</p>
+</div><!-- /#main-view -->
+
+
+<!-- ============================================================
+     ETAPA 3 — WHATSAPP CTA FLUTUANTE
+     Aparece após 3s OU após 30% de scroll.
+     Pulse ring chama atenção.
+     Desktop hover: pill expande para mostrar texto.
+     ============================================================ -->
+<div id="whatsapp-fab" class="whatsapp-fab" aria-label="Solicitar orçamento via WhatsApp">
+    <a href="https://wa.me/5512981771665?text=Olá%20Vinícius!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento."
+       target="_blank" rel="noopener" class="whatsapp-fab-link">
+        <span class="whatsapp-fab-ring"></span>
+        <span class="whatsapp-fab-icon">
+            <svg viewBox="0 0 24 24" fill="white" width="22" height="22" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+        </span>
+        <span class="whatsapp-fab-text">Solicitar orçamento</span>
+    </a>
+</div>
+
+
+<!-- ============================================================
+     SPA VIEWS — Mantidas para compatibilidade com galeria e lightbox
+     ============================================================ -->
+
+<!-- Wedding Selector -->
+<div id="wedding-selector" class="hidden-content pt-32 pb-20 md:py-40 min-h-screen" style="background:#0d0d0b;">
+    <div class="max-w-[1400px] mx-auto px-5 md:px-8 text-center">
+        <div class="mb-12 md:mb-20">
+            <button onclick="app.showSection('home')" class="text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group"
+                    style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">
+                <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Voltar
+            </button>
+            <h2 class="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tighter mb-4" style="color:#f0ede6;">Histórias Reais</h2>
+            <p class="text-sm font-light max-w-xl mx-auto" style="color:rgba(240,237,230,0.5);">Cada casamento é um universo único. Escolha uma história para vivenciar a narrativa completa.</p>
+        </div>
+        <div id="wedding-albums" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"></div>
+    </div>
+</div>
+
+<!-- Gallery View -->
+<div id="gallery-view" class="hidden-content pt-32 pb-20 md:py-40 min-h-screen" style="background:#0d0d0b;">
+    <div class="max-w-[1600px] mx-auto px-5 md:px-8">
+        <div class="text-center mb-16 md:mb-24">
+            <button id="back-to-selector" class="text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group"
+                    style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">
+                <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Voltar
+            </button>
+            <h2 id="gallery-title" class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tighter mb-6" style="color:#f0ede6;">Título</h2>
+            <p id="gallery-desc" class="text-sm md:text-base font-light max-w-2xl mx-auto px-4" style="color:rgba(240,237,230,0.5);"></p>
+        </div>
+        <div id="wedding-nav-buttons" class="hidden flex flex-wrap justify-center gap-4 md:gap-8 mb-16 px-2">
+            <button onclick="document.getElementById('pre-wedding-section').scrollIntoView({behavior:'smooth'})"
+                    class="text-xs uppercase tracking-widest pb-1 border-b border-transparent transition-all"
+                    style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.6);"
+                    onmouseover="this.style.color='#8B6F47'; this.style.borderColor='#8B6F47';"
+                    onmouseout="this.style.color='rgba(240,237,230,0.6)'; this.style.borderColor='transparent';">Pre Wedding</button>
+            <button onclick="document.getElementById('ceremony-section').scrollIntoView({behavior:'smooth'})"
+                    class="text-xs uppercase tracking-widest pb-1 border-b border-transparent transition-all"
+                    style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.6);"
+                    onmouseover="this.style.color='#8B6F47'; this.style.borderColor='#8B6F47';"
+                    onmouseout="this.style.color='rgba(240,237,230,0.6)'; this.style.borderColor='transparent';">Cerimônia</button>
+        </div>
+        <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
+        <div id="pre-wedding-section" class="hidden mb-24 md:mb-32">
+            <div class="flex items-center gap-4 mb-12">
+                <div class="h-px flex-grow" style="background:rgba(240,237,230,0.08);"></div>
+                <h3 class="font-serif text-2xl md:text-3xl tracking-tighter px-4 text-center" style="color:#f0ede6;">O Ensaio</h3>
+                <div class="h-px flex-grow" style="background:rgba(240,237,230,0.08);"></div>
             </div>
-            
-            <div id="wedding-albums" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                </div>
+            <div id="pre-wedding-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
+        </div>
+        <div id="ceremony-section" class="hidden">
+            <div class="flex items-center gap-4 mb-12">
+                <div class="h-px flex-grow" style="background:rgba(240,237,230,0.08);"></div>
+                <h3 class="font-serif text-2xl md:text-3xl tracking-tighter px-4 text-center" style="color:#f0ede6;">O Grande Dia</h3>
+                <div class="h-px flex-grow" style="background:rgba(240,237,230,0.08);"></div>
+            </div>
+            <div id="ceremony-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
         </div>
     </div>
+</div>
 
-    <div id="gallery-view" class="hidden-content pt-32 pb-20 md:py-40 bg-[#0d0f0d] min-h-screen">
-        <div class="max-w-[1600px] mx-auto px-4 md:px-6">
-            <div class="text-center mb-16 md:mb-24">
-                <button id="back-to-selector" class="text-white/50 hover:text-white text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group">
-                    <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Voltar
-                </button>
-                <h2 id="gallery-title" class="font-serif text-4xl md:text-6xl lg:text-7xl text-white tracking-tighter mb-6">Título</h2>
-                <p id="gallery-desc" class="text-white/50 text-sm md:text-base font-light max-w-2xl mx-auto px-4"></p>
-            </div>
-
-            <div id="wedding-nav-buttons" class="hidden flex flex-wrap justify-center gap-4 md:gap-8 mb-16 px-2">
-                <button onclick="document.getElementById('pre-wedding-section').scrollIntoView({behavior: 'smooth'})" class="text-xs uppercase tracking-widest text-white/60 hover:text-mantiqueira-earth pb-1 border-b border-transparent hover:border-mantiqueira-earth transition-all">Pre Wedding</button>
-                <button onclick="document.getElementById('ceremony-section').scrollIntoView({behavior: 'smooth'})" class="text-xs uppercase tracking-widest text-white/60 hover:text-mantiqueira-earth pb-1 border-b border-transparent hover:border-mantiqueira-earth transition-all">Cerimônia</button>
-            </div>
-
-            <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
-
-            <div id="pre-wedding-section" class="hidden mb-24 md:mb-32">
-                <div class="flex items-center gap-4 mb-12">
-                    <div class="h-[1px] bg-white/10 flex-grow"></div>
-                    <h3 class="font-serif text-2xl md:text-3xl text-white tracking-tighter px-4 text-center">O Ensaio</h3>
-                    <div class="h-[1px] bg-white/10 flex-grow"></div>
-                </div>
-                <div id="pre-wedding-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
-            </div>
-
-            <div id="ceremony-section" class="hidden">
-                <div class="flex items-center gap-4 mb-12">
-                    <div class="h-[1px] bg-white/10 flex-grow"></div>
-                    <h3 class="font-serif text-2xl md:text-3xl text-white tracking-tighter px-4 text-center">O Grande Dia</h3>
-                    <div class="h-[1px] bg-white/10 flex-grow"></div>
-                </div>
-                <div id="ceremony-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
-            </div>
-            
+<!-- Olhar View -->
+<div id="olhar-view" class="hidden-content min-h-screen" style="background:#0d0d0b;">
+    <div class="relative h-[70vh] md:h-screen flex flex-col justify-end pb-16 md:pb-32 overflow-hidden">
+        <div class="olhar-slideshow absolute inset-0 z-0">
+            <img src="assets/img/olhar/slides/slide (1).jpg" class="olhar-slide active" alt="" decoding="async" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'">
+            <img src="assets/img/olhar/slides/slide (2).jpg" class="olhar-slide" alt="" decoding="async" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2074&auto=format&fit=crop'">
+            <img src="assets/img/olhar/slides/slide (3).jpg" class="olhar-slide" alt="" decoding="async" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2074&auto=format&fit=crop'">
+            <img src="assets/img/olhar/slides/slide (4).jpg" class="olhar-slide" alt="" decoding="async" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070&auto=format&fit=crop'">
+        </div>
+        <div class="absolute inset-0 hero-overlay z-10"></div>
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
+            <button onclick="app.showSection('home')" class="text-xs uppercase tracking-widest transition-colors mb-8 md:mb-12 flex items-center justify-center mx-auto group"
+                    style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.7);">
+                <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Início
+            </button>
+            <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tighter mb-6 leading-none" style="color:#f0ede6;">O Olhar</h2>
+            <p class="text-sm md:text-lg font-light leading-relaxed mb-8 md:mb-12 drop-shadow-lg px-2" style="color:rgba(240,237,230,0.8);">Fotografia não é sobre o que se vê, mas como se sente. Um recorte íntimo e autoral do mundo ao meu redor.</p>
+            <button onclick="document.getElementById('olhar-grid-section').scrollIntoView({behavior:'smooth'})"
+                    class="text-xs uppercase tracking-widest flex flex-col items-center mx-auto transition-colors"
+                    style="font-family:'DM Mono',monospace; color:#8B6F47;">
+                <span>Explorar</span>
+                <i class="fas fa-chevron-down mt-4 animate-bounce"></i>
+            </button>
         </div>
     </div>
+    <div id="olhar-grid-section" class="py-20 md:py-32 max-w-[1600px] mx-auto px-5 md:px-8">
+        <div id="olhar-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
+    </div>
+</div>
 
-    <div id="olhar-view" class="hidden-content bg-[#0a0c0a] min-h-screen">
-        <div class="relative h-[70vh] md:h-screen flex flex-col justify-end pb-16 md:pb-32 overflow-hidden">
-            <div class="olhar-slideshow absolute inset-0 z-0">
-                <img src="assets/img/olhar/slides/slide (1).jpg" class="olhar-slide active" alt="Olhar 1" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'">
-                <img src="assets/img/olhar/slides/slide (2).jpg" class="olhar-slide" alt="Olhar 2" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2074&auto=format&fit=crop'">
-                <img src="assets/img/olhar/slides/slide (3).jpg" class="olhar-slide" alt="Olhar 3" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2074&auto=format&fit=crop'">
-                <img src="assets/img/olhar/slides/slide (4).jpg" class="olhar-slide" alt="Olhar 4" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070&auto=format&fit=crop'">
-            </div>
-            <div class="absolute inset-0 hero-overlay z-10"></div>
-            <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
-                <button onclick="app.showSection('home')" class="text-white/70 hover:text-white text-xs uppercase tracking-widest transition-colors mb-8 md:mb-12 flex items-center justify-center mx-auto group bg-black/30 px-4 py-2 rounded-full backdrop-blur-sm">
-                    <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Início
-                </button>
-                <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white tracking-tighter mb-6 leading-none">O Olhar</h2>
-                <p class="text-white/80 text-sm md:text-lg font-light leading-relaxed mb-8 md:mb-12 drop-shadow-lg px-2">Fotografia não é sobre o que se vê, mas como se sente. Um recorte íntimo e autoral do mundo ao meu redor, onde a técnica cede espaço à percepção pura.</p>
-                <button onclick="document.getElementById('olhar-grid-section').scrollIntoView({behavior: 'smooth'})" class="text-mantiqueira-earth text-xs uppercase tracking-widest hover:text-white transition-colors flex flex-col items-center mx-auto">
-                    <span>Explorar</span>
-                    <i class="fas fa-chevron-down mt-4 animate-bounce"></i>
-                </button>
-            </div>
+<!-- Street View -->
+<div id="street-view" class="hidden-content min-h-screen" style="background:#0d0d0b;">
+    <div class="relative h-[70vh] md:h-screen flex flex-col justify-end pb-16 md:pb-32 overflow-hidden">
+        <div class="street-slideshow absolute inset-0 z-0">
+            <img src="assets/img/rua/slides/slide (1).jpg" class="street-slide active" alt="" decoding="async" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'">
+            <img src="assets/img/rua/slides/slide (2).jpg" class="street-slide" alt="" decoding="async" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1517732306149-e8f829eb588a?q=80&w=2072&auto=format&fit=crop'">
+            <img src="assets/img/rua/slides/slide (3).jpg" class="street-slide" alt="" decoding="async" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop'">
+            <img src="assets/img/rua/slides/slide (4).jpg" class="street-slide" alt="" decoding="async" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop'">
         </div>
-
-        <div id="olhar-grid-section" class="py-20 md:py-32 max-w-[1600px] mx-auto px-4 md:px-6">
-            <div id="olhar-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
+        <div class="absolute inset-0 hero-overlay z-10"></div>
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
+            <button onclick="app.showSection('home')" class="text-xs uppercase tracking-widest transition-colors mb-8 md:mb-12 flex items-center justify-center mx-auto group"
+                    style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.7);">
+                <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Início
+            </button>
+            <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tighter mb-6 leading-none" style="color:#f0ede6;">Rua</h2>
+            <p class="text-sm md:text-lg font-light leading-relaxed mb-8 md:mb-12 drop-shadow-lg px-2" style="color:rgba(240,237,230,0.8);">A vida urbana em sua crueza e poesia. Fragmentos do cotidiano congelados em frações de segundo.</p>
+            <button onclick="document.getElementById('street-grid-section').scrollIntoView({behavior:'smooth'})"
+                    class="text-xs uppercase tracking-widest flex flex-col items-center mx-auto transition-colors"
+                    style="font-family:'DM Mono',monospace; color:#8B6F47;">
+                <span>Caminhar</span>
+                <i class="fas fa-chevron-down mt-4 animate-bounce"></i>
+            </button>
         </div>
     </div>
+    <div id="street-grid-section" class="py-20 md:py-32 max-w-[1600px] mx-auto px-5 md:px-8">
+        <div id="street-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
+    </div>
+</div>
 
-    <div id="street-view" class="hidden-content bg-[#0d0f0d] min-h-screen">
-        <div class="relative h-[70vh] md:h-screen flex flex-col justify-end pb-16 md:pb-32 overflow-hidden">
-            <div class="street-slideshow absolute inset-0 z-0">
-                <img src="assets/img/rua/slides/slide (1).jpg" class="street-slide active" alt="Rua 1" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'">
-                <img src="assets/img/rua/slides/slide (2).jpg" class="street-slide" alt="Rua 2" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1517732306149-e8f829eb588a?q=80&w=2072&auto=format&fit=crop'">
-                <img src="assets/img/rua/slides/slide (3).jpg" class="street-slide" alt="Rua 3" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop'">
-                <img src="assets/img/rua/slides/slide (4).jpg" class="street-slide" alt="Rua 4" decoding="async" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop'">
+<!-- Prices View -->
+<div id="prices-view" class="hidden-content pt-32 pb-20 md:py-40 min-h-screen" style="background:#0d0d0b;">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+        <div class="text-center mb-16 md:mb-24">
+            <button onclick="app.showSection('home')" class="text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group"
+                    style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">
+                <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Voltar
+            </button>
+            <span class="section-tag-fotop">Investimento</span>
+            <h2 class="section-title-fotop">Valores</h2>
+            <p class="text-sm md:text-base font-light max-w-2xl mx-auto px-4 mt-4" style="color:rgba(240,237,230,0.5);">Transparência desde o primeiro contato. Escolha a experiência que melhor se adapta à sua história.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="flex flex-col p-8 md:p-10" style="border:1px solid rgba(240,237,230,0.1); background:#1a1915;">
+                <h3 class="font-serif text-2xl mb-2" style="color:#f0ede6;">Retrato / Casal</h3>
+                <p class="text-sm mb-8 font-light h-10" style="color:rgba(240,237,230,0.4);">Ensaio intimista na natureza.</p>
+                <div class="mb-8">
+                    <span class="text-xs uppercase tracking-widest block mb-1" style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">A partir de</span>
+                    <span class="font-serif text-4xl" style="color:#8B6F47;">R$ 800</span>
+                </div>
+                <ul class="space-y-4 text-sm font-light mb-10 flex-grow" style="color:rgba(240,237,230,0.6);">
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 2 horas de ensaio</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 40 fotos editadas</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Consultoria de locação</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Galeria online privada</li>
+                </ul>
+                <a href="https://wa.me/5512981771665?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20ensaio%20de%20Casal/Retrato." target="_blank"
+                   class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all"
+                   style="font-family:'DM Mono',monospace; border:1px solid rgba(240,237,230,0.2); color:#f0ede6;">Solicitar</a>
             </div>
-            <div class="absolute inset-0 hero-overlay z-10"></div>
-            <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
-                <button onclick="app.showSection('home')" class="text-white/70 hover:text-white text-xs uppercase tracking-widest transition-colors mb-8 md:mb-12 flex items-center justify-center mx-auto group bg-black/30 px-4 py-2 rounded-full backdrop-blur-sm">
-                    <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Início
-                </button>
-                <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white tracking-tighter mb-6 leading-none">Rua</h2>
-                <p class="text-white/80 text-sm md:text-lg font-light leading-relaxed mb-8 md:mb-12 drop-shadow-lg px-2">A vida urbana em sua crueza e poesia. Fragmentos do cotidiano, personagens anônimos e a geometria acidental das cidades, congelados em frações de segundo.</p>
-                <button onclick="document.getElementById('street-grid-section').scrollIntoView({behavior: 'smooth'})" class="text-mantiqueira-earth text-xs uppercase tracking-widest hover:text-white transition-colors flex flex-col items-center mx-auto">
-                    <span>Caminhar</span>
-                    <i class="fas fa-chevron-down mt-4 animate-bounce"></i>
-                </button>
+            <div class="flex flex-col p-8 md:p-10 relative md:-translate-y-4 shadow-2xl" style="border:2px solid #8B6F47; background:rgba(139,111,71,0.06);">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] uppercase tracking-widest px-4 py-1 font-semibold"
+                     style="background:#8B6F47; color:#0d0d0b; font-family:'DM Mono',monospace;">Mais Buscado</div>
+                <h3 class="font-serif text-2xl mb-2" style="color:#f0ede6;">Pre Wedding</h3>
+                <p class="text-sm mb-8 font-light h-10" style="color:rgba(240,237,230,0.4);">Aventura e romance nas montanhas.</p>
+                <div class="mb-8">
+                    <span class="text-xs uppercase tracking-widest block mb-1" style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">A partir de</span>
+                    <span class="font-serif text-4xl" style="color:#8B6F47;">R$ 1.500</span>
+                </div>
+                <ul class="space-y-4 text-sm font-light mb-10 flex-grow" style="color:rgba(240,237,230,0.6);">
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Até 4 horas de cobertura</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Mínimo 80 fotos editadas</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Guiamento em trilhas</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Slideshow emocional</li>
+                </ul>
+                <a href="https://wa.me/5512981771665?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Pre%20Wedding." target="_blank"
+                   class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all font-medium"
+                   style="font-family:'DM Mono',monospace; background:#8B6F47; color:#0d0d0b;">Reservar Data</a>
+            </div>
+            <div class="flex flex-col p-8 md:p-10" style="border:1px solid rgba(240,237,230,0.1); background:#1a1915;">
+                <h3 class="font-serif text-2xl mb-2" style="color:#f0ede6;">Casamento</h3>
+                <p class="text-sm mb-8 font-light h-10" style="color:rgba(240,237,230,0.4);">Cobertura documental completa.</p>
+                <div class="mb-8">
+                    <span class="text-xs uppercase tracking-widest block mb-1" style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">Orçamento</span>
+                    <span class="font-serif text-3xl" style="color:#8B6F47;">Personalizado</span>
+                </div>
+                <ul class="space-y-4 text-sm font-light mb-10 flex-grow" style="color:rgba(240,237,230,0.6);">
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Cobertura completa</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Segundo fotógrafo incluso</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 500+ fotos editadas</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Álbum Fine Art (opção)</li>
+                </ul>
+                <a href="https://wa.me/5512981771665?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20para%20meu%20casamento." target="_blank"
+                   class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all"
+                   style="font-family:'DM Mono',monospace; border:1px solid rgba(240,237,230,0.2); color:#f0ede6;">Conversar</a>
             </div>
         </div>
-
-        <div id="street-grid-section" class="py-20 md:py-32 max-w-[1600px] mx-auto px-4 md:px-6">
-            <div id="street-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
+        <div class="mt-12 text-center text-xs font-light px-4" style="color:rgba(240,237,230,0.35); font-family:'DM Mono',monospace;">
+            * Valores sujeitos a alteração. Taxa de deslocamento pode ser aplicada fora de São Bento do Sapucaí.
         </div>
     </div>
+</div>
 
-    <div id="prices-view" class="hidden-content pt-32 pb-20 md:py-40 bg-[#0a0c0a] min-h-screen">
-        <div class="max-w-6xl mx-auto px-4 md:px-6">
-            <div class="text-center mb-16 md:mb-24">
-                <button onclick="app.showSection('home')" class="text-white/50 hover:text-white text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group">
-                    <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Voltar
-                </button>
-                <span class="text-mantiqueira-earth text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-4">Investimento</span>
-                <h2 class="font-serif text-4xl md:text-6xl text-white tracking-tighter mb-6">Valores</h2>
-                <p class="text-white/50 text-sm md:text-base font-light max-w-2xl mx-auto px-4">Transparência desde o primeiro contato. Escolha a experiência que melhor se adapta à sua história.</p>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                
-                <div class="border border-white/10 p-8 md:p-10 flex flex-col bg-[#0d0f0d] hover:border-mantiqueira-earth/50 transition-colors duration-500">
-                    <h3 class="font-serif text-2xl text-white mb-2">Retrato / Casal</h3>
-                    <p class="text-white/40 text-sm mb-8 font-light h-10">Ensaio intimista na natureza.</p>
-                    <div class="mb-8">
-                        <span class="text-xs text-white/50 uppercase tracking-widest block mb-1">A partir de</span>
-                        <span class="font-serif text-4xl text-mantiqueira-earth">R$ 800</span>
-                    </div>
-                    <ul class="space-y-4 text-white/60 text-sm font-light mb-10 flex-grow">
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> 2 horas de ensaio</li>
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> 40 fotos editadas (Alta Res)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Consultoria de locação e figurino</li>
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Galeria online privada</li>
-                    </ul>
-                    <a href="https://wa.me/5512981771665?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20ensaio%20de%20Casal/Retrato." target="_blank" class="block w-full text-center border border-white/20 py-3 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Solicitar</a>
-                </div>
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
 
-                <div class="border border-mantiqueira-earth p-8 md:p-10 flex flex-col bg-mantiqueira-earth/5 relative transform md:-translate-y-4 shadow-2xl">
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-mantiqueira-earth text-black text-[10px] uppercase tracking-widest px-4 py-1 font-semibold">Mais Buscado</div>
-                    <h3 class="font-serif text-2xl text-white mb-2">Pre Wedding</h3>
-                    <p class="text-white/40 text-sm mb-8 font-light h-10">Aventura e romance nas montanhas.</p>
-                    <div class="mb-8">
-                        <span class="text-xs text-white/50 uppercase tracking-widest block mb-1">A partir de</span>
-                        <span class="font-serif text-4xl text-mantiqueira-earth">R$ 1.500</span>
-                    </div>
-                    <ul class="space-y-4 text-white/60 text-sm font-light mb-10 flex-grow">
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Até 4 horas de cobertura</li>
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Mínimo de 80 fotos editadas</li>
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Guiamento em trilhas (se necessário)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Slideshow emocional</li>
-                    </ul>
-                    <a href="https://wa.me/5512981771665?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Pre%20Wedding." target="_blank" class="block w-full text-center bg-mantiqueira-earth text-black py-3 text-xs uppercase tracking-widest hover:bg-white transition-all font-medium">Reservar Data</a>
-                </div>
+<!-- Etapa 3: WhatsApp FAB — aparece após 3s ou 30% scroll -->
+<script>
+(function () {
+    'use strict';
+    var fab = document.getElementById('whatsapp-fab');
+    if (!fab) return;
+    var shown = false;
 
-                <div class="border border-white/10 p-8 md:p-10 flex flex-col bg-[#0d0f0d] hover:border-mantiqueira-earth/50 transition-colors duration-500">
-                    <h3 class="font-serif text-2xl text-white mb-2">Casamento</h3>
-                    <p class="text-white/40 text-sm mb-8 font-light h-10">Cobertura documental do grande dia.</p>
-                    <div class="mb-8">
-                        <span class="text-xs text-white/50 uppercase tracking-widest block mb-1">Orçamento</span>
-                        <span class="font-serif text-3xl text-mantiqueira-earth">Personalizado</span>
-                    </div>
-                    <ul class="space-y-4 text-white/60 text-sm font-light mb-10 flex-grow">
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Cobertura completa (Making of à Festa)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Segundo fotógrafo incluso</li>
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Mínimo de 500 fotos editadas</li>
-                        <li class="flex items-start"><i class="fas fa-check text-mantiqueira-earth mt-1 mr-3 text-[10px]"></i> Opção de álbum impresso (Fine Art)</li>
-                    </ul>
-                    <a href="https://wa.me/5512981771665?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20para%20meu%20casamento." target="_blank" class="block w-full text-center border border-white/20 py-3 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Conversar</a>
-                </div>
-                
-            </div>
-            
-            <div class="mt-16 text-center text-white/40 text-xs font-light px-4">
-                <p>* Valores sujeitos a alteração. Taxa de deslocamento pode ser aplicada para fora de São Bento do Sapucaí.</p>
-            </div>
-        </div>
-    </div>
+    function showFab() {
+        if (shown) return;
+        shown = true;
+        fab.classList.add('visible');
+    }
 
-    <script src="assets/js/main.js"></script>
+    /* Aparece após 3 segundos */
+    setTimeout(showFab, 3000);
+
+    /* Ou assim que o usuário rolar 30% da página */
+    window.addEventListener('scroll', function () {
+        var docH = document.documentElement.scrollHeight - window.innerHeight;
+        if (docH > 0 && window.scrollY / docH >= 0.3) showFab();
+    }, { passive: true });
+})();
+</script>
+
+<script src="assets/js/main.js"></script>
 </body>
 </html>

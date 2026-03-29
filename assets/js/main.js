@@ -14,11 +14,24 @@ const app = {
     this.renderChart();
     this.handleNav();
     this.initSlideshow();
+    this.initHeroParallax();
     initRotatingPhrases();
     initScrollReveal();
     initMobileMenu();
     initLightbox();
     this.initContactForm();
+  },
+
+  /* Parallax leve no hero: translateY proporcional ao scroll.
+     Desativado em dispositivos touch para preservar performance. */
+  initHeroParallax() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    const imgs = document.querySelectorAll('.hero-parallax');
+    if (!imgs.length) return;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY * 0.32;
+      imgs.forEach(img => { img.style.transform = `translateY(${y}px)`; });
+    }, { passive: true });
   },
 
   showSection(id) {

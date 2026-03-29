@@ -1,38 +1,50 @@
 /* ============================================================
-   VARIABLES.CSS — Design Tokens (Vinícius Rafael Fotografia)
+   VARIABLES.CSS — FOTOP Design Tokens (v2.0)
+   Paleta: preto quente + cobre/terra + creme
+   Tipografia: Playfair Display + DM Sans + DM Mono
    ============================================================ */
 
 :root {
-  /* ── Paleta Mantiqueira ── */
-  --color-bg:          #0a0c0a;
-  --color-bg-alt:      #111311;
-  --color-surface:     #1a1a1a;
-  --color-surface-2:   #2a2a2a;
-  --color-earth:       #c5a373;
-  --color-earth-dim:   rgba(197, 163, 115, 0.2);
-  --color-rock:        #2c2f2e;
-  --color-green:       #1a241a;
-  --color-light:       #fdfcf9;
+  /* === FOTOP Color System (brief definitivo) === */
+  --bg-primary:    #0d0d0b;             /* fundo principal — preto quente, não frio */
+  --bg-secondary:  #1a1915;             /* superfícies elevadas */
+  --bg-tertiary:   #2e2b25;             /* cards e seções alternadas */
+  --accent:        #8B6F47;             /* cobre/terra — acento principal */
+  --accent-light:  #c4b89a;             /* texto secundário quente */
+  --text-primary:  #f0ede6;             /* creme — nunca branco puro */
+  --text-muted:    #7a7870;             /* texto de apoio */
+  --border:        rgba(139, 111, 71, 0.2); /* bordas sutis com acento */
 
-  /* ── Texto ── */
-  --color-text:        #fdfcf9;
-  --color-text-muted:  rgba(253, 252, 249, 0.6);
+  /* Aliases para compatibilidade com código existente */
+  --color-bg:          #0d0d0b;
+  --color-bg-alt:      #1a1915;
+  --color-surface:     #2e2b25;
+  --color-surface-2:   #3a3730;
+  --color-earth:       #8B6F47;
+  --color-earth-dim:   rgba(139, 111, 71, 0.2);
+  --color-rock:        #2e2b25;
+  --color-green:       #1a1915;
+  --color-light:       #f0ede6;
+  --color-text:        #f0ede6;
+  --color-text-muted:  rgba(240, 237, 230, 0.6);
 
-  /* ── Tipografia ── */
-  --font-sans:  'Montserrat', sans-serif;
-  --font-serif: 'Lora', serif;
+  /* === Tipografia === */
+  --font-display: 'Playfair Display', serif;
+  --font-sans:    'DM Sans', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+  --font-serif:   'Playfair Display', serif;
 
-  /* ── Layout ── */
+  /* === Layout === */
   --nav-height: 70px;
 
-  /* ── Transições ── */
+  /* === Transições === */
   --ease-in-out:      cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast:    150ms;
   --duration-normal:  300ms;
   --duration-slow:    500ms;
   --duration-gallery: 700ms;
 
-  /* ── Z-index ── */
+  /* === Z-index === */
   --z-base:    0;
   --z-gallery: 10;
   --z-overlay: 20;
