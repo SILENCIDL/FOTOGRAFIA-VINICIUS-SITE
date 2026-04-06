@@ -1,3 +1,49 @@
+# ============================================================
+# .gitignore — FOTOGRAFIA-VINICIUS-SITE
+# ============================================================
+
 # Claude Code internals
 .claude/
 assets/.claude/
+
+# ── Backups e arquivos temporários ──────────────────────────
+*.zip
+*.bak
+*.backup
+*.tmp
+*.swp
+*~
+
+# ── Sistemas operacionais ───────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Editores e IDEs ─────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# ── Node (caso seja adicionado build no futuro) ──────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+dist/
+build/
+
+# ── Segurança: nunca versionado ─────────────────────────────
+.env
+.env.*
+*.pem
+*.key
+secrets.js
+secrets.json
