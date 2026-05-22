@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Patricia & Marcos | Casamentos | Vinícius Rafael Fotografia</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="assets/css/site.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind-config.js"></script>
+</head>
+<body class="antialiased" style="background-color:#0d0d0b; color:#f0ede6; font-family:'DM Sans',sans-serif;">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-5" style="background:rgba(10,12,10,0.95); backdrop-filter:blur(10px);">
+        <div class="max-w-7xl mx-auto px-5 md:px-8 flex justify-between items-center">
+            <a href="index.html" class="fotop-logo z-50">Vinícius Rafael</a>
+            
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="casamentos.html" class="nav-link-fotop" style="color:#8B6F47; font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.1em;">&larr; VOLTAR PARA CASAMENTOS</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden z-50 p-2" aria-label="Abrir menu">
+                <i class="fas fa-bars text-xl" style="color:#f0ede6;"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-40 flex flex-col justify-center items-center space-y-8"
+         style="background:rgba(13,13,11,0.97); backdrop-filter:blur(16px);">
+        <a href="casamentos.html" class="mobile-nav-link" style="color:#8B6F47;">&larr; Voltar para Casamentos</a>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="relative min-h-[60vh] flex items-center justify-center pt-24 bg-cover bg-center" style="background-image: url('assets/img/portfolio/casamentos/Patricia\\ &\\ Marcos/capa.jpg');">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 text-center max-w-5xl px-5 md:px-8">
+            <span class="block text-[0.75rem] font-mono font-semibold uppercase tracking-[0.15em] text-[#8B6F47] mb-4" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">O casamento de</span>
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-7xl tracking-tighter text-white drop-shadow-lg leading-tight" style="text-shadow: 0 4px 12px rgba(0,0,0,0.6);">Patricia & Marcos</h1>
+        </div>
+    </section>
+
+    <!-- Gallery Content -->
+    <section class="py-24" style="background-color:#0d0d0b;">
+        <div class="max-w-[1400px] mx-auto px-5 md:px-8" id="dynamic-wedding-gallery">
+            <!-- JS Will inject grids here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background:#0d0d0b; border-top:1px solid rgba(139,111,71,0.12);" class="py-12 md:py-16 text-center">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+            <span style="font-family:'Playfair Display',serif; font-size:1.75rem; color:#8B6F47; display:block; margin-bottom:0.375rem; letter-spacing:0.05em;">Vinícius Rafael</span>
+            <span style="font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#7a7870; display:block; margin-bottom:1.5rem;">Vinícius Rafael · Serra da Mantiqueira</span>
+            <div class="flex justify-center space-x-8 mb-8 text-xl">
+                <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-instagram"></i></a>
+                <a href="#" onclick="if(window.app && app.openWhatsapp) { app.openWhatsapp('Oi Vinícius! Vi seu site e quero saber mais sobre cobertura de casamentos.'); } else { window.open('https://wa.me/5512997194600?text=Oi%20Vinícius!%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20cobertura%20de%20casamentos.', '_blank'); } return false;" class="footer-social"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:contato@fotop.com.br" class="footer-social"><i class="far fa-envelope"></i></a>
+            </div>
+            <p style="font-size:0.625rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(122,120,112,0.35);">&copy; 2026 Vinícius Rafael. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts da Galeria -->
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/gallery.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const basePath = "assets/img/portfolio/casamentos/Patricia & Marcos/";
+            const folderData = [
+                { title: "O Ensaio (Pre Wedding)", path: "Pre Wedding/", count: 40 },
+                { title: "O Grande Dia (Cerimônia)", path: "Cerimonia/", count: 120 }
+            ];
+            
+            const container = document.getElementById('dynamic-wedding-gallery');
+            
+            folderData.forEach(folder => {
+                const section = document.createElement('div');
+                section.className = 'mb-24 md:mb-32';
+                
+                const header = document.createElement('div');
+                header.className = 'flex items-center gap-4 mb-12';
+                header.innerHTML = `
+                    <div class="h-px flex-grow" style="background:rgba(240,237,230,0.08);"></div>
+                    <h2 class="font-serif text-2xl md:text-3xl tracking-tighter px-4 text-center text-[#f0ede6]">${folder.title}</h2>
+                    <div class="h-px flex-grow" style="background:rgba(240,237,230,0.08);"></div>
+                `;
+                section.appendChild(header);
+                
+                const grid = document.createElement('div');
+                grid.className = 'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6';
+                section.appendChild(grid);
+                container.appendChild(section);
+                
+                if(window.gallery && gallery.loadFromFolder) {
+                    gallery.loadFromFolder(grid, basePath, folder.path, 1, folder.count);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

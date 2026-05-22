@@ -1,0 +1,79 @@
+/* ============================================================
+   ANIMATIONS.CSS — FOTOP v3.0
+   Estados iniciais para GSAP (invisíveis antes do JS carregar)
+   + sistema reveal legado (IntersectionObserver CSS).
+   ============================================================ */
+
+/* === SISTEMA REVEAL LEGADO (CSS / IntersectionObserver) ════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s var(--ease-in-out), transform 0.85s var(--ease-in-out);
+}
+.reveal.visible,
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }
+
+/* === ESTADOS INICIAIS GSAP — HERO ══════════════════════════
+   GSAP sobrescreve opacity/transform via JS.
+   O estado inicial CSS garante que não hajam flashes antes
+   do GSAP inicializar.                                        */
+
+.gsap-hero-coords,
+.gsap-hero-line,
+.gsap-hero-title,
+.gsap-hero-cta,
+.gsap-hero-scroll {
+  opacity: 0;
+}
+
+.gsap-hero-coords { transform: translateY(20px); }
+.gsap-hero-line   { transform: scaleX(0); transform-origin: left center; }
+.gsap-hero-title  { transform: translateY(32px); }
+.gsap-hero-cta    { transform: translateY(16px); }
+.gsap-hero-scroll { transform: translateY(12px); }
+
+/* Quando JS não está disponível ou GSAP falha: mostra tudo */
+.no-js .gsap-hero-coords,
+.no-js .gsap-hero-line,
+.no-js .gsap-hero-title,
+.no-js .gsap-hero-cta,
+.no-js .gsap-hero-scroll {
+  opacity: 1;
+  transform: none;
+}
+
+/* === ESTADOS INICIAIS GSAP — SCROLL REVEAL ═════════════════ */
+
+.gsap-reveal {
+  opacity: 0;
+}
+
+.gsap-reveal[data-reveal="up"]    { transform: translateY(40px); }
+.gsap-reveal[data-reveal="left"]  { transform: translateX(-40px); }
+.gsap-reveal[data-reveal="right"] { transform: translateX(40px); }
+.gsap-reveal[data-reveal="fade"]  { transform: none; }
+
+/* Stagger — filhos invisíveis antes do GSAP */
+.gsap-stagger-item {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Image reveal — wrapper precisa de overflow:hidden */
+.gsap-img-reveal img {
+  transform: scale(1.08);
+}
+
+/* === AFTER GSAP ANIMATES — classe adicionada pelo JS ════════
+   Quando GSAP conclui, não deixar estilos inline conflitando
+   com hover/transition CSS.                                   */
+
+.gsap-done {
+  will-change: auto;
+}
