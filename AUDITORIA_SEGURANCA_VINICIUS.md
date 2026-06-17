@@ -4,7 +4,45 @@
 
 ---
 
-## VULNERABILIDADES ENCONTRADAS
+## ATUALIZAÇÃO 17/06/2026 — Revisão e correções
+
+Revisão do código atual: **a maioria dos itens abaixo já foi corrigida** no `index.html`,
+`assets/js/main.js` e `assets/js/gallery.js`.
+
+Estado atual de cada item:
+
+| # | Item | Status atual |
+|---|------|--------------|
+| 1 | Número WhatsApp exposto | ✅ Ofuscado em `main.js` (`openWhatsapp`). Obs.: número de contato comercial é, por natureza, público — risco baixo. |
+| 2 | Event handlers inline (onmouseover/out) | ✅ Removidos — agora via `initButtonHovers()` com `data-hover-color`. |
+| 3 | CSP ausente | ⚠️ CSP adicionada via `<meta>` no `index.html`. Ideal: header HTTP no host (Netlify/Vercel). |
+| 4 | X-Frame-Options ausente | ⚠️ Só configurável no host (não em GitHub Pages). Pendente no deploy. |
+| 5 | HSTS ausente | ⚠️ Idem — configurar no host do deploy. |
+| 6 | innerHTML com interpolação | ✅ `gallery.js` usa `textContent` + criação de nós DOM. |
+| 7 | Validação de formulário | ✅ Validação de tamanho + `sanitize(<>)` em `main.js`. |
+| 8 | Rate limiting no form | ✅ `SUBMIT_COOLDOWN` de 2s em `main.js`. |
+
+### Bugs de imagem encontrados e corrigidos nesta revisão
+
+1. **Hero da home sem fallback** (`index.html`) — as 4 imagens do topo não tinham
+   `onerror`; se faltassem, o topo ficava preto. **Corrigido** (fallback Unsplash).
+2. **`paisagem.html` com caminho quebrado** — apontava para `images/(11-13).jpg`
+   (pasta inexistente). **Corrigido** para `assets/img/portfolio/paisagem/` + fallback.
+3. **`portfolio.html` sem fallback** — as 4 capas de categoria não tinham `onerror`.
+   **Corrigido**.
+
+### Observações menores (não corrigidas — cosméticas)
+
+- `index.html` (street-view) usa `assets/img/rua/slides/`, mas a galeria em `gallery.js`
+  usa `assets/img/portfolio/rua/galeria/`. Caminhos diferentes; ambos com fallback, então
+  não quebram. Ver `GUIA_DE_IMAGENS.md`.
+- `rua.html` diz "139 fotografias", o código carrega 138. Apenas texto.
+
+Veja `GUIA_DE_IMAGENS.md` para onde colocar cada foto.
+
+---
+
+## VULNERABILIDADES ENCONTRADAS (auditoria original — 03/05/2026)
 
 ### 1. NÚMERO DE TELEFONE WHATSAPP EXPOSTO
 **Severidade:** MÉDIA  
