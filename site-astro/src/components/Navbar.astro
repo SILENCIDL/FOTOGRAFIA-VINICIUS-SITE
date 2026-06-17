@@ -1,0 +1,30 @@
+---
+const links = [
+  { href: '/portfolio', label: 'Portfólio' },
+  { href: '/#servicos', label: 'Serviços' },
+  { href: '/#sobre',    label: 'Sobre' },
+  { href: '/#contato',  label: 'Contato', cta: true },
+];
+---
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-5">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 flex justify-between items-center">
+    <a href="/" class="fotop-logo z-50">Vinícius Rafael</a>
+
+    <div class="hidden md:flex items-center space-x-10">
+      {links.map((l) => (
+        <a href={l.href} class={l.cta ? 'nav-cta-fotop' : 'nav-link-fotop'}>{l.label}</a>
+      ))}
+    </div>
+
+    <button id="mobile-menu-btn" class="md:hidden z-50 p-2" aria-label="Abrir menu">
+      <i class="fas fa-bars text-xl" style="color:#f0ede6;"></i>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="hidden fixed inset-0 z-40 flex flex-col justify-center items-center space-y-8"
+     style="background:rgba(13,13,11,0.97); backdrop-filter:blur(16px);">
+  {links.map((l) => (
+    <a href={l.href} class="mobile-nav-link" style={l.cta ? 'color:#8B6F47;' : ''}>{l.label}</a>
+  ))}
+</div>

@@ -1,3 +1,10 @@
 # Claude Code internals
 .claude/
 assets/.claude/
+
+# Node / Astro
+node_modules/
+site-astro/node_modules/
+site-astro/dist/
+dist/
+.astro/

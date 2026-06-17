@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Cartões do portfólio — dados separados da marcação (mais fácil de manter)
+const cards = [
+  { title: 'Casamentos', action: 'Ver Álbuns', href: '/casamentos', img: 'assets/img/portfolio/casamentos/Bianca & Donizete/capa.jpg', fallback: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop', large: true },
+  { title: 'Aventura',   action: 'Explorar',   href: '/aventura',   img: 'assets/img/portfolio/aventura/capa.jpg', fallback: 'https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop' },
+  { title: 'Paisagem',   action: 'Explorar',   href: '/paisagem',   img: 'assets/img/portfolio/paisagem/capa.jpg', fallback: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop' },
+  { title: 'Rua',        action: 'Ver Galeria',href: '/rua',        img: 'assets/img/portfolio/rua/capa.jpg', fallback: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop' },
+  { title: 'O Olhar',    action: 'Descobrir',  href: '/olhar',      img: 'assets/img/portfolio/olhar/capa.jpg', fallback: 'https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop' },
+];
+---
+<BaseLayout
+  title="Vinícius Rafael | Fotografia · Serra da Mantiqueira"
+  description="Fotografia que respira altitude. Vinícius Rafael, fotógrafo em São Bento do Sapucaí — paisagem, esportes e eventos na Serra da Mantiqueira.">
+
+  <!-- ===== HERO ===== -->
+  <section class="fotop-hero" id="hero">
+    <img src="/assets/img/hero/hero(1).jpg" alt="Serra da Mantiqueira"
+         class="hero-bg-img hero-slide active hero-parallax" fetchpriority="high" decoding="async"
+         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop'" />
+    <div class="fotop-hero-overlay"></div>
+    <div class="fotop-hero-content">
+      <span class="hero-coords hero-anim-1">SERRA DA MANTIQUEIRA · SÃO BENTO DO SAPUCAÍ</span>
+      <div class="hero-line hero-anim-2"></div>
+      <h1 class="hero-title hero-anim-3">Fotografia que<br /><em>respira altitude.</em></h1>
+      <a href="/portfolio" class="hero-cta hero-anim-4">Ver portfólio</a>
+    </div>
+  </section>
+
+  <!-- ===== PORTFÓLIO (grid a partir dos dados acima) ===== -->
+  <section id="portfolio" class="py-20 md:py-32 relative" style="background:#0d0d0b;">
+    <div class="max-w-[1400px] mx-auto px-5 md:px-8">
+      <div class="text-center mb-14 md:mb-20">
+        <span class="section-tag-fotop">Trabalhos</span>
+        <h2 class="section-title-fotop">Portfólio</h2>
+      </div>
+      <div class="portfolio-grid">
+        {cards.map((c) => (
+          <a href={c.href} class={`portfolio-card group${c.large ? ' portfolio-card--large' : ''}`}>
+            <img src={`/${c.img}`} decoding="async" loading="lazy"
+                 onerror={`this.onerror=null; this.src='${c.fallback}'`}
+                 class="portfolio-card-img" alt={c.title} />
+            <div class="portfolio-card-overlay"></div>
+            <div class="portfolio-card-content">
+              <span class="portfolio-card-title">{c.title}</span>
+              <span class="portfolio-card-action">{c.action}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/*
+    PRÓXIMAS SEÇÕES — copie do index.html atual, sem alterar, para cá:
+      • #servicos        (linhas ~233–316)
+      • #como-funciona   (linhas ~323–408)
+      • #sobre           (linhas ~417–471)
+      • #depoimentos     (linhas ~478–530) — troque os textos placeholder por reais
+      • #contato         (linhas ~537–615)
+      • #whatsapp-fab e as views SPA (wedding-selector, gallery-view, olhar-view,
+        street-view, prices-view) — colar como estão; o main.js continua controlando.
+    Dica: troque os <img> fixos por <picture> com .webp (ver PLANO_EXECUCAO.md).
+  */}
+
+</BaseLayout>
