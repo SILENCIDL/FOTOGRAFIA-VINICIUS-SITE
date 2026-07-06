@@ -9,7 +9,7 @@
  * 4. No menu superior, clique em "Implantar" → "Nova implantação"
  * 5. Em "Tipo", escolha "Aplicativo da Web"
  * 6. Configure:
- *    - Descrição: FOTOP Leads
+ *    - Descrição: ArquivosVinicius
  *    - Executar como: EU MESMO (viniciusrafaelgoncalvessilva@gmail.com)
  *    - Quem tem acesso: QUALQUER PESSOA
  * 7. Clique em "Implantar" e autorize quando pedir
@@ -17,12 +17,12 @@
  * 9. Cole essa URL no arquivo assets/js/config.js no campo appsScriptUrl
  *
  * Após isso, cada envio do formulário do site:
- *  ✓ Salva uma linha na planilha "FOTOP Leads" no seu Google Drive
+ *  ✓ Salva uma linha na planilha "ArquivosVinicius" no seu Google Drive
  *  ✓ Envia um email de notificação para viniciusrafaelgoncalvessilva@gmail.com
  */
 
 const EMAIL_NOTIFICACAO = 'viniciusrafaelgoncalvessilva@gmail.com';
-const NOME_PLANILHA     = 'FOTOP Leads';
+const NOME_PLANILHA     = 'ArquivosVinicius';
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
@@ -88,6 +88,6 @@ function doPost(e) {
 /* Responde ao teste manual via navegador (GET) */
 function doGet() {
   return ContentService
-    .createTextOutput(JSON.stringify({ status: 'online', projeto: 'FOTOP Leads' }))
+    .createTextOutput(JSON.stringify({ status: 'online', projeto: 'ArquivosVinicius' }))
     .setMimeType(ContentService.MimeType.JSON);
 }
