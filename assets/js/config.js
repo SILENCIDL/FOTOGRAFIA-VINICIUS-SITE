@@ -22,6 +22,14 @@ export const CONTACT = {
 
   /** Handle do Instagram (sem @) */
   instagram: 'fotopvinicius',
+
+  /**
+   * URL do Google Apps Script (Web App) para captura de leads.
+   * Após criar e publicar o script na sua conta Google,
+   * substitua o valor abaixo pela URL gerada.
+   * Enquanto for 'PENDENTE', o formulário funciona só via WhatsApp.
+   */
+  appsScriptUrl: 'PENDENTE',
 };
 
 /* --- Imagens ------------------------------------------------ */

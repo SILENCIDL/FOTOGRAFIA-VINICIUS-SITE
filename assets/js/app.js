@@ -362,18 +362,39 @@ export const app = {
     }, { passive: true });
   },
 
-  /* ── Formulário de Contato → WhatsApp ───────────────────── */
+  /* ── Formulário de Contato → Google Sheets + WhatsApp ──── */
 
   initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
+
     form.addEventListener('submit', e => {
       e.preventDefault();
-      const nome     = document.getElementById('cf-nome')?.value     || '';
-      const servico  = document.getElementById('cf-servico')?.value  || '';
-      const data     = document.getElementById('cf-data')?.value     || '';
-      const mensagem = document.getElementById('cf-mensagem')?.value || '';
 
+      const nome     = document.getElementById('cf-nome')?.value.trim()     || '';
+      const servico  = document.getElementById('cf-servico')?.value         || '';
+      const data     = document.getElementById('cf-data')?.value            || '';
+      const mensagem = document.getElementById('cf-mensagem')?.value.trim() || '';
+
+      if (!nome) {
+        document.getElementById('cf-nome')?.focus();
+        return;
+      }
+
+      /* 1. Salva no Google Sheets via Apps Script (silencioso, em background) */
+      if (CONTACT.appsScriptUrl && CONTACT.appsScriptUrl !== 'PENDENTE') {
+        const payload = new FormData();
+        payload.append('nome',     nome);
+        payload.append('servico',  servico);
+        payload.append('data',     data);
+        payload.append('mensagem', mensagem);
+        payload.append('origem',   document.referrer || window.location.href);
+
+        fetch(CONTACT.appsScriptUrl, { method: 'POST', body: payload, mode: 'no-cors' })
+          .catch(() => { /* falha silenciosa — não bloqueia o usuário */ });
+      }
+
+      /* 2. Abre WhatsApp com a mensagem pré-preenchida */
       let texto = `Olá Vinícius! Meu nome é ${nome}.`;
       if (servico)  texto += ` Tenho interesse em: ${servico}.`;
       if (data)     texto += ` Data prevista: ${data}.`;
@@ -383,6 +404,15 @@ export const app = {
         `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(texto)}`,
         '_blank'
       );
+
+      /* 3. Feedback visual no botão */
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        const original = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '✓ Enviado — abrindo WhatsApp...';
+        setTimeout(() => { btn.disabled = false; btn.innerHTML = original; }, 4000);
+      }
     });
   },
 };
