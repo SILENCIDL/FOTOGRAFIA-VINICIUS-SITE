@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://silencidl.github.io/fotografia-vinicius-site/sitemap.xml
