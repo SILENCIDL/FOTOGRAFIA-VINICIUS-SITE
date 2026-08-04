@@ -1,10 +1,32 @@
-# Claude Code internals
-.claude/
-assets/.claude/
-
-# Node / Astro
+# --- Dependências e build ---
 node_modules/
-site-astro/node_modules/
-site-astro/dist/
 dist/
 .astro/
+*.tsbuildinfo
+
+# --- Segredos ---
+.env
+.env.*
+!.env.example
+
+# --- Backups e arquivos pesados (guardar fora do repositório) ---
+backups/
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+
+# --- Ferramentas internas ---
+.claude/worktrees/
+assets/.claude/
+.vscode/
+.idea/
+
+# --- Sistema operacional ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+*~

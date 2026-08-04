@@ -1,11 +1,21 @@
 {
 	"folders": [
 		{
-			"path": "../.."
-		},
-		{
-			"path": "../../../../../Desktop/DIREÇÃO"
+			"name": "Site (raiz)",
+			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.eol": "\n",
+		"files.exclude": {
+			"**/node_modules": true,
+			"**/.astro": true
+		},
+		"search.exclude": {
+			"assets/img/**": true,
+			"assets/img-web/**": true,
+			"site-astro/node_modules/**": true,
+			"site-astro/dist/**": true
+		}
+	}
 }

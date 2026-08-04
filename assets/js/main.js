@@ -19,22 +19,34 @@ const VIEWS = [
 const app = {
 
   init() {
-    this.handleNav();
-    this.initHeroParallax();
-    this.initContactForm();
-    this.initWAFab();
-    initHeroSlideshow();   // slideshow.js
-    initScrollReveal();    // legado CSS reveal
-    initMobileMenu();
-    initRotatingPhrases();
-    this.renderChart();
-    this.initButtonHovers();
+    /* Cada módulo é opcional: portfolio.html e casamentos.html não carregam
+       slideshow.js/animations.js. Antes, a ausência lançava ReferenceError e
+       matava tudo que vinha depois — inclusive o menu mobile. */
+    const talvez = (fn, nome) => {
+      try {
+        if (typeof fn === 'function') fn();
+      } catch (e) {
+        console.warn('[init] falhou em ' + nome + ':', e.message);
+      }
+    };
+
+    talvez(() => this.handleNav(), 'handleNav');
+    talvez(() => this.initHeroParallax(), 'initHeroParallax');
+    talvez(() => this.initContactForm(), 'initContactForm');
+    talvez(() => this.initWAFab(), 'initWAFab');
+    talvez(typeof initHeroSlideshow !== 'undefined' && initHeroSlideshow, 'initHeroSlideshow');
+    talvez(typeof initScrollReveal !== 'undefined' && initScrollReveal, 'initScrollReveal');
+    talvez(typeof initRotatingPhrases !== 'undefined' && initRotatingPhrases, 'initRotatingPhrases');
+    talvez(() => this.renderChart(), 'renderChart');
+    talvez(() => this.initButtonHovers(), 'initButtonHovers');
+    /* O menu mobile agora vive em acoes.js e funciona em todas as páginas. */
   },
 
   /* ── Segurança ─────────────────────────────────────────── */
 
   openWhatsapp(text = '') {
-    const phone = '55' + '1' + '2' + '9' + '8' + '1' + '7' + '7' + '1' + '6' + '6' + '5';
+    /* Número vem de acoes.js (window.CONTATO) — fonte única no site inteiro. */
+    const phone = (window.CONTATO && window.CONTATO.whatsapp) || '5512981771665';
     window.open(`https://wa.me/${phone}${text ? '?text=' + encodeURIComponent(text) : ''}`, '_blank');
   },
 
@@ -54,7 +66,7 @@ const app = {
 
   /* ── Navegação SPA ─────────────────────────────────────── */
 
-  showSection(id) {
+  showSection(id, registrarHistorico = true) {
     VIEWS.forEach(v => {
       const el = document.getElementById(v);
       if (el) { el.classList.add('hidden-content'); el.classList.remove('fade-in'); }
@@ -66,6 +78,14 @@ const app = {
       void target.offsetWidth; // force reflow
       target.classList.add('fade-in');
     }
+
+    /* Botão Voltar do navegador fecha a galeria em vez de sair do site.
+       O popstate em acoes.js chama com registrarHistorico = false. */
+    if (registrarHistorico && window.history && history.pushState) {
+      const atual = history.state && history.state.view;
+      if (atual !== id) history.pushState({ view: id }, '', id === 'home' ? '#' : '#' + id);
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   },
 

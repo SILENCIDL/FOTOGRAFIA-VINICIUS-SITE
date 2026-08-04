@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Troque SEU-DOMINIO pelo domínio real e ajuste lastmod quando atualizar as páginas. -->
+<!-- Troque viniciusrafael.fot.br pelo domínio real e ajuste lastmod quando atualizar as páginas. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://SEU-DOMINIO.com.br/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/portfolio.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/casamentos.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/paisagem.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/aventura.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/rua.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/olhar.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/casamento-bianca-e-donizete.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/casamento-miellem-e-aleft.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/casamento-pamela-e-juliano.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://SEU-DOMINIO.com.br/casamento-patricia-e-marcos.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/portfolio.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/casamentos.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/paisagem.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/aventura.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/rua.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/olhar.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/casamento-bianca-e-donizete.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/casamento-miellem-e-aleft.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/casamento-pamela-e-juliano.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://viniciusrafael.fot.br/pages/casamento-patricia-e-marcos.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
 </urlset>

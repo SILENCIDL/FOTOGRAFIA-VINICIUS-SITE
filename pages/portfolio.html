@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Portfólio | Vinícius Rafael Fotografia</title>
+    <meta name="description" content="Portfólio completo - casamentos, aventura, paisagem, rua e olhar fotográfico.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/site.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind-config.js"></script>
+    <style>
+        @keyframes scroll-carousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 1rem)); }
+        }
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: scroll-carousel 20s linear infinite;
+        }
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+    </style>
+    <link rel="icon" href="../assets/img-web/favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#0d0d0b">
+</head>
+<body class="antialiased" style="background-color:#0d0d0b; color:#f0ede6; font-family:'DM Sans',sans-serif;">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-5" style="background:rgba(10,12,10,0.95); backdrop-filter:blur(10px);">
+        <div class="max-w-7xl mx-auto px-5 md:px-8 flex justify-between items-center">
+            <a href="../index.html" class="fotop-logo z-50">Vinícius Rafael</a>
+            
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="../index.html" class="nav-link-fotop">Início</a>
+                <a href="portfolio.html" class="nav-link-fotop" style="color:#8B6F47;">Portfólio</a>
+                <a href="../index.html#servicos" class="nav-link-fotop">Serviços</a>
+                <a href="../index.html#sobre" class="nav-link-fotop">Sobre</a>
+                <a href="../index.html#contato" class="nav-cta-fotop">Contato</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden z-50 p-2" aria-label="Abrir menu">
+                <i class="fas fa-bars text-xl" style="color:#f0ede6;"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-40 flex flex-col justify-center items-center space-y-8"
+         style="background:rgba(13,13,11,0.97); backdrop-filter:blur(16px);">
+        <a href="../index.html" class="mobile-nav-link">Início</a>
+        <a href="portfolio.html" class="mobile-nav-link" style="color:#8B6F47;">Portfólio</a>
+        <a href="../index.html#servicos" class="mobile-nav-link">Serviços</a>
+        <a href="../index.html#sobre" class="mobile-nav-link">Sobre</a>
+        <a href="../index.html#contato" class="mobile-nav-link">Contato</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="relative min-h-[60vh] flex items-center justify-center pt-24 pb-12 bg-cover bg-center" style="background-image: url('../assets/img-web/portfolio/capa.jpg');">
+        <div class="absolute inset-0 bg-black/65"></div>
+        <div class="relative z-10 text-center max-w-5xl px-5 md:px-8 mt-12">
+            <span style="font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:#8B6F47; display:block; margin-bottom:1rem; text-shadow:0 2px 4px rgba(0,0,0,0.5);">Portfólio</span>
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tighter mb-6 leading-tight text-white drop-shadow-lg" style="text-shadow: 0 4px 12px rgba(0,0,0,0.6);">Cada história merece ser contada</h1>
+            <p class="text-lg md:text-xl font-light text-white/90 leading-relaxed drop-shadow-md" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5);">Explore meus trabalhos por categoria e encontre inspiração para o seu momento especial</p>
+        </div>
+    </section>
+
+    <!-- Categorias -->
+    <section class="py-16 overflow-hidden" style="background-color:#0d0d0b;">
+        <div class="w-full relative overflow-hidden">
+            <div id="portfolio-carousel" class="carousel-track">
+                
+                <!-- Casamentos -->
+                <a href="casamentos.html" class="group relative block w-[420px] max-w-[85vw] shrink-0 rounded-md overflow-hidden aspect-[4/3] transition-transform duration-300 hover:-translate-y-1">
+                    <img src="../assets/img-web/portfolio/casamentos/Bianca & Donizete/capa.jpg" alt="Casamentos" data-onerror="ocultar" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <span class="block text-[0.625rem] font-mono font-semibold uppercase tracking-[0.15em] text-[#8B6F47] mb-2">Categoria</span>
+                        <h2 class="font-serif text-3xl font-semibold text-white mb-2">Casamentos</h2>
+                        <p class="text-[0.9375rem] text-white/60 leading-relaxed">O dia mais especial da sua vida</p>
+                    </div>
+                </a>
+
+                <!-- Paisagem -->
+                <a href="paisagem.html" class="group relative block w-[420px] max-w-[85vw] shrink-0 rounded-md overflow-hidden aspect-[4/3] transition-transform duration-300 hover:-translate-y-1">
+                    <img src="../assets/img-web/portfolio/paisagem/capa.jpg" alt="Paisagem" data-onerror="ocultar" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <span class="block text-[0.625rem] font-mono font-semibold uppercase tracking-[0.15em] text-[#8B6F47] mb-2">Categoria</span>
+                        <h2 class="font-serif text-3xl font-semibold text-white mb-2">Paisagem</h2>
+                        <p class="text-[0.9375rem] text-white/60 leading-relaxed">A grandiosidade da Serra da Mantiqueira</p>
+                    </div>
+                </a>
+
+                <!-- Rua -->
+                <a href="rua.html" class="group relative block w-[420px] max-w-[85vw] shrink-0 rounded-md overflow-hidden aspect-[4/3] transition-transform duration-300 hover:-translate-y-1">
+                    <img src="../assets/img-web/portfolio/rua/capa.jpg" alt="Rua" data-onerror="ocultar" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <span class="block text-[0.625rem] font-mono font-semibold uppercase tracking-[0.15em] text-[#8B6F47] mb-2">Categoria</span>
+                        <h2 class="font-serif text-3xl font-semibold text-white mb-2">Rua</h2>
+                        <p class="text-[0.9375rem] text-white/60 leading-relaxed">Street photography urbana</p>
+                    </div>
+                </a>
+
+                <!-- Olhar -->
+                <a href="olhar.html" class="group relative block w-[420px] max-w-[85vw] shrink-0 rounded-md overflow-hidden aspect-[4/3] transition-transform duration-300 hover:-translate-y-1">
+                    <img src="../assets/img-web/portfolio/olhar/capa.jpg" alt="Olhar" data-onerror="ocultar" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <span class="block text-[0.625rem] font-mono font-semibold uppercase tracking-[0.15em] text-[#8B6F47] mb-2">Categoria</span>
+                        <h2 class="font-serif text-3xl font-semibold text-white mb-2">Olhar</h2>
+                        <p class="text-[0.9375rem] text-white/60 leading-relaxed">Projeto artístico pessoal</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background:#0d0d0b; border-top:1px solid rgba(139,111,71,0.12);" class="py-12 md:py-16 text-center mt-12">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+            <span style="font-family:'Playfair Display',serif; font-size:1.75rem; color:#8B6F47; display:block; margin-bottom:0.375rem; letter-spacing:0.05em;">Vinícius Rafael</span>
+            <span style="font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#7a7870; display:block; margin-bottom:1.5rem;">Vinícius Rafael · Serra da Mantiqueira</span>
+            <div class="flex justify-center space-x-8 mb-8 text-xl">
+                <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-instagram"></i></a>
+                <a href="#" data-action="whatsapp" data-msg="Oi Vinícius! Vi seu site e quero saber mais." class="footer-social"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:contato@viniciusrafael.fot.br" class="footer-social"><i class="far fa-envelope"></i></a>
+            </div>
+            <p style="font-size:0.625rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(122,120,112,0.35);">&copy; 2026 Vinícius Rafael. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    
+  <script src="../assets/js/pagina-portfolio.js" defer></script>
+  <script src="../assets/js/acoes.js" defer></script>
+</body>
+</html>

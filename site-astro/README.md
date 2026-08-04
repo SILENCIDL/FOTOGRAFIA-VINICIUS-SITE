@@ -1,40 +1,79 @@
-# Protótipo Astro — Vinícius Rafael Fotografia
+# Vinícius Rafael Fotografia — Astro SSR
 
-Base da migração para Astro com **navbar e footer componentizados** (um arquivo cada,
-reutilizado em todas as páginas) e a **home** já montada como exemplo.
+Site com área administrativa, banco de dados PostgreSQL e galerias privadas.
 
-## Como rodar
+## Stack
 
-```
+- **Astro** em modo SSR (`output: 'server'`)
+- **PostgreSQL** via Drizzle ORM
+- **bcrypt** + **jose** para autenticação
+- **AES-256-GCM** para campos sensíveis
+- Docker + Docker Compose para deploy em VPS
+
+## Como rodar localmente
+
+### 1. Banco de dados
+
+Você pode usar Docker para subir um PostgreSQL local:
+
+```bash
 cd site-astro
-npm install
-npm run dev          # abre em http://localhost:4321
+cp .env.example .env
+# ajuste DATABASE_URL se necessário
+
+docker run -d \
+  --name vinicius_postgres_local \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=vinicius_site \
+  -p 127.0.0.1:5432:5432 \
+  -v postgres_local:/var/lib/postgresql/data \
+  postgres:16-alpine
 ```
 
-## Antes de rodar: copiar os arquivos estáticos
+### 2. Instalar dependências
 
-O Astro serve a pasta `public/` como raiz. Copie para dentro de `site-astro/public/`:
+```bash
+npm install
+```
 
-- `assets/css/`  →  `site-astro/public/assets/css/`
-- `assets/js/`   →  `site-astro/public/assets/js/`
-- `assets/img/`  →  `site-astro/public/assets/img/`
+### 3. Rodar migrations
 
-Assim os caminhos `/assets/...` usados nos componentes continuam funcionando.
+```bash
+npx drizzle-kit migrate
+```
 
-## O que já está pronto
+### 4. Criar usuário admin
 
-- `src/components/Navbar.astro` — menu (desktop + mobile) a partir de uma lista de links.
-- `src/components/Footer.astro` — rodapé com ano automático.
-- `src/layouts/BaseLayout.astro` — `<head>`, fontes, CSS, scripts e os `<slot>`.
-- `src/pages/index.astro` — home com hero + portfólio (grid gerado por dados).
+```bash
+node scripts/seed-admin.mjs seu@email.com "senha_forte_12+_caracteres"
+```
 
-## Próximos passos
+### 5. Iniciar servidor de desenvolvimento
 
-1. Copiar as seções restantes do `index.html` para `index.astro` (marcado no arquivo).
-2. Criar `src/pages/portfolio.astro`, `paisagem.astro`, `aventura.astro`, `rua.astro`,
-   `olhar.astro`, `casamentos.astro` usando o mesmo `BaseLayout` — aqui o design de
-   `paisagem.html` se unifica com o resto.
-3. Trocar `<img>` por `<Image />` de `astro:assets` para otimização automática (webp/avif).
-4. `npm run build` → publicar a pasta `dist/` na Netlify/Vercel.
+```bash
+npm run dev
+```
 
-Detalhes completos em `../PLANO_EXECUCAO.md`.
+Acesse `http://localhost:4321` e `http://localhost:4321/admin/login`.
+
+## Deploy em VPS
+
+Veja o passo a passo completo em [`DEPLOY.md`](./DEPLOY.md).
+
+## Estrutura de segurança
+
+Leia [`SECURITY.md`](./SECURITY.md).
+
+## Funcionalidades
+
+- [x] Formulário de contato com rate limit
+- [x] Área administrativa protegida
+- [x] Cadastro de clientes
+- [x] Criação de sessões/galerias privadas
+- [x] Upload de arquivos com controle de acesso
+- [x] Galeria privada por senha
+- [x] Logs de auditoria
+- [ ] 2FA para admin
+- [ ] Política de privacidade e termos de uso
+- [ ] Endpoint LGPD (exportar/deletar dados)

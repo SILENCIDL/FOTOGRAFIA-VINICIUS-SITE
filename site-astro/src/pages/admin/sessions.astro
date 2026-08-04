@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSession, requireAuth } from '../../lib/auth';
+import { db } from '../../db';
+import { clients, sessions } from '../../db/schema';
+import { desc, eq } from 'drizzle-orm';
+
+const session = await getSession(Astro.cookies);
+try {
+  requireAuth(session, ['admin', 'editor']);
+} catch {
+  return Astro.redirect('/admin/login');
+}
+
+const clientId = Astro.url.searchParams.get('clientId');
+const allClients = await db.query.clients.findMany({ orderBy: [desc(clients.createdAt)] });
+const rows = clientId
+  ? await db.query.sessions.findMany({
+      where: eq(sessions.clientId, clientId),
+      orderBy: [desc(sessions.createdAt)],
+    })
+  : [];
+---
+
+<BaseLayout title="Admin · Sessões">
+  <main class="min-h-screen px-5 py-24" style="background:#0d0d0b; color:#f0ede6;">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-serif">Sessões / Galerias</h1>
+        <a href="/admin" class="text-[#8B6F47] hover:underline text-sm">← Voltar ao dashboard</a>
+      </div>
+
+      <form id="session-form" class="mb-12 p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+        <h2 class="text-xl font-serif mb-4">Nova sessão / galeria privada</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label class="block text-sm mb-1 opacity-70">Cliente *</label>
+            <select name="clientId" required class="w-full px-4 py-2 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 outline-none focus:border-[#8B6F47]">
+              <option value="">Selecione...</option>
+              {allClients.map((c) => <option value={c.id}>{c.name}</option>)}
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm mb-1 opacity-70">Título *</label>
+            <input name="title" required class="w-full px-4 py-2 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 outline-none focus:border-[#8B6F47]" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1 opacity-70">Data do evento</label>
+            <input name="date" type="date" class="w-full px-4 py-2 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 outline-none focus:border-[#8B6F47]" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1 opacity-70">Tipo</label>
+            <input name="type" placeholder="Casamento, ensaio..." class="w-full px-4 py-2 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 outline-none focus:border-[#8B6F47]" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1 opacity-70">Senha da galeria (mín. 6)</label>
+            <input name="galleryPassword" type="password" minlength="6" class="w-full px-4 py-2 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 outline-none focus:border-[#8B6F47]" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1 opacity-70">Expira em</label>
+            <input name="expiresAt" type="datetime-local" class="w-full px-4 py-2 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 outline-none focus:border-[#8B6F47]" />
+          </div>
+        </div>
+        <button type="submit" class="px-6 py-2 rounded bg-[#8B6F47] text-[#0d0d0b] font-medium">Criar sessão</button>
+        <p id="form-msg" class="mt-3 text-sm hidden"></p>
+      </form>
+
+      {clientId && (
+        <div class="mb-8 p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+          <h3 class="font-serif mb-4">Upload de arquivos</h3>
+          <form id="upload-form" class="flex flex-col md:flex-row gap-4 items-start">
+            <input type="hidden" name="sessionId" value={clientId} />
+            <input type="file" name="file" required accept="image/*,.pdf" class="text-sm" />
+            <button type="submit" class="px-4 py-2 rounded bg-[#8B6F47] text-[#0d0d0b] text-sm font-medium">Enviar</button>
+          </form>
+          <p id="upload-msg" class="mt-3 text-sm hidden"></p>
+        </div>
+      )}
+
+      <div class="space-y-3">
+        {rows.length === 0 && <p class="opacity-60">Nenhuma sessão encontrada para este cliente.</p>}
+        {rows.map((s) => (
+          <div class="p-4 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+            <p class="font-serif">{s.title}</p>
+            <p class="text-sm opacity-60">
+              {s.type} {s.date && `· ${s.date}`} · {s.status}
+            </p>
+            <a href={`/galeria/${s.id}`} class="text-sm text-[#8B6F47] hover:underline">Link da galeria →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const sessionForm = document.getElementById('session-form') as HTMLFormElement;
+    const sessionMsg = document.getElementById('form-msg') as HTMLParagraphElement;
+
+    sessionForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      sessionMsg.classList.add('hidden');
+
+      const formData = new FormData(sessionForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      const res = await fetch('/api/admin/sessions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        sessionMsg.textContent = 'Sessão criada!';
+        sessionMsg.className = 'mt-3 text-sm text-green-400';
+        sessionForm.reset();
+        setTimeout(() => window.location.reload(), 800);
+      } else {
+        sessionMsg.textContent = data.error || 'Erro ao criar sessão.';
+        sessionMsg.className = 'mt-3 text-sm text-red-400';
+      }
+      sessionMsg.classList.remove('hidden');
+    });
+
+    const uploadForm = document.getElementById('upload-form') as HTMLFormElement | null;
+    const uploadMsg = document.getElementById('upload-msg') as HTMLParagraphElement | null;
+
+    uploadForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      uploadMsg?.classList.add('hidden');
+
+      const formData = new FormData(uploadForm);
+      const res = await fetch('/api/admin/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        uploadMsg!.textContent = 'Arquivo enviado!';
+        uploadMsg!.className = 'mt-3 text-sm text-green-400';
+        uploadForm.reset();
+      } else {
+        uploadMsg!.textContent = data.error || 'Erro no upload.';
+        uploadMsg!.className = 'mt-3 text-sm text-red-400';
+      }
+      uploadMsg?.classList.remove('hidden');
+    });
+  </script>
+</BaseLayout>

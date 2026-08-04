@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSession, requireAuth } from '../../lib/auth';
+import { db } from '../../db';
+import { contacts, clients, sessions } from '../../db/schema';
+import { count } from 'drizzle-orm';
+
+const session = await getSession(Astro.cookies);
+try {
+  requireAuth(session, ['admin', 'editor']);
+} catch {
+  return Astro.redirect('/admin/login');
+}
+
+const [{ value: contactsCount }] = await db.select({ value: count() }).from(contacts);
+const [{ value: clientsCount }] = await db.select({ value: count() }).from(clients);
+const [{ value: sessionsCount }] = await db.select({ value: count() }).from(sessions);
+---
+
+<BaseLayout title="Admin · Dashboard">
+  <main class="min-h-screen px-5 py-24" style="background:#0d0d0b; color:#f0ede6;">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between mb-10">
+        <h1 class="text-3xl font-serif">Dashboard</h1>
+        <form action="/api/auth/logout" method="POST">
+          <button
+            type="submit"
+            class="px-5 py-2 rounded border border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47] hover:text-[#0d0d0b] transition-colors text-sm uppercase tracking-wider"
+          >
+            Sair
+          </button>
+        </form>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+          <p class="text-sm uppercase tracking-wider text-[#8B6F47]">Mensagens</p>
+          <p class="text-4xl font-serif mt-2">{contactsCount}</p>
+        </div>
+        <div class="p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+          <p class="text-sm uppercase tracking-wider text-[#8B6F47]">Clientes</p>
+          <p class="text-4xl font-serif mt-2">{clientsCount}</p>
+        </div>
+        <div class="p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+          <p class="text-sm uppercase tracking-wider text-[#8B6F47]">Sessões</p>
+          <p class="text-4xl font-serif mt-2">{sessionsCount}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a
+          href="/admin/contacts"
+          class="block p-6 rounded-lg border border-[#8B6F47]/30 hover:border-[#8B6F47] transition-colors"
+          style="background:#1a1915;"
+        >
+          <h2 class="text-xl font-serif mb-2">Mensagens de contato</h2>
+          <p class="text-sm opacity-70">Ver e gerenciar mensagens recebidas.</p>
+        </a>
+        <a
+          href="/admin/clients"
+          class="block p-6 rounded-lg border border-[#8B6F47]/30 hover:border-[#8B6F47] transition-colors"
+          style="background:#1a1915;"
+        >
+          <h2 class="text-xl font-serif mb-2">Clientes</h2>
+          <p class="text-sm opacity-70">Cadastrar clientes e criar galerias privadas.</p>
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

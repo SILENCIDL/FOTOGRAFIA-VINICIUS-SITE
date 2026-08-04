@@ -1,6 +1,56 @@
 # Headers de segurança — aplicados quando o site for publicado na Netlify.
 # (GitHub Pages não suporta headers customizados; use Netlify ou Vercel.)
 
+[[redirects]]
+  from = "/portfolio.html"
+  to = "/pages/portfolio.html"
+  status = 301
+
+[[redirects]]
+  from = "/casamentos.html"
+  to = "/pages/casamentos.html"
+  status = 301
+
+[[redirects]]
+  from = "/paisagem.html"
+  to = "/pages/paisagem.html"
+  status = 301
+
+[[redirects]]
+  from = "/aventura.html"
+  to = "/pages/aventura.html"
+  status = 301
+
+[[redirects]]
+  from = "/rua.html"
+  to = "/pages/rua.html"
+  status = 301
+
+[[redirects]]
+  from = "/olhar.html"
+  to = "/pages/olhar.html"
+  status = 301
+
+[[redirects]]
+  from = "/casamento-bianca-e-donizete.html"
+  to = "/pages/casamento-bianca-e-donizete.html"
+  status = 301
+
+[[redirects]]
+  from = "/casamento-miellem-e-aleft.html"
+  to = "/pages/casamento-miellem-e-aleft.html"
+  status = 301
+
+[[redirects]]
+  from = "/casamento-pamela-e-juliano.html"
+  to = "/pages/casamento-pamela-e-juliano.html"
+  status = 301
+
+[[redirects]]
+  from = "/casamento-patricia-e-marcos.html"
+  to = "/pages/casamento-patricia-e-marcos.html"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]

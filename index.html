@@ -5,9 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Vinícius Rafael | Fotografia · Serra da Mantiqueira</title>
     <meta name="description" content="Fotografia que respira altitude. Vinícius Rafael, fotógrafo em São Bento do Sapucaí — paisagem, esportes e eventos na Serra da Mantiqueira.">
+    <link rel="canonical" href="https://viniciusrafael.fot.br/">
+    <meta name="theme-color" content="#0d0d0b">
+    <link rel="icon" href="assets/img-web/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/img-web/favicon.svg">
+
+    <!-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook) -->
     <meta property="og:title" content="Vinícius Rafael | Fotografia · Serra da Mantiqueira">
     <meta property="og:description" content="Fotografia que respira altitude. Especializado em paisagem, esportes e eventos.">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Vinícius Rafael Fotografia">
+    <meta property="og:url" content="https://viniciusrafael.fot.br/">
+    <meta property="og:image" content="https://viniciusrafael.fot.br/assets/img-web/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Serra da Mantiqueira fotografada por Vinícius Rafael">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://viniciusrafael.fot.br/assets/img-web/og-image.jpg">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://wa.me; frame-ancestors 'none';">
 
     <!-- Tipografia: Playfair Display (editorial) + DM Sans (UI) + DM Mono (detalhe técnico) -->
@@ -18,22 +33,27 @@
 
     <link rel="stylesheet" href="assets/css/site.css">
 
-    <!-- Preload da primeira imagem do hero para performance -->
-    <link rel="preload" as="image" href="assets/img/hero/hero(1).jpg">
+    <!-- Preload do hero: o celular baixa a versão de 1280px (281 KB),
+         o desktop a de 2560px (1,2 MB). Antes eram 14,5 MB para todo mundo. -->
+    <link rel="preload" as="image" href="assets/img-web/hero/hero(1).jpg"
+          imagesrcset="assets/img-web/hero/hero(1)-1280.jpg 1280w, assets/img-web/hero/hero(1).jpg 2560w"
+          imagesizes="100vw" fetchpriority="high">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="assets/js/tailwind-config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js removido: #skillsChart não existe em nenhuma página do site,
+         era ~200 KB baixados à toa em toda visita. -->
 
-    <!-- Dados estruturados (JSON-LD) — negócio local. Troque SEU-DOMINIO pelo domínio real. -->
+
+    <!-- Dados estruturados (JSON-LD) — negócio local. Troque viniciusrafael.fot.br pelo domínio real. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://SEU-DOMINIO.com.br/#business",
+      "@id": "https://viniciusrafael.fot.br/#business",
       "name": "Vinícius Rafael Fotografia",
-      "image": "https://SEU-DOMINIO.com.br/assets/img/hero/hero(1).jpg",
-      "url": "https://SEU-DOMINIO.com.br/",
+      "image": "https://viniciusrafael.fot.br/assets/img-web/hero/hero(1).jpg",
+      "url": "https://viniciusrafael.fot.br/",
       "telephone": "+5512981771665",
       "priceRange": "$$",
       "description": "Fotografia de paisagem, esportes e eventos na Serra da Mantiqueira — São Bento do Sapucaí.",
@@ -61,14 +81,15 @@
     <div class="max-w-7xl mx-auto px-5 md:px-8 flex justify-between items-center">
 
         <!-- Logo: FOTOP em Playfair Display -->
-        <a href="#" onclick="app.showSection('home'); return false;" class="fotop-logo z-50">Vinícius Rafael</a>
+        <a href="#" data-action="section" data-target="home" class="fotop-logo z-50">Vinícius Rafael</a>
 
         <!-- Desktop navigation -->
         <div class="hidden md:flex items-center space-x-10">
-            <a href="portfolio.html" class="nav-link-fotop">Portfólio</a>
-            <a href="#servicos"  onclick="app.scrollToSection('servicos');  return false;" class="nav-link-fotop">Serviços</a>
-            <a href="#sobre"     onclick="app.scrollToSection('sobre');     return false;" class="nav-link-fotop">Sobre</a>
-            <a href="#contato"   onclick="app.scrollToSection('contato');   return false;" class="nav-cta-fotop">Contato</a>
+            <a href="pages/portfolio.html" class="nav-link-fotop">Portfólio</a>
+            <a href="#servicos"  data-action="scroll" data-target="servicos" class="nav-link-fotop">Serviços</a>
+            <a href="#investimento" data-action="valores" class="nav-link-fotop">Investimento</a>
+            <a href="#sobre"     data-action="scroll" data-target="sobre" class="nav-link-fotop">Sobre</a>
+            <a href="#contato"   data-action="scroll" data-target="contato" class="nav-cta-fotop">Contato</a>
         </div>
 
         <!-- Hamburger mobile -->
@@ -81,10 +102,11 @@
 <!-- Mobile menu overlay -->
 <div id="mobile-menu" class="hidden fixed inset-0 z-40 flex flex-col justify-center items-center space-y-8"
      style="background:rgba(13,13,11,0.97); backdrop-filter:blur(16px);">
-    <a href="portfolio.html" onclick="app.closeMobileMenu();" class="mobile-nav-link">Portfólio</a>
-    <a href="#servicos"  onclick="app.scrollToSection('servicos');  app.closeMobileMenu(); return false;" class="mobile-nav-link">Serviços</a>
-    <a href="#sobre"     onclick="app.scrollToSection('sobre');     app.closeMobileMenu(); return false;" class="mobile-nav-link">Sobre</a>
-    <a href="#contato"   onclick="app.scrollToSection('contato');   app.closeMobileMenu(); return false;" class="mobile-nav-link" style="color:#8B6F47;">Contato</a>
+    <a href="pages/portfolio.html" data-action="fechar-menu" class="mobile-nav-link">Portfólio</a>
+    <a href="#servicos"  data-action="scroll" data-target="servicos" data-fechar-menu class="mobile-nav-link">Serviços</a>
+    <a href="#investimento" data-action="valores" data-fechar-menu class="mobile-nav-link">Investimento</a>
+    <a href="#sobre"     data-action="scroll" data-target="sobre" data-fechar-menu class="mobile-nav-link">Sobre</a>
+    <a href="#contato"   data-action="scroll" data-target="contato" data-fechar-menu class="mobile-nav-link" style="color:#8B6F47;">Contato</a>
 </div>
 
 
@@ -102,18 +124,22 @@
     <section class="fotop-hero" id="hero">
 
         <!-- Slideshow de imagens de fundo -->
-        <img src="assets/img/hero/hero(1).jpg" alt="Serra da Mantiqueira"
-             class="hero-bg-img hero-slide active hero-parallax" fetchpriority="high" decoding="async"
-             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop'">
-        <img src="assets/img/hero/hero(2).jpg" alt="Pedra do Baú"
-             class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async"
-             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=2070&auto=format&fit=crop'">
-        <img src="assets/img/hero/hero(3).jpg" alt="Trilhas da Mantiqueira"
-             class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async"
-             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=80&w=2070&auto=format&fit=crop'">
-        <img src="assets/img/hero/hero(4).jpg" alt="Paisagem da Serra"
-             class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async"
-             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2074&auto=format&fit=crop'">
+        <img src="assets/img-web/hero/hero(1).jpg"
+             srcset="assets/img-web/hero/hero(1)-1280.jpg 1280w, assets/img-web/hero/hero(1).jpg 2560w"
+             sizes="100vw" alt="Serra da Mantiqueira ao amanhecer, São Bento do Sapucaí"
+             class="hero-bg-img hero-slide active hero-parallax" fetchpriority="high" decoding="async" data-onerror="ocultar">
+        <img src="assets/img-web/hero/hero(2).jpg"
+             srcset="assets/img-web/hero/hero(2)-1280.jpg 1280w, assets/img-web/hero/hero(2).jpg 2560w"
+             sizes="100vw" alt="Pedra do Baú vista das trilhas da Mantiqueira"
+             class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async" data-onerror="ocultar">
+        <img src="assets/img-web/hero/hero(3).jpg"
+             srcset="assets/img-web/hero/hero(3)-1280.jpg 1280w, assets/img-web/hero/hero(3).jpg 2560w"
+             sizes="100vw" alt="Trilha na Serra da Mantiqueira entre a neblina"
+             class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async" data-onerror="ocultar">
+        <img src="assets/img-web/hero/hero(4).jpg"
+             srcset="assets/img-web/hero/hero(4)-1280.jpg 1280w, assets/img-web/hero/hero(4).jpg 2560w"
+             sizes="100vw" alt="Paisagem de montanhas da Serra da Mantiqueira ao pôr do sol"
+             class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async" data-onerror="ocultar">
 
         <!-- Overlay: escuro de baixo para cima, cria profundidade sem eliminar a foto -->
         <div class="fotop-hero-overlay"></div>
@@ -135,7 +161,7 @@
             </h1>
 
             <!-- CTA: bordado, hover preenche com accent -->
-            <a href="portfolio.html"
+            <a href="pages/portfolio.html"
                class="hero-cta hero-anim-4 gsap-hero-cta">
                 Ver portfólio
             </a>
@@ -163,8 +189,8 @@
         <div class="max-w-[1400px] mx-auto px-5 md:px-8">
 
             <div class="text-center mb-14 md:mb-20 reveal gsap-reveal" data-reveal="up">
-                <a href="casamentos.html" class="section-tag-fotop inline-block hover:scale-105 transition-transform duration-300" style="font-size: 1.125rem; text-decoration: none;">Trabalhos</a>
-                <a href="portfolio.html" class="section-title-fotop block hover:scale-105 transition-transform duration-300" style="font-size: clamp(2rem, 4vw, 3.5rem); text-decoration: none; margin-top: 0.5rem;">Portfólio</a>
+                <a href="pages/casamentos.html" class="section-tag-fotop inline-block hover:scale-105 transition-transform duration-300" style="font-size: 1.125rem; text-decoration: none;">Trabalhos</a>
+                <a href="pages/portfolio.html" class="section-title-fotop block hover:scale-105 transition-transform duration-300" style="font-size: clamp(2rem, 4vw, 3.5rem); text-decoration: none; margin-top: 0.5rem;">Portfólio</a>
             </div>
 
             <!-- Grid assimétrico -->
@@ -172,10 +198,9 @@
 
                 <!-- Card GRANDE: Casamentos — ocupa 2 colunas no desktop -->
                 <div class="portfolio-card portfolio-card--large group reveal gsap-stagger-item"
-                     onclick="app.showSubGallery('weddings')" role="button" aria-label="Ver álbuns de casamento">
-                    <img src="assets/img/portfolio/casamentos/Bianca & Donizete/capa.jpg"
-                         decoding="async" loading="eager"
-                         onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'"
+                     data-action="subgaleria" data-target="weddings" role="button" aria-label="Ver álbuns de casamento">
+                    <img src="assets/img-web/portfolio/casamentos/Bianca & Donizete/capa.jpg"
+                         decoding="async" loading="eager" data-onerror="ocultar"
                          class="portfolio-card-img" alt="Casamentos na Serra">
                     <div class="portfolio-card-overlay"></div>
                     <div class="portfolio-card-content">
@@ -192,10 +217,10 @@
 
                 <!-- Card: Aventura -->
                 <div class="portfolio-card group reveal reveal-delay-1 gsap-stagger-item"
-                     onclick="app.openGallery('adventure')" role="button" aria-label="Ver galeria de aventura">
-                    <img src="assets/img/portfolio/aventura/capa.jpg"
-                         decoding="async" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2003&auto=format&fit=crop'"
+                     data-action="galeria" data-target="adventure" role="button" aria-label="Ver galeria de aventura"
+                     data-requer-foto="assets/img-web/portfolio/aventura/aventura (1).jpg">
+                    <img src="assets/img-web/portfolio/aventura/capa.jpg"
+                         decoding="async" loading="lazy" data-onerror="ocultar"
                          class="portfolio-card-img" alt="Aventura e trilhas">
                     <div class="portfolio-card-overlay"></div>
                     <div class="portfolio-card-content">
@@ -206,10 +231,10 @@
 
                 <!-- Card: Paisagem -->
                 <div class="portfolio-card group reveal reveal-delay-2 gsap-stagger-item"
-                     onclick="app.openGallery('landscapes')" role="button" aria-label="Ver galeria de paisagens">
-                    <img src="assets/img/portfolio/paisagem/capa.jpg"
-                         decoding="async" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop'"
+                     data-action="galeria" data-target="landscapes" role="button" aria-label="Ver galeria de paisagens"
+                     data-requer-foto="assets/img-web/portfolio/paisagem/paisagem (1).jpg">
+                    <img src="assets/img-web/portfolio/paisagem/capa.jpg"
+                         decoding="async" loading="lazy" data-onerror="ocultar"
                          class="portfolio-card-img" alt="Paisagem da Serra">
                     <div class="portfolio-card-overlay"></div>
                     <div class="portfolio-card-content">
@@ -220,10 +245,9 @@
 
                 <!-- Card: Rua -->
                 <div class="portfolio-card group reveal reveal-delay-1 gsap-stagger-item"
-                     onclick="app.openStreet()" role="button" aria-label="Ver galeria de fotografia de rua">
-                    <img src="assets/img/portfolio/rua/capa.jpg"
-                         decoding="async" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'"
+                     data-action="rua" role="button" aria-label="Ver galeria de fotografia de rua">
+                    <img src="assets/img-web/portfolio/rua/capa.jpg"
+                         decoding="async" loading="lazy" data-onerror="ocultar"
                          class="portfolio-card-img" alt="Fotografia de Rua">
                     <div class="portfolio-card-overlay"></div>
                     <div class="portfolio-card-content">
@@ -234,10 +258,9 @@
 
                 <!-- Card: O Olhar -->
                 <div class="portfolio-card group reveal reveal-delay-2 gsap-stagger-item"
-                     onclick="app.openOlhar()" role="button" aria-label="Ver projeto O Olhar">
-                    <img src="assets/img/portfolio/olhar/capa.jpg"
-                         decoding="async" loading="lazy"
-                         onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'"
+                     data-action="olhar" role="button" aria-label="Ver projeto O Olhar">
+                    <img src="assets/img-web/portfolio/olhar/capa.jpg"
+                         decoding="async" loading="lazy" data-onerror="ocultar"
                          class="portfolio-card-img" alt="O Olhar">
                     <div class="portfolio-card-overlay"></div>
                     <div class="portfolio-card-content">
@@ -282,7 +305,7 @@
                     </div>
                     <h3 class="servico-title">Fotografia de Paisagem</h3>
                     <p class="servico-desc">Você sobe a trilha — eu garanto que você desce com imagens que fazem todo mundo perguntar "quem fotografou?". Horário dourado, névoa e ângulos que nenhum celular alcança. A Serra do jeito que ela merece ser eternizada.</p>
-                    <a href="#" onclick="app.openWhatsapp('Olá Vinícius! Vi seu portfólio e gostaria de um orçamento para Fotografia de Paisagem.'); return false;"
+                    <a href="#" data-action="whatsapp" data-msg="Olá Vinícius! Vi seu portfólio e gostaria de um orçamento para Fotografia de Paisagem."
                        class="servico-cta">Solicitar orçamento →</a>
                 </div>
 
@@ -299,7 +322,7 @@
                     </div>
                     <h3 class="servico-title">Cobertura Esportiva</h3>
                     <p class="servico-desc">Cada ponto de virada, cada salto, cada emoção congelada no frame exato. Fotos que valem troféu — para mostrar ao clube, postar nas redes e guardar como prova do que você e seu time foram capazes.</p>
-                    <a href="#" onclick="app.openWhatsapp('Olá Vinícius! Vi seu portfólio e gostaria de um orçamento para Cobertura Esportiva.'); return false;"
+                    <a href="#" data-action="whatsapp" data-msg="Olá Vinícius! Vi seu portfólio e gostaria de um orçamento para Cobertura Esportiva."
                        class="servico-cta">Solicitar orçamento →</a>
                 </div>
 
@@ -318,7 +341,7 @@
                     </div>
                     <h3 class="servico-title">Eventos</h3>
                     <p class="servico-desc">Você vive o momento — eu preservo. Do making of ao brinde final, entrego uma narrativa visual completa que faz você reviver o dia inteiro toda vez que abrir o álbum. Nenhuma história boa merece ficar só na memória.</p>
-                    <a href="#" onclick="app.openWhatsapp('Olá Vinícius! Vi seu portfólio e gostaria de um orçamento para cobertura de Evento.'); return false;"
+                    <a href="#" data-action="whatsapp" data-msg="Olá Vinícius! Vi seu portfólio e gostaria de um orçamento para cobertura de Evento."
                        class="servico-cta">Solicitar orçamento →</a>
                 </div>
 
@@ -335,7 +358,7 @@
                     </div>
                     <h3 class="servico-title">Gestão de Redes Sociais</h3>
                     <p class="servico-desc">Enquanto você foca no seu negócio, eu cuido da sua imagem. Feed com identidade, edição com IA e conteúdo que para o scroll — tudo planejado pra você crescer nas redes sem precisar pensar nisso todo dia.</p>
-                    <a href="#" onclick="app.openWhatsapp('Olá Vinícius! Vi seu portfólio e gostaria de um orçamento para Gestão de Redes Sociais.'); return false;"
+                    <a href="#" data-action="whatsapp" data-msg="Olá Vinícius! Vi seu portfólio e gostaria de um orçamento para Gestão de Redes Sociais."
                        class="servico-cta">Solicitar orçamento →</a>
                 </div>
 
@@ -426,7 +449,7 @@
 
             <!-- CTA embaixo do processo -->
             <div class="text-center mt-14 md:mt-20 reveal">
-                <a href="#contato" onclick="app.scrollToSection('contato'); return false;"
+                <a href="#contato" data-action="scroll" data-target="contato"
                    class="hero-cta" style="display:inline-block;">
                     Começar agora
                 </a>
@@ -452,9 +475,8 @@
                 <!-- Foto com números de impacto -->
                 <div class="lg:col-span-5 reveal gsap-reveal" data-reveal="left">
                     <div class="sobre-foto-container">
-                        <img src="assets/img/sobre/vinicius.jpg"
-                             decoding="async" loading="lazy"
-                             onerror="this.src='https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop'"
+                        <img src="assets/img-web/sobre/vinicius.jpg"
+                             decoding="async" loading="lazy" data-onerror="ocultar"
                              alt="Vinícius Rafael, fotógrafo"
                              class="sobre-foto">
                         <!-- Stats sobrepostos na base da foto -->
@@ -488,7 +510,7 @@
                         <p>Sou Vinícius, 19 anos, de São Bento do Sapucaí. Fotografar a Serra da Mantiqueira não é trabalho pra mim — é uma obsessão territorial. Conheço os horários em que a neblina abraça a Pedra do Baú, os atalhos que nenhum turista descobre e as histórias que dão alma a cada cenário.</p>
                         <p>Especializado em paisagem, trilhas, esportes e eventos, meu olhar combina a poesia visual de quem nasceu nessas montanhas com uma estética cinematográfica moderna. Cada foto é uma prova de que altitude e emoção andam juntas.</p>
                     </div>
-                    <a href="#contato" onclick="app.scrollToSection('contato'); return false;"
+                    <a href="#contato" data-action="scroll" data-target="contato"
                        class="btn-fotop-outline mt-8 inline-block">
                         Vamos conversar
                     </a>
@@ -503,7 +525,17 @@
          DEPOIMENTOS
          3 cards com avaliações reais de clientes
          ============================================================ -->
-    <section id="depoimentos" class="py-20 md:py-32 relative" style="background:#0d0d0b;">
+    <!-- ────────────────────────────────────────────────────────────────
+         SEÇÃO OCULTA — os três depoimentos ainda são texto de exemplo
+         ("Depoimento do cliente 1 — adicione aqui o texto real").
+         Publicar isso destrói a confiança exatamente no momento da decisão:
+         quem lê percebe na hora que o site não tem cliente nenhum.
+
+         PARA REATIVAR: peça 3 depoimentos reais no WhatsApp (resolve em um
+         dia), substitua os textos e os nomes abaixo, e apague o
+         style="display:none" desta tag <section>.
+         ──────────────────────────────────────────────────────────────── -->
+    <section id="depoimentos" class="py-20 md:py-32 relative" style="background:#0d0d0b; display:none;">
         <div class="absolute top-0 left-0 w-full h-px"
              style="background:linear-gradient(90deg,transparent,rgba(139,111,71,0.35),transparent);"></div>
 
@@ -623,7 +655,7 @@
                                class="contato-social-link" aria-label="Instagram @viniciusrafaelgs">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" onclick="app.openWhatsapp(); return false;"
+                            <a href="#" data-action="whatsapp"
                                class="contato-social-link" aria-label="WhatsApp">
                                 <i class="fab fa-whatsapp"></i>
                             </a>
@@ -651,8 +683,8 @@
             <p id="frase-footer" class="text-xs font-light italic mb-8 max-w-xs mx-auto leading-relaxed px-4" style="color:#7a7870;"></p>
             <div class="flex justify-center space-x-8 mb-8 text-xl">
                 <a href="https://instagram.com/viniciusrafaelgs" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-instagram"></i></a>
-                <a href="#" onclick="app.openWhatsapp('Oi Vinícius! Vi seu site e quero saber mais.'); return false;" class="footer-social"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:contato@fotop.com.br" class="footer-social"><i class="far fa-envelope"></i></a>
+                <a href="#" data-action="whatsapp" data-msg="Oi Vinícius! Vi seu site e quero saber mais." class="footer-social"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:contato@viniciusrafael.fot.br" class="footer-social"><i class="far fa-envelope"></i></a>
             </div>
             <p style="font-size:0.625rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(122,120,112,0.35);">&copy; 2026 Vinícius Rafael. Todos os direitos reservados.</p>
         </div>
@@ -668,7 +700,7 @@
      Desktop hover: pill expande para mostrar texto.
      ============================================================ -->
 <div id="whatsapp-fab" class="whatsapp-fab" aria-label="Solicitar orçamento via WhatsApp">
-    <a href="#" onclick="app.openWhatsapp('Olá Vinícius! Vi seu portfólio e gostaria de um orçamento.'); return false;"
+    <a href="#" data-action="whatsapp" data-msg="Olá Vinícius! Vi seu portfólio e gostaria de um orçamento."
        class="whatsapp-fab-link">
         <span class="whatsapp-fab-ring"></span>
         <span class="whatsapp-fab-icon">
@@ -689,7 +721,7 @@
 <div id="wedding-selector" class="hidden-content pt-32 pb-20 md:py-40 min-h-screen" style="background:#0d0d0b;">
     <div class="max-w-[1400px] mx-auto px-5 md:px-8 text-center">
         <div class="mb-12 md:mb-20">
-            <button onclick="app.showSection('home')" class="text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group"
+            <button data-action="section" data-target="home" class="text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group"
                     style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">
                 <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Voltar
             </button>
@@ -712,11 +744,11 @@
             <p id="gallery-desc" class="text-sm md:text-base font-light max-w-2xl mx-auto px-4" style="color:rgba(240,237,230,0.5);"></p>
         </div>
         <div id="wedding-nav-buttons" class="hidden flex flex-wrap justify-center gap-4 md:gap-8 mb-16 px-2">
-            <button onclick="document.getElementById('pre-wedding-section').scrollIntoView({behavior:'smooth'})"
+            <button data-action="rolar-ate" data-target="pre-wedding-section"
                     class="text-xs uppercase tracking-widest pb-1 border-b border-transparent transition-all"
                     style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.6);"
                     data-hover-color="true">Pre Wedding</button>
-            <button onclick="document.getElementById('ceremony-section').scrollIntoView({behavior:'smooth'})"
+            <button data-action="rolar-ate" data-target="ceremony-section"
                     class="text-xs uppercase tracking-widest pb-1 border-b border-transparent transition-all"
                     style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.6);"
                     data-hover-color="true">Cerimônia</button>
@@ -745,24 +777,20 @@
 <div id="olhar-view" class="hidden-content min-h-screen" style="background:#0d0d0b;">
     <div class="relative h-[70vh] md:h-screen flex flex-col justify-end pb-16 md:pb-32 overflow-hidden">
         <div class="olhar-slideshow absolute inset-0 z-0">
-            <img src="assets/img/olhar/slides/slide (1).jpg" class="olhar-slide active" alt="" decoding="async" loading="lazy"
-                 onerror="this.src='https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=2070&auto=format&fit=crop'">
-            <img src="assets/img/olhar/slides/slide (2).jpg" class="olhar-slide" alt="" decoding="async" loading="lazy"
-                 onerror="this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2074&auto=format&fit=crop'">
-            <img src="assets/img/olhar/slides/slide (3).jpg" class="olhar-slide" alt="" decoding="async" loading="lazy"
-                 onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2074&auto=format&fit=crop'">
-            <img src="assets/img/olhar/slides/slide (4).jpg" class="olhar-slide" alt="" decoding="async" loading="lazy"
-                 onerror="this.src='https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070&auto=format&fit=crop'">
+            <img src="assets/img-web/olhar/slides/slide (1).jpg" class="olhar-slide active" alt="" decoding="async" loading="lazy" data-onerror="ocultar">
+            <img src="assets/img-web/olhar/slides/slide (2).jpg" class="olhar-slide" alt="" decoding="async" loading="lazy" data-onerror="ocultar">
+            <img src="assets/img-web/olhar/slides/slide (3).jpg" class="olhar-slide" alt="" decoding="async" loading="lazy" data-onerror="ocultar">
+            <img src="assets/img-web/olhar/slides/slide (4).jpg" class="olhar-slide" alt="" decoding="async" loading="lazy" data-onerror="ocultar">
         </div>
         <div class="absolute inset-0 hero-overlay z-10"></div>
         <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
-            <button onclick="app.showSection('home')" class="text-xs uppercase tracking-widest transition-colors mb-8 md:mb-12 flex items-center justify-center mx-auto group"
+            <button data-action="section" data-target="home" class="text-xs uppercase tracking-widest transition-colors mb-8 md:mb-12 flex items-center justify-center mx-auto group"
                     style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.7);">
                 <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Início
             </button>
             <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tighter mb-6 leading-none" style="color:#f0ede6;">O Olhar</h2>
             <p class="text-sm md:text-lg font-light leading-relaxed mb-8 md:mb-12 drop-shadow-lg px-2" style="color:rgba(240,237,230,0.8);">Fotografia não é sobre o que se vê, mas como se sente. Um recorte íntimo e autoral do mundo ao meu redor.</p>
-            <button onclick="document.getElementById('olhar-grid-section').scrollIntoView({behavior:'smooth'})"
+            <button data-action="rolar-ate" data-target="olhar-grid-section"
                     class="text-xs uppercase tracking-widest flex flex-col items-center mx-auto transition-colors"
                     style="font-family:'DM Mono',monospace; color:#8B6F47;">
                 <span>Explorar</span>
@@ -779,24 +807,20 @@
 <div id="street-view" class="hidden-content min-h-screen" style="background:#0d0d0b;">
     <div class="relative h-[70vh] md:h-screen flex flex-col justify-end pb-16 md:pb-32 overflow-hidden">
         <div class="street-slideshow absolute inset-0 z-0">
-            <img src="assets/img/rua/slides/slide (1).jpg" class="street-slide active" alt="" decoding="async" loading="lazy"
-                 onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2013&auto=format&fit=crop'">
-            <img src="assets/img/rua/slides/slide (2).jpg" class="street-slide" alt="" decoding="async" loading="lazy"
-                 onerror="this.src='https://images.unsplash.com/photo-1517732306149-e8f829eb588a?q=80&w=2072&auto=format&fit=crop'">
-            <img src="assets/img/rua/slides/slide (3).jpg" class="street-slide" alt="" decoding="async" loading="lazy"
-                 onerror="this.src='https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop'">
-            <img src="assets/img/rua/slides/slide (4).jpg" class="street-slide" alt="" decoding="async" loading="lazy"
-                 onerror="this.src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop'">
+            <img src="assets/img-web/rua/slides/slide (1).jpg" class="street-slide active" alt="" decoding="async" loading="lazy" data-onerror="ocultar">
+            <img src="assets/img-web/rua/slides/slide (2).jpg" class="street-slide" alt="" decoding="async" loading="lazy" data-onerror="ocultar">
+            <img src="assets/img-web/rua/slides/slide (3).jpg" class="street-slide" alt="" decoding="async" loading="lazy" data-onerror="ocultar">
+            <img src="assets/img-web/rua/slides/slide (4).jpg" class="street-slide" alt="" decoding="async" loading="lazy" data-onerror="ocultar">
         </div>
         <div class="absolute inset-0 hero-overlay z-10"></div>
         <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
-            <button onclick="app.showSection('home')" class="text-xs uppercase tracking-widest transition-colors mb-8 md:mb-12 flex items-center justify-center mx-auto group"
+            <button data-action="section" data-target="home" class="text-xs uppercase tracking-widest transition-colors mb-8 md:mb-12 flex items-center justify-center mx-auto group"
                     style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.7);">
                 <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Início
             </button>
             <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tighter mb-6 leading-none" style="color:#f0ede6;">Rua</h2>
             <p class="text-sm md:text-lg font-light leading-relaxed mb-8 md:mb-12 drop-shadow-lg px-2" style="color:rgba(240,237,230,0.8);">A vida urbana em sua crueza e poesia. Fragmentos do cotidiano congelados em frações de segundo.</p>
-            <button onclick="document.getElementById('street-grid-section').scrollIntoView({behavior:'smooth'})"
+            <button data-action="rolar-ate" data-target="street-grid-section"
                     class="text-xs uppercase tracking-widest flex flex-col items-center mx-auto transition-colors"
                     style="font-family:'DM Mono',monospace; color:#8B6F47;">
                 <span>Caminhar</span>
@@ -813,7 +837,7 @@
 <div id="prices-view" class="hidden-content pt-32 pb-20 md:py-40 min-h-screen" style="background:#0d0d0b;">
     <div class="max-w-6xl mx-auto px-5 md:px-8">
         <div class="text-center mb-16 md:mb-24">
-            <button onclick="app.showSection('home')" class="text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group"
+            <button data-action="section" data-target="home" class="text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group"
                     style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">
                 <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Voltar
             </button>
@@ -835,7 +859,7 @@
                     <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Consultoria de locação</li>
                     <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Galeria online privada</li>
                 </ul>
-                <a href="#" onclick="app.openWhatsapp('Olá! Gostaria de saber mais sobre o ensaio de Casal/Retrato.'); return false;"
+                <a href="#" data-action="whatsapp" data-msg="Olá! Gostaria de saber mais sobre o ensaio de Casal/Retrato."
                    class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all"
                    style="font-family:'DM Mono',monospace; border:1px solid rgba(240,237,230,0.2); color:#f0ede6;">Solicitar</a>
             </div>
@@ -854,7 +878,7 @@
                     <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Guiamento em trilhas</li>
                     <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Slideshow emocional</li>
                 </ul>
-                <a href="#" onclick="app.openWhatsapp('Olá! Gostaria de saber mais sobre o Pre Wedding.'); return false;"
+                <a href="#" data-action="whatsapp" data-msg="Olá! Gostaria de saber mais sobre o Pre Wedding."
                    class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all font-medium"
                    style="font-family:'DM Mono',monospace; background:#8B6F47; color:#0d0d0b;">Reservar Data</a>
             </div>
@@ -871,7 +895,7 @@
                     <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 500+ fotos editadas</li>
                     <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Álbum Fine Art (opção)</li>
                 </ul>
-                <a href="#" onclick="app.openWhatsapp('Olá! Gostaria de fazer um orçamento para meu casamento.'); return false;"
+                <a href="#" data-action="whatsapp" data-msg="Olá! Gostaria de fazer um orçamento para meu casamento."
                    class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all"
                    style="font-family:'DM Mono',monospace; border:1px solid rgba(240,237,230,0.2); color:#f0ede6;">Conversar</a>
             </div>
@@ -894,5 +918,6 @@
 <script src="assets/js/gallery.js"></script>
 <script src="assets/js/animations.js"></script>
 <script src="assets/js/main.js"></script>
+  <script src="assets/js/acoes.js" defer></script>
 </body>
 </html>

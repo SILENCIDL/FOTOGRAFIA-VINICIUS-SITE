@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Troque SEU-DOMINIO pelo domínio real do site
-Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml
+# Troque viniciusrafael.fot.br pelo domínio real do site
+Sitemap: https://viniciusrafael.fot.br/sitemap.xml

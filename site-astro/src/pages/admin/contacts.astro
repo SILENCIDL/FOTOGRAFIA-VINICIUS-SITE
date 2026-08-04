@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSession, requireAuth } from '../../lib/auth';
+import { db } from '../../db';
+import { contacts } from '../../db/schema';
+import { desc } from 'drizzle-orm';
+
+const session = await getSession(Astro.cookies);
+try {
+  requireAuth(session, ['admin', 'editor']);
+} catch {
+  return Astro.redirect('/admin/login');
+}
+
+const rows = await db.query.contacts.findMany({
+  orderBy: [desc(contacts.createdAt)],
+  limit: 200,
+});
+---
+
+<BaseLayout title="Admin · Mensagens">
+  <main class="min-h-screen px-5 py-24" style="background:#0d0d0b; color:#f0ede6;">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-serif">Mensagens de contato</h1>
+        <a href="/admin" class="text-[#8B6F47] hover:underline text-sm">← Voltar ao dashboard</a>
+      </div>
+
+      <div class="space-y-4">
+        {rows.length === 0 && <p class="opacity-60">Nenhuma mensagem recebida.</p>}
+        {rows.map((c) => (
+          <div class="p-5 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+            <div class="flex flex-wrap items-center gap-3 mb-2 text-sm opacity-70">
+              <span>{c.name}</span>
+              <span>•</span>
+              <a href={`mailto:${c.email}`} class="text-[#8B6F47] hover:underline">{c.email}</a>
+              {c.phone && <><span>•</span><span>{c.phone}</span></>}
+              <span>•</span>
+              <span>{new Date(c.createdAt).toLocaleString('pt-BR')}</span>
+              {!c.read && <span class="ml-auto text-xs px-2 py-1 rounded bg-[#8B6F47] text-[#0d0d0b]">Nova</span>}
+            </div>
+            <p class="whitespace-pre-line">{c.message}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+</BaseLayout>
