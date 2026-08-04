@@ -30,7 +30,7 @@ const rows = clientId
         <a href="/admin" class="text-[#8B6F47] hover:underline text-sm">← Voltar ao dashboard</a>
       </div>
 
-      <form id="session-form" class="mb-12 p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+      <form id="session-form" data-endpoint="/api/admin/sessions" data-msg="form-msg" data-ok="Sessão criada!" data-envio="json" data-reload="800" class="mb-12 p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
         <h2 class="text-xl font-serif mb-4">Nova sessão / galeria privada</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
           <div>
@@ -68,7 +68,7 @@ const rows = clientId
       {clientId && (
         <div class="mb-8 p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
           <h3 class="font-serif mb-4">Upload de arquivos</h3>
-          <form id="upload-form" class="flex flex-col md:flex-row gap-4 items-start">
+          <form id="upload-form" data-endpoint="/api/admin/upload" data-msg="upload-msg" data-ok="Arquivo enviado!" data-envio="form" class="flex flex-col md:flex-row gap-4 items-start">
             <input type="hidden" name="sessionId" value={clientId} />
             <input type="file" name="file" required accept="image/*,.pdf" class="text-sm" />
             <button type="submit" class="px-4 py-2 rounded bg-[#8B6F47] text-[#0d0d0b] text-sm font-medium">Enviar</button>
@@ -92,56 +92,7 @@ const rows = clientId
     </div>
   </main>
 
-  <script>
-    const sessionForm = document.getElementById('session-form') as HTMLFormElement;
-    const sessionMsg = document.getElementById('form-msg') as HTMLParagraphElement;
-
-    sessionForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      sessionMsg.classList.add('hidden');
-
-      const formData = new FormData(sessionForm);
-      const payload = Object.fromEntries(formData.entries());
-
-      const res = await fetch('/api/admin/sessions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-
-      if (res.ok && data.success) {
-        sessionMsg.textContent = 'Sessão criada!';
-        sessionMsg.className = 'mt-3 text-sm text-green-400';
-        sessionForm.reset();
-        setTimeout(() => window.location.reload(), 800);
-      } else {
-        sessionMsg.textContent = data.error || 'Erro ao criar sessão.';
-        sessionMsg.className = 'mt-3 text-sm text-red-400';
-      }
-      sessionMsg.classList.remove('hidden');
-    });
-
-    const uploadForm = document.getElementById('upload-form') as HTMLFormElement | null;
-    const uploadMsg = document.getElementById('upload-msg') as HTMLParagraphElement | null;
-
-    uploadForm?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      uploadMsg?.classList.add('hidden');
-
-      const formData = new FormData(uploadForm);
-      const res = await fetch('/api/admin/upload', { method: 'POST', body: formData });
-      const data = await res.json();
-
-      if (res.ok && data.success) {
-        uploadMsg!.textContent = 'Arquivo enviado!';
-        uploadMsg!.className = 'mt-3 text-sm text-green-400';
-        uploadForm.reset();
-      } else {
-        uploadMsg!.textContent = data.error || 'Erro no upload.';
-        uploadMsg!.className = 'mt-3 text-sm text-red-400';
-      }
-      uploadMsg?.classList.remove('hidden');
-    });
-  </script>
+  {/* is:inline + src: sem isso o Astro embute o codigo no HTML e a CSP
+      (script-src 'self') bloqueia — os formularios ficam mudos. */}
+  <script is:inline src="/assets/js/admin-forms.js" defer></script>
 </BaseLayout>

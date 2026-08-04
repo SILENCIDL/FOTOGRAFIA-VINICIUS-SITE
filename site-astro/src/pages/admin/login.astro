@@ -33,6 +33,26 @@ if (session) {
             class="w-full px-4 py-3 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 text-[#f0ede6] focus:border-[#8B6F47] outline-none"
           />
         </div>
+        {/* escondido até o servidor dizer que esta conta tem 2FA ligado */}
+        <div id="campo-totp" class="hidden">
+          <label class="block text-sm mb-1" style="color:rgba(240,237,230,0.7);">
+            Código do aplicativo
+          </label>
+          <input
+            type="text"
+            name="totp"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            pattern="[0-9]*"
+            maxlength="9"
+            placeholder="000000"
+            class="w-full px-4 py-3 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 text-[#f0ede6] text-center tracking-[0.4em] focus:border-[#8B6F47] outline-none"
+          />
+          <p class="mt-1 text-xs" style="color:rgba(240,237,230,0.45);">
+            6 dígitos do autenticador, ou um código de recuperação.
+          </p>
+        </div>
+
         <button
           type="submit"
           class="w-full py-3 rounded font-medium tracking-wider uppercase text-sm transition-colors"
@@ -46,38 +66,7 @@ if (session) {
     </div>
   </main>
 
-  <script>
-    const form = document.getElementById('login-form') as HTMLFormElement;
-    const errorEl = document.getElementById('login-error') as HTMLParagraphElement;
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      errorEl.classList.add('hidden');
-
-      const formData = new FormData(form);
-      const payload = {
-        email: formData.get('email'),
-        password: formData.get('password'),
-      };
-
-      try {
-        const res = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-
-        const data = await res.json();
-        if (res.ok && data.success) {
-          window.location.href = '/admin';
-        } else {
-          errorEl.textContent = data.error || 'Erro ao entrar.';
-          errorEl.classList.remove('hidden');
-        }
-      } catch {
-        errorEl.textContent = 'Erro de conexão.';
-        errorEl.classList.remove('hidden');
-      }
-    });
-  </script>
+  {/* is:inline + src: sem isso o Astro embute o codigo no HTML e a CSP
+      (script-src 'self') bloqueia — o formulario para de enviar. */}
+  <script is:inline src="/assets/js/admin-login.js" defer></script>
 </BaseLayout>

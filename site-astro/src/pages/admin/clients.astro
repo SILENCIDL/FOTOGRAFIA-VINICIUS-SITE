@@ -26,7 +26,7 @@ const rows = await db.query.clients.findMany({
         <a href="/admin" class="text-[#8B6F47] hover:underline text-sm">← Voltar ao dashboard</a>
       </div>
 
-      <form id="client-form" class="mb-12 p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+      <form id="client-form" data-endpoint="/api/admin/clients" data-msg="form-msg" data-ok="Cliente criado com sucesso!" data-envio="json" data-reload="800" class="mb-12 p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
         <h2 class="text-xl font-serif mb-4">Novo cliente</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
           <div>
@@ -65,34 +65,7 @@ const rows = await db.query.clients.findMany({
     </div>
   </main>
 
-  <script>
-    const form = document.getElementById('client-form') as HTMLFormElement;
-    const msg = document.getElementById('form-msg') as HTMLParagraphElement;
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      msg.classList.add('hidden');
-
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData.entries());
-
-      const res = await fetch('/api/admin/clients', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-
-      if (res.ok && data.success) {
-        msg.textContent = 'Cliente criado com sucesso!';
-        msg.className = 'mt-3 text-sm text-green-400';
-        form.reset();
-        setTimeout(() => window.location.reload(), 800);
-      } else {
-        msg.textContent = data.error || 'Erro ao salvar.';
-        msg.className = 'mt-3 text-sm text-red-400';
-      }
-      msg.classList.remove('hidden');
-    });
-  </script>
+  {/* is:inline + src: sem isso o Astro embute o codigo no HTML e a CSP
+      (script-src 'self') bloqueia — os formularios ficam mudos. */}
+  <script is:inline src="/assets/js/admin-forms.js" defer></script>
 </BaseLayout>

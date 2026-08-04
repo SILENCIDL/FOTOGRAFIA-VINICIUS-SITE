@@ -103,12 +103,88 @@ ok  sem cookie não entra
 completo — senha → cookie → foto servida — não foi executado, porque exige um
 Postgres que ainda não existe em lugar nenhum. `npm run build` passa.
 
+## Segunda rodada — mesmo dia
+
+Os itens que ficaram em aberto acima foram fechados, e a varredura das peças
+que ainda não tinham sido lidas (upload, storage, layout) achou mais quatro.
+
+### 5. O Astro embutia os scripts no HTML — e a CSP os bloqueava
+
+`admin/login`, `galeria/[id]`, `admin/clients`, `admin/sessions` e
+`admin/sessions/[id]` tinham `<script>` dentro do `.astro`. O Astro **embute**
+script pequeno direto no HTML (`"type":"inline"` no manifest), e a CSP do
+`BaseLayout` traz `script-src 'self'`, sem `'unsafe-inline'`.
+
+Ou seja: com a política valendo, **o botão de login do admin e o de senha da
+galeria não fariam nada**. A proteção e a funcionalidade se anulavam — mesma
+armadilha que o `corrigir-2-csp.py` já tinha desarmado no site estático.
+
+**Corrigido**: os cinco scripts saíram para `public/assets/js/` e são
+carregados com `is:inline src`. O manifest agora tem zero script embutido.
+
+### 6. O upload confiava no rótulo, não no arquivo
+
+`isAllowedMimeType(file.type)` — e `file.type` é texto que o remetente
+escreve. Bastava rotular qualquer coisa como `image/jpeg`. Pior: a extensão
+gravada no disco vinha de `extname(file.name)`, também escolhida por quem
+envia.
+
+**Corrigido**: o tipo agora sai da **assinatura de bytes** do próprio arquivo;
+o nome e a extensão são gerados por nós a partir do tipo detectado. Executável,
+HTML e SVG disfarçados de imagem são recusados.
+
+### 7. `storageKey` virava caminho no disco sem conferência
+
+Hoje ela é sempre gerada por nós, então não havia exploração real — mas
+qualquer mudança futura que aceitasse a chave de outra origem viraria leitura
+de arquivo arbitrário, e nada no código avisaria.
+
+**Corrigido**: formato conferido (`32 hex + extensão conhecida`) antes de
+qualquer `join` de caminho.
+
+### 8. O erro do upload voltava cru para o cliente
+
+`errorResponse(err.message, 500)` devolvia caminho de disco e mensagem do
+Postgres. **Corrigido**: recusa por tipo/tamanho continua explicada; o resto
+vira "Erro interno." e fica no log.
+
+### E os dois que estavam em aberto
+
+- **2FA implementado** (`src/lib/totp.ts`), sem dependência nova, conferido
+  contra os vetores oficiais da RFC 6238 — o que garante que funciona com
+  Google Authenticator, Authy e 1Password sem precisar testar num celular.
+  Cadastro em `/admin/seguranca`, com 8 códigos de recuperação de uso único.
+- **`src/middleware.ts` criado**: `/admin/*` e `/api/admin/*` exigem sessão
+  antes de a rota rodar, e toda resposta recebe os headers de segurança que a
+  `<meta>` não consegue dar.
+
+### Verificação desta rodada
+
+`npm test` — 43 checagens, todas passando, sem precisar de banco.
+
+E o middleware foi testado no servidor de verdade (build + `node
+dist/server/entry.mjs`):
+
+| Requisição | Resultado |
+|---|---|
+| `GET /admin` sem sessão | 302 → `/admin/login` |
+| `GET /admin/seguranca` sem sessão | 302 → `/admin/login` |
+| `POST /api/admin/sessions` sem sessão | 401 JSON |
+| `POST /api/admin/2fa` sem sessão | 401 JSON |
+| `GET /api/admin/rota-que-nao-existe` | **401**, não 404 |
+| `GET /admin/login` | 200 |
+
+A penúltima linha é a que importa: rota que **não existe** já responde 401.
+Isso prova que a barreira está antes do roteamento — uma rota nova criada sem
+`requireAuth` nasce fechada.
+
 ## O que continua em aberto
 
-- **2FA não existe.** A coluna `totpSecret` está no schema e nenhuma linha de
-  código a usa. Hoje o admin é só e-mail + senha.
-- **Sem `middleware.ts`.** A proteção funciona porque cada rota se protege.
-  Funciona hoje; falha no dia em que alguém criar uma rota e esquecer. Um
-  middleware casando `/admin/*` e `/api/admin/*` seria rede de segurança.
-- **Nada disso está publicado.** Falta decidir onde hospedar e qual Postgres
-  usar — ver [`../plano-execucao.md`](../plano-execucao.md).
+- **Nada disso está publicado, nem foi rodado contra um banco.** O fluxo
+  completo — login com 2FA, senha de galeria, foto entregue — nunca foi
+  percorrido ponta a ponta, porque não existe Postgres em lugar nenhum ainda
+  (e não há Docker nesta máquina para subir um).
+- Falta decidir onde hospedar e qual Postgres usar — ver
+  [`../plano-execucao.md`](../plano-execucao.md).
+- `cdn.tailwindcss.com` no site estático continua sendo um compilador rodando
+  no navegador do visitante, em produção.

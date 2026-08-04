@@ -18,7 +18,14 @@ export const users = pgTable(
     role: text('role', { enum: ['admin', 'editor', 'viewer'] })
       .notNull()
       .default('editor'),
+    // segredo TOTP guardado CRIPTOGRAFADO (encrypt/decrypt de lib/crypto.ts):
+    // dump do banco sem a APP_ENCRYPTION_KEY não serve para gerar códigos
     totpSecret: text('totp_secret'),
+    // só depois de confirmar um código o 2FA passa a ser exigido — senão um
+    // cadastro pela metade tranca o dono para fora
+    totpEnabledAt: timestamp('totp_enabled_at', { withTimezone: true }),
+    // JSON com os hashes dos códigos de recuperação; cada um serve uma vez
+    totpRecoveryCodes: text('totp_recovery_codes'),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => ({

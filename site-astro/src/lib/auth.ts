@@ -3,7 +3,8 @@ import type { AstroCookies } from 'astro';
 import { db } from '../db';
 import { eq } from 'drizzle-orm';
 import { users, type User } from '../db/schema';
-import { hashPassword, verifyPassword } from './crypto';
+import { hashPassword, verifyPassword, decrypt } from './crypto';
+import { verificarCodigo } from './totp';
 
 const SESSION_COOKIE = '__session';
 const JWT_ALG = 'HS256';
@@ -42,6 +43,46 @@ export async function authenticateUser(
   const valid = await verifyPassword(password, user.passwordHash);
   if (!valid) return null;
   return { id: user.id, email: user.email, role: user.role };
+}
+
+export type ResultadoSegundoFator = 'DISPENSADO' | 'OK' | 'FALTA_CODIGO' | 'CODIGO_INVALIDO';
+
+/**
+ * Segundo fator, depois de a senha já ter sido conferida.
+ *
+ * Aceita o código do aplicativo ou um código de recuperação — e o de
+ * recuperação é queimado no uso, para que um papel fotografado não vire
+ * chave permanente.
+ */
+export async function verificarSegundoFator(
+  email: string,
+  codigo?: string
+): Promise<ResultadoSegundoFator> {
+  const user = await db.query.users.findFirst({
+    where: eq(users.email, email.toLowerCase().trim()),
+  });
+
+  // 2FA só vale depois de confirmado; cadastro pela metade não tranca ninguém
+  if (!user || !user.totpEnabledAt || !user.totpSecret) return 'DISPENSADO';
+  if (!codigo) return 'FALTA_CODIGO';
+
+  const segredo = decrypt(user.totpSecret);
+  if (verificarCodigo(segredo, codigo)) return 'OK';
+
+  // não bateu como TOTP: pode ser código de recuperação
+  const hashes: string[] = user.totpRecoveryCodes ? JSON.parse(user.totpRecoveryCodes) : [];
+  for (const hash of hashes) {
+    if (await verifyPassword(codigo.trim().toUpperCase(), hash)) {
+      const restantes = hashes.filter((h) => h !== hash);
+      await db
+        .update(users)
+        .set({ totpRecoveryCodes: JSON.stringify(restantes) })
+        .where(eq(users.id, user.id));
+      return 'OK';
+    }
+  }
+
+  return 'CODIGO_INVALIDO';
 }
 
 export async function createSession(cookies: AstroCookies, user: SessionUser): Promise<void> {

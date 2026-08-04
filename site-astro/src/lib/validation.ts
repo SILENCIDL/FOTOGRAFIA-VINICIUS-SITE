@@ -3,6 +3,8 @@ import { z } from 'zod';
 export const loginSchema = z.object({
   email: z.string().email('E-mail inválido.').max(255),
   password: z.string().min(8, 'Senha deve ter no mínimo 8 caracteres.').max(128),
+  // 6 dígitos do autenticador ou um código de recuperação (XXXXX-XXXXX)
+  totp: z.string().max(20).optional(),
 });
 
 export const contactSchema = z.object({

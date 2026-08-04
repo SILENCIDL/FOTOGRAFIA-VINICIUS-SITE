@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { authenticateUser, createSession } from '../../../lib/auth';
+import { authenticateUser, createSession, verificarSegundoFator } from '../../../lib/auth';
 import { loginSchema } from '../../../lib/validation';
 import { rateLimitByIp } from '../../../lib/rateLimit';
 import { errorResponse, getClientIp, jsonResponse, logAction } from '../../../lib/api';
@@ -22,6 +22,24 @@ export const POST: APIRoute = async (context) => {
     if (!user) {
       await logAction(context, 'LOGIN_FAILED', `email:${parsed.data.email}`);
       return errorResponse('E-mail ou senha inválidos.', 401);
+    }
+
+    const segundoFator = await verificarSegundoFator(parsed.data.email, parsed.data.totp);
+
+    if (segundoFator === 'FALTA_CODIGO') {
+      // `code` avisa a tela para revelar o campo do código em vez de acusar
+      // credencial errada — quem acertou e-mail e senha não deve ser mandado
+      // de volta ao começo sem entender o motivo
+      await logAction(context, 'LOGIN_TOTP_REQUERIDO', `user:${user.id}`, user.id);
+      return jsonResponse(
+        { success: false, code: 'TOTP_REQUERIDO', error: 'Digite o código do aplicativo autenticador.' },
+        401
+      );
+    }
+
+    if (segundoFator === 'CODIGO_INVALIDO') {
+      await logAction(context, 'LOGIN_TOTP_FALHOU', `user:${user.id}`, user.id);
+      return errorResponse('Código inválido.', 401);
     }
 
     await createSession(context.cookies, user);

@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSession } from '../../lib/auth';
+import { db } from '../../db';
+import { users } from '../../db/schema';
+import { eq } from 'drizzle-orm';
+
+// o middleware já barra quem não tem sessão; aqui só precisamos de quem é
+const session = await getSession(Astro.cookies);
+const user = await db.query.users.findFirst({ where: eq(users.id, session!.id) });
+const ativo = !!user?.totpEnabledAt;
+---
+
+<BaseLayout title="Admin · Segurança">
+  <main class="min-h-screen px-5 py-24" style="background:#0d0d0b; color:#f0ede6;">
+    <div class="max-w-2xl mx-auto">
+      <div class="flex items-center justify-between mb-10">
+        <h1 class="text-3xl font-serif">Segurança</h1>
+        <a href="/admin" class="text-sm text-[#8B6F47] hover:underline">← Painel</a>
+      </div>
+
+      <section class="p-6 rounded-lg border border-[#8B6F47]/30" style="background:#1a1915;">
+        <h2 class="text-xl font-serif mb-2">Verificação em duas etapas</h2>
+        <p class="text-sm mb-6" style="color:rgba(240,237,230,0.7);">
+          Com isso ligado, saber sua senha deixa de ser suficiente para entrar:
+          é preciso também o código que só o seu celular gera.
+        </p>
+
+        <p class="mb-6 text-sm">
+          Estado:
+          <strong class={ativo ? 'text-green-400' : 'text-yellow-400'}>
+            {ativo ? 'ligada' : 'desligada'}
+          </strong>
+        </p>
+
+        {!ativo && (
+          <div>
+            <button id="btn-iniciar" type="button"
+              class="py-3 px-6 rounded font-medium tracking-wider uppercase text-sm"
+              style="background:#8B6F47; color:#0d0d0b;">
+              Ligar
+            </button>
+
+            <div id="passo-cadastro" class="hidden mt-8">
+              <p class="text-sm mb-3" style="color:rgba(240,237,230,0.7);">
+                1. No aplicativo autenticador (Google Authenticator, Authy, 1Password),
+                escolha “adicionar conta manualmente” e digite esta chave:
+              </p>
+              <code id="segredo" class="block p-4 rounded text-center tracking-[0.2em] break-all mb-2"
+                style="background:#0d0d0b; color:#8B6F47;"></code>
+              <p class="text-xs mb-6" style="color:rgba(240,237,230,0.45);">
+                Endereço completo, caso seu app aceite colar:
+                <span id="uri" class="break-all"></span>
+              </p>
+
+              <p class="text-sm mb-3" style="color:rgba(240,237,230,0.7);">
+                2. Digite o código de 6 dígitos que apareceu, para confirmar que deu certo:
+              </p>
+              <form id="form-confirmar" class="flex gap-3">
+                <input type="text" name="codigo" inputmode="numeric" pattern="[0-9]*"
+                  maxlength="6" required placeholder="000000"
+                  class="flex-1 px-4 py-3 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 text-center tracking-[0.4em] outline-none focus:border-[#8B6F47]" />
+                <button type="submit" class="py-3 px-6 rounded font-medium uppercase text-sm"
+                  style="background:#8B6F47; color:#0d0d0b;">Confirmar</button>
+              </form>
+            </div>
+
+            <div id="passo-recuperacao" class="hidden mt-8">
+              <p class="text-sm mb-3 text-green-400">
+                Pronto — a verificação em duas etapas está ligada.
+              </p>
+              <p class="text-sm mb-3" style="color:rgba(240,237,230,0.7);">
+                <strong>Guarde estes códigos agora</strong>, fora do celular. Eles são a
+                única forma de entrar se você perder o aparelho, cada um serve uma vez, e
+                esta é a única vez que eles aparecem.
+              </p>
+              <pre id="codigos" class="p-4 rounded text-sm leading-7"
+                style="background:#0d0d0b; color:#8B6F47;"></pre>
+            </div>
+          </div>
+        )}
+
+        {ativo && (
+          <form id="form-desligar" class="flex flex-col gap-3 max-w-sm">
+            <label class="text-sm" style="color:rgba(240,237,230,0.7);">
+              Para desligar, confirme sua senha:
+            </label>
+            <input type="password" name="senha" required minlength="8"
+              class="px-4 py-3 rounded bg-[#0d0d0b] border border-[#8B6F47]/40 outline-none focus:border-[#8B6F47]" />
+            <button type="submit" class="py-3 px-6 rounded font-medium uppercase text-sm border border-red-400/50 text-red-400">
+              Desligar
+            </button>
+          </form>
+        )}
+
+        <p id="msg-2fa" class="mt-4 text-sm hidden"></p>
+      </section>
+    </div>
+  </main>
+
+  {/* is:inline + src: sem isso o Astro embute o codigo no HTML e a CSP
+      (script-src 'self') bloqueia. */}
+  <script is:inline src="/assets/js/admin-2fa.js" defer></script>
+</BaseLayout>

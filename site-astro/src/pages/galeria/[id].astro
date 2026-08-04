@@ -81,27 +81,7 @@ if (sessionRow && !expirada) {
     </div>
   </main>
 
-  <script>
-    const form = document.getElementById('gallery-form') as HTMLFormElement | null;
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData.entries());
-
-      const res = await fetch('/api/gallery/access', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (res.ok) {
-        window.location.reload();
-      } else {
-        const data = await res.json().catch(() => ({ error: 'Erro ao acessar.' }));
-        const url = new URL(window.location.href);
-        url.searchParams.set('error', data.error || 'Senha incorreta.');
-        window.location.href = url.toString();
-      }
-    });
-  </script>
+  {/* is:inline + src: sem isso o Astro embute o código no HTML e a CSP
+      (script-src 'self') bloqueia — o botão de senha para de funcionar. */}
+  <script is:inline src="/assets/js/galeria-acesso.js" defer></script>
 </BaseLayout>
