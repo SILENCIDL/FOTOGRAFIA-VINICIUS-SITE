@@ -6,6 +6,7 @@ import { galleryAccessSchema } from '../../../lib/validation';
 import { verifyPassword } from '../../../lib/crypto';
 import { errorResponse, jsonResponse, getClientIp, logAction } from '../../../lib/api';
 import { rateLimitByIp } from '../../../lib/rateLimit';
+import { grantGalleryAccess } from '../../../lib/galleryAuth';
 
 export const POST: APIRoute = async (context) => {
   const ip = getClientIp(context);
@@ -45,13 +46,8 @@ export const POST: APIRoute = async (context) => {
       return errorResponse('Senha incorreta.', 401);
     }
 
-    context.cookies.set(`gallery_${sessionId}`, '1', {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      path: `/galeria/${sessionId}`,
-      maxAge: 60 * 60 * 24, // 24h
-    });
+    // token assinado — ver lib/galleryAuth.ts para o porquê de não ser "1"
+    await grantGalleryAccess(context.cookies, sessionId, sessionRow.expiresAt);
 
     await logAction(context, 'GALLERY_ACCESS_GRANTED', `session:${sessionId}`);
 

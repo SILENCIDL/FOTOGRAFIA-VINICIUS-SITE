@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { db } from '../../db';
 import { sessions, files } from '../../db/schema';
 import { eq, desc } from 'drizzle-orm';
+import { hasGalleryAccess } from '../../lib/galleryAuth';
 
 const { id } = Astro.params;
 if (!id) return Astro.redirect('/');
@@ -15,10 +16,12 @@ const error = Astro.url.searchParams.get('error');
 let filesRows: typeof files.$inferSelect[] = [];
 let unlocked = false;
 
-if (sessionRow) {
-  const cookie = Astro.cookies.get(`gallery_${id}`)?.value;
-  if (cookie === '1') {
-    unlocked = true;
+// galeria expirada volta a ser cofre fechado, mesmo com token na mão
+const expirada = !!sessionRow?.expiresAt && new Date(sessionRow.expiresAt) < new Date();
+
+if (sessionRow && !expirada) {
+  unlocked = await hasGalleryAccess(Astro.cookies, id);
+  if (unlocked) {
     filesRows = await db.query.files.findMany({
       where: eq(files.sessionId, id),
       orderBy: [desc(files.createdAt)],

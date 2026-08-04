@@ -1,4 +1,11 @@
-import { createCipheriv, createDecipheriv, randomBytes, scryptSync, timingSafeEqual } from 'crypto';
+import {
+  createCipheriv,
+  createDecipheriv,
+  createHmac,
+  randomBytes,
+  scryptSync,
+  timingSafeEqual,
+} from 'crypto';
 import bcrypt from 'bcryptjs';
 
 const SALT_ROUNDS = 12;
@@ -43,8 +50,22 @@ export function decrypt(encryptedBase64: string): string {
   return decrypted.toString('utf8');
 }
 
+/**
+ * Pseudônimo do IP para o log de auditoria.
+ *
+ * Antes usava bcrypt, que sorteia um salt novo a cada chamada: o mesmo IP
+ * saía com hash diferente toda vez. O log ficava sem serventia justamente no
+ * que ele existe para responder — "foram 300 tentativas da mesma origem ou de
+ * 300 origens?" — e ainda gastava o custo de um KDF por requisição.
+ *
+ * HMAC com chave fixa do servidor dá o inverso: mesmo IP, mesmo valor, então
+ * dá para correlacionar; e sem a chave ninguém reverte o IP a partir do log
+ * (o espaço de IPv4 é pequeno demais para um hash sem chave aguentar).
+ */
 export function hashIp(ip: string): string {
-  return bcrypt.hashSync(ip, 8);
+  const secret = process.env.APP_ENCRYPTION_KEY;
+  if (!secret) return 'unknown';
+  return createHmac('sha256', secret).update(ip).digest('hex').slice(0, 32);
 }
 
 export function secureCompare(a: string, b: string): boolean {
