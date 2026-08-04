@@ -626,3 +626,21 @@
   .testimonial-card:hover,
   .servico-card:hover { transform: none; }
 }
+
+/* === HOVER DAS PÁGINAS DE GALERIA ══════════════════════════
+   Estes dois efeitos viviam em onmouseover/onmouseout dentro do HTML de
+   aventura.html, olhar.html e rua.html. O CSP (script-src 'self') bloqueia
+   handler inline, então o hover morreria no deploy — virou CSS.
+
+   O !important é necessário porque os elementos carregam a cor num
+   atributo style="", que tem precedência sobre classe.
+   ═══════════════════════════════════════════════════════════ */
+
+.link-voltar-galeria:hover {
+  color: #8B6F47 !important;
+}
+
+.btn-contorno-galeria:hover {
+  background: #8B6F47 !important;
+  color: #0d0d0b !important;
+}
