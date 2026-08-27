@@ -24,7 +24,6 @@ Cada categoria tem uma imagem de capa:
 | Categoria | Arquivo |
 |---|---|
 | Aventura | `assets/img/portfolio/aventura/capa.jpg` |
-| Paisagem | `assets/img/portfolio/paisagem/capa.jpg` |
 | Rua | `assets/img/portfolio/rua/capa.jpg` |
 | Olhar | `assets/img/portfolio/olhar/capa.jpg` |
 | Casamentos (capa geral) | usa a capa do Bianca & Donizete |
@@ -37,7 +36,6 @@ Use o padrão de nome indicado:
 | Categoria | Pasta | Padrão dos nomes |
 |---|---|---|
 | Aventura | `assets/img/portfolio/aventura/` | `aventura (1).jpg`, `aventura (2).jpg`, … |
-| Paisagem | `assets/img/portfolio/paisagem/` | `paisagem (1).jpg`, `paisagem (2).jpg`, … |
 | Rua (galeria) | `assets/img/portfolio/rua/galeria/` | `1.jpg`, `2.jpg`, … até `138.jpg` |
 | Olhar (registros) | `assets/img/portfolio/olhar/registros/` | `1.jpg`, `2.jpg`, … até `31.jpg` |
 
@@ -79,7 +77,6 @@ Coloque as fotos reais aqui quando tiver — hoje o site mostra imagens temporá
 - `assets/img/hero/` (4 fotos do topo da home)
 - `assets/img/sobre/vinicius.jpg`
 - `assets/img/portfolio/aventura/` (capa + galeria)
-- `assets/img/portfolio/paisagem/` (capa + galeria)
 - `assets/img/portfolio/rua/` (capa, citação e galeria)
 - `assets/img/rua/slides/` (criar a pasta)
 - Capas de `Pamela & Juliano` e `Patricia & Marcos` (confirmar)

@@ -10,8 +10,7 @@
 
 const VIEWS = [
   'main-view', 'wedding-selector', 'gallery-view',
-  'olhar-view', 'street-view', 'prices-view',
-  'testimonials-view', 'blog-view',
+  'olhar-view', 'street-view',
 ];
 
 /* ── App ─────────────────────────────────────────────────── */
@@ -107,9 +106,6 @@ const app = {
   openGallery(theme, data)   { gallery.openGallery(theme, data); },
   openStreet()               { gallery.openStreet(); },
   openOlhar()                { gallery.openOlhar(); },
-  openPrices()               { this.showSection('prices-view'); },
-  openTestimonials()         { this.showSection('testimonials-view'); },
-  openBlog()                 { this.showSection('blog-view'); },
 
   /* ── Navbar scroll ─────────────────────────────────────── */
 

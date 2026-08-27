@@ -166,10 +166,6 @@ const gallery = (() => {
       const GALLERY_DATA = {
         adventure: { title: 'Aventura',          desc: 'Registros verticais na Pedra do Baú e nas trilhas da Mantiqueira.', basePath: 'assets/img-web/portfolio/aventura/', prefix: 'aventura',
                      alt: 'Fotografia de aventura na Pedra do Baú, São Bento do Sapucaí' },
-        landscapes: { title: 'Paisagem',          desc: 'A grandiosidade da Serra da Mantiqueira sob as melhores luzes.',   basePath: 'assets/img-web/portfolio/paisagem/', prefix: 'paisagem',
-                     alt: 'Paisagem da Serra da Mantiqueira fotografada por Vinícius Rafael' },
-        street:    { title: 'Fotografia de Rua', desc: 'O cotidiano transformado em arte.',                                 basePath: 'assets/img-web/portfolio/rua/',      prefix: 'rua',
-                     alt: 'Fotografia de rua — cotidiano em São Bento do Sapucaí' },
       };
       const cfg = GALLERY_DATA[theme];
       title = cfg.title;

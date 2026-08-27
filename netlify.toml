@@ -12,16 +12,6 @@
   status = 301
 
 [[redirects]]
-  from = "/paisagem.html"
-  to = "/pages/paisagem.html"
-  status = 301
-
-[[redirects]]
-  from = "/aventura.html"
-  to = "/pages/aventura.html"
-  status = 301
-
-[[redirects]]
   from = "/rua.html"
   to = "/pages/rua.html"
   status = 301

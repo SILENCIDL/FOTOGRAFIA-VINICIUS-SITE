@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Vinícius Rafael | Fotografia · Serra da Mantiqueira</title>
-    <meta name="description" content="Fotografia que respira altitude. Vinícius Rafael, fotógrafo em São Bento do Sapucaí — paisagem, esportes e eventos na Serra da Mantiqueira.">
+    <meta name="description" content="Fotografia que respira altitude. Vinícius Rafael, fotógrafo em São Bento do Sapucaí — esportes e eventos na Serra da Mantiqueira.">
     <link rel="canonical" href="https://viniciusrafael.fot.br/">
     <meta name="theme-color" content="#0d0d0b">
     <link rel="icon" href="assets/img-web/favicon.svg" type="image/svg+xml">
@@ -12,7 +12,7 @@
 
     <!-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook) -->
     <meta property="og:title" content="Vinícius Rafael | Fotografia · Serra da Mantiqueira">
-    <meta property="og:description" content="Fotografia que respira altitude. Especializado em paisagem, esportes e eventos.">
+    <meta property="og:description" content="Fotografia que respira altitude. Especializado em esportes e eventos.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="Vinícius Rafael Fotografia">
@@ -56,7 +56,7 @@
       "url": "https://viniciusrafael.fot.br/",
       "telephone": "+5512981771665",
       "priceRange": "$$",
-      "description": "Fotografia de paisagem, esportes e eventos na Serra da Mantiqueira — São Bento do Sapucaí.",
+      "description": "Fotografia de esportes e eventos na Serra da Mantiqueira — São Bento do Sapucaí.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "São Bento do Sapucaí",
@@ -87,7 +87,7 @@
         <div class="hidden md:flex items-center space-x-10">
             <a href="pages/portfolio.html" class="nav-link-fotop">Portfólio</a>
             <a href="#servicos"  data-action="scroll" data-target="servicos" class="nav-link-fotop">Serviços</a>
-            <a href="#investimento" data-action="valores" class="nav-link-fotop">Investimento</a>
+            <a href="#investimento" data-action="scroll" data-target="investimento" class="nav-link-fotop">Investimento</a>
             <a href="#sobre"     data-action="scroll" data-target="sobre" class="nav-link-fotop">Sobre</a>
             <a href="#contato"   data-action="scroll" data-target="contato" class="nav-cta-fotop">Contato</a>
         </div>
@@ -104,7 +104,7 @@
      style="background:rgba(13,13,11,0.97); backdrop-filter:blur(16px);">
     <a href="pages/portfolio.html" data-action="fechar-menu" class="mobile-nav-link">Portfólio</a>
     <a href="#servicos"  data-action="scroll" data-target="servicos" data-fechar-menu class="mobile-nav-link">Serviços</a>
-    <a href="#investimento" data-action="valores" data-fechar-menu class="mobile-nav-link">Investimento</a>
+    <a href="#investimento" data-action="scroll" data-target="investimento" data-fechar-menu class="mobile-nav-link">Investimento</a>
     <a href="#sobre"     data-action="scroll" data-target="sobre" data-fechar-menu class="mobile-nav-link">Sobre</a>
     <a href="#contato"   data-action="scroll" data-target="contato" data-fechar-menu class="mobile-nav-link" style="color:#8B6F47;">Contato</a>
 </div>
@@ -138,7 +138,7 @@
              class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async" data-onerror="ocultar">
         <img src="assets/img-web/hero/hero(4).jpg"
              srcset="assets/img-web/hero/hero(4)-1280.jpg 1280w, assets/img-web/hero/hero(4).jpg 2560w"
-             sizes="100vw" alt="Paisagem de montanhas da Serra da Mantiqueira ao pôr do sol"
+             sizes="100vw" alt="Montanhas da Serra da Mantiqueira ao pôr do sol"
              class="hero-bg-img hero-slide hero-parallax" loading="lazy" decoding="async" data-onerror="ocultar">
 
         <!-- Overlay: escuro de baixo para cima, cria profundidade sem eliminar a foto -->
@@ -229,19 +229,6 @@
                     </div>
                 </div>
 
-                <!-- Card: Paisagem -->
-                <div class="portfolio-card group reveal reveal-delay-2 gsap-stagger-item"
-                     data-action="galeria" data-target="landscapes" role="button" aria-label="Ver galeria de paisagens"
-                     data-requer-foto="assets/img-web/portfolio/paisagem/paisagem (1).jpg">
-                    <img src="assets/img-web/portfolio/paisagem/capa.jpg"
-                         decoding="async" loading="lazy" data-onerror="ocultar"
-                         class="portfolio-card-img" alt="Paisagem da Serra">
-                    <div class="portfolio-card-overlay"></div>
-                    <div class="portfolio-card-content">
-                        <span class="portfolio-card-title">Paisagem</span>
-                        <span class="portfolio-card-action">Explorar</span>
-                    </div>
-                </div>
 
                 <!-- Card: Rua -->
                 <div class="portfolio-card group reveal reveal-delay-1 gsap-stagger-item"
@@ -276,7 +263,7 @@
 
     <!-- ============================================================
          ETAPA 4 — SERVIÇOS
-         4 cards: Paisagem / Esporte / Eventos / Redes Sociais.
+         3 cards: Esporte / Eventos / Redes Sociais.
          Grid 2×2 desktop, 1 coluna mobile.
          Cada card tem ícone SVG + título + descrição + CTA WhatsApp.
          Hover: translateY(-4px) + border accent.
@@ -293,21 +280,6 @@
             </div>
 
             <div class="servicos-grid gsap-stagger-group">
-
-                <!-- Fotografia de Paisagem -->
-                <div class="servico-card reveal gsap-stagger-item">
-                    <div class="servico-icon">
-                        <!-- Ícone montanha + sol -->
-                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 30L14 17L20 24L27 13L35 30H5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-                            <circle cx="31" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
-                        </svg>
-                    </div>
-                    <h3 class="servico-title">Fotografia de Paisagem</h3>
-                    <p class="servico-desc">Você sobe a trilha — eu garanto que você desce com imagens que fazem todo mundo perguntar "quem fotografou?". Horário dourado, névoa e ângulos que nenhum celular alcança. A Serra do jeito que ela merece ser eternizada.</p>
-                    <a href="#" data-action="whatsapp" data-msg="Olá Vinícius! Vi seu portfólio e gostaria de um orçamento para Fotografia de Paisagem."
-                       class="servico-cta">Solicitar orçamento →</a>
-                </div>
 
                 <!-- Cobertura Esportiva -->
                 <div class="servico-card reveal reveal-delay-1 gsap-stagger-item">
@@ -458,6 +430,75 @@
         </div>
     </section>
 
+<section id="investimento" class="py-20 md:py-32 min-h-screen" style="background:#0d0d0b;">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+        <div class="text-center mb-16 md:mb-24">
+            <span class="section-tag-fotop">Investimento</span>
+            <h2 class="section-title-fotop">Valores</h2>
+            <p class="text-sm md:text-base font-light max-w-2xl mx-auto px-4 mt-4" style="color:rgba(240,237,230,0.5);">Transparência desde o primeiro contato. Escolha a experiência que melhor se adapta à sua história.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="flex flex-col p-8 md:p-10" style="border:1px solid rgba(240,237,230,0.1); background:#1a1915;">
+                <h3 class="font-serif text-2xl mb-2" style="color:#f0ede6;">Retrato / Casal</h3>
+                <p class="text-sm mb-8 font-light h-10" style="color:rgba(240,237,230,0.4);">Ensaio intimista na natureza.</p>
+                <div class="mb-8">
+                    <span class="text-xs uppercase tracking-widest block mb-1" style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">A partir de</span>
+                    <span class="font-serif text-4xl" style="color:#8B6F47;">R$ 800</span>
+                </div>
+                <ul class="space-y-4 text-sm font-light mb-10 flex-grow" style="color:rgba(240,237,230,0.6);">
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 2 horas de ensaio</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 40 fotos editadas</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Consultoria de locação</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Galeria online privada</li>
+                </ul>
+                <a href="#" data-action="whatsapp" data-msg="Olá! Gostaria de saber mais sobre o ensaio de Casal/Retrato."
+                   class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all"
+                   style="font-family:'DM Mono',monospace; border:1px solid rgba(240,237,230,0.2); color:#f0ede6;">Solicitar</a>
+            </div>
+            <div class="flex flex-col p-8 md:p-10 relative md:-translate-y-4 shadow-2xl" style="border:2px solid #8B6F47; background:rgba(139,111,71,0.06);">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] uppercase tracking-widest px-4 py-1 font-semibold"
+                     style="background:#8B6F47; color:#0d0d0b; font-family:'DM Mono',monospace;">Mais Buscado</div>
+                <h3 class="font-serif text-2xl mb-2" style="color:#f0ede6;">Pre Wedding</h3>
+                <p class="text-sm mb-8 font-light h-10" style="color:rgba(240,237,230,0.4);">Aventura e romance nas montanhas.</p>
+                <div class="mb-8">
+                    <span class="text-xs uppercase tracking-widest block mb-1" style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">A partir de</span>
+                    <span class="font-serif text-4xl" style="color:#8B6F47;">R$ 1.500</span>
+                </div>
+                <ul class="space-y-4 text-sm font-light mb-10 flex-grow" style="color:rgba(240,237,230,0.6);">
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Até 4 horas de cobertura</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Mínimo 80 fotos editadas</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Guiamento em trilhas</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Slideshow emocional</li>
+                </ul>
+                <a href="#" data-action="whatsapp" data-msg="Olá! Gostaria de saber mais sobre o Pre Wedding."
+                   class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all font-medium"
+                   style="font-family:'DM Mono',monospace; background:#8B6F47; color:#0d0d0b;">Reservar Data</a>
+            </div>
+            <div class="flex flex-col p-8 md:p-10" style="border:1px solid rgba(240,237,230,0.1); background:#1a1915;">
+                <h3 class="font-serif text-2xl mb-2" style="color:#f0ede6;">Casamento</h3>
+                <p class="text-sm mb-8 font-light h-10" style="color:rgba(240,237,230,0.4);">Cobertura documental completa.</p>
+                <div class="mb-8">
+                    <span class="text-xs uppercase tracking-widest block mb-1" style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">Orçamento</span>
+                    <span class="font-serif text-3xl" style="color:#8B6F47;">Personalizado</span>
+                </div>
+                <ul class="space-y-4 text-sm font-light mb-10 flex-grow" style="color:rgba(240,237,230,0.6);">
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Cobertura completa</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Segundo fotógrafo incluso</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 500+ fotos editadas</li>
+                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Álbum Fine Art (opção)</li>
+                </ul>
+                <a href="#" data-action="whatsapp" data-msg="Olá! Gostaria de fazer um orçamento para meu casamento."
+                   class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all"
+                   style="font-family:'DM Mono',monospace; border:1px solid rgba(240,237,230,0.2); color:#f0ede6;">Conversar</a>
+            </div>
+        </div>
+        <div class="mt-12 text-center text-xs font-light px-4" style="color:rgba(240,237,230,0.35); font-family:'DM Mono',monospace;">
+            * Valores sujeitos a alteração. Taxa de deslocamento pode ser aplicada fora de São Bento do Sapucaí.
+        </div>
+    </div>
+</section>
+
+
 
     <!-- ============================================================
          ETAPA 5 — SOBRE
@@ -508,7 +549,7 @@
                     </h2>
                     <div class="sobre-text">
                         <p>Sou Vinícius, 19 anos, de São Bento do Sapucaí. Fotografar a Serra da Mantiqueira não é trabalho pra mim — é uma obsessão territorial. Conheço os horários em que a neblina abraça a Pedra do Baú, os atalhos que nenhum turista descobre e as histórias que dão alma a cada cenário.</p>
-                        <p>Especializado em paisagem, trilhas, esportes e eventos, meu olhar combina a poesia visual de quem nasceu nessas montanhas com uma estética cinematográfica moderna. Cada foto é uma prova de que altitude e emoção andam juntas.</p>
+                        <p>Especializado em esportes e eventos, meu olhar combina a poesia visual de quem nasceu nessas montanhas com uma estética cinematográfica moderna. Cada foto é uma prova de que altitude e emoção andam juntas.</p>
                     </div>
                     <a href="#contato" data-action="scroll" data-target="contato"
                        class="btn-fotop-outline mt-8 inline-block">
@@ -620,7 +661,6 @@
                                 <option value="Casamento"              style="background:#1a1915;">Casamento</option>
                                 <option value="Pre Wedding"            style="background:#1a1915;">Pre Wedding</option>
                                 <option value="Ensaio de Casal"        style="background:#1a1915;">Ensaio de Casal</option>
-                                <option value="Paisagem / Trilha"      style="background:#1a1915;">Paisagem / Trilha</option>
                                 <option value="Evento Esportivo"       style="background:#1a1915;">Evento Esportivo</option>
                                 <option value="Gestão de Redes Sociais" style="background:#1a1915;">Gestão de Redes Sociais</option>
                                 <option value="Outro"                  style="background:#1a1915;">Outro</option>
@@ -830,79 +870,6 @@
     </div>
     <div id="street-grid-section" class="py-20 md:py-32 max-w-[1600px] mx-auto px-5 md:px-8">
         <div id="street-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6"></div>
-    </div>
-</div>
-
-<!-- Prices View -->
-<div id="prices-view" class="hidden-content pt-32 pb-20 md:py-40 min-h-screen" style="background:#0d0d0b;">
-    <div class="max-w-6xl mx-auto px-5 md:px-8">
-        <div class="text-center mb-16 md:mb-24">
-            <button data-action="section" data-target="home" class="text-xs uppercase tracking-widest transition-colors mb-8 flex items-center justify-center mx-auto group"
-                    style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">
-                <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> Voltar
-            </button>
-            <span class="section-tag-fotop">Investimento</span>
-            <h2 class="section-title-fotop">Valores</h2>
-            <p class="text-sm md:text-base font-light max-w-2xl mx-auto px-4 mt-4" style="color:rgba(240,237,230,0.5);">Transparência desde o primeiro contato. Escolha a experiência que melhor se adapta à sua história.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div class="flex flex-col p-8 md:p-10" style="border:1px solid rgba(240,237,230,0.1); background:#1a1915;">
-                <h3 class="font-serif text-2xl mb-2" style="color:#f0ede6;">Retrato / Casal</h3>
-                <p class="text-sm mb-8 font-light h-10" style="color:rgba(240,237,230,0.4);">Ensaio intimista na natureza.</p>
-                <div class="mb-8">
-                    <span class="text-xs uppercase tracking-widest block mb-1" style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">A partir de</span>
-                    <span class="font-serif text-4xl" style="color:#8B6F47;">R$ 800</span>
-                </div>
-                <ul class="space-y-4 text-sm font-light mb-10 flex-grow" style="color:rgba(240,237,230,0.6);">
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 2 horas de ensaio</li>
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 40 fotos editadas</li>
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Consultoria de locação</li>
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Galeria online privada</li>
-                </ul>
-                <a href="#" data-action="whatsapp" data-msg="Olá! Gostaria de saber mais sobre o ensaio de Casal/Retrato."
-                   class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all"
-                   style="font-family:'DM Mono',monospace; border:1px solid rgba(240,237,230,0.2); color:#f0ede6;">Solicitar</a>
-            </div>
-            <div class="flex flex-col p-8 md:p-10 relative md:-translate-y-4 shadow-2xl" style="border:2px solid #8B6F47; background:rgba(139,111,71,0.06);">
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] uppercase tracking-widest px-4 py-1 font-semibold"
-                     style="background:#8B6F47; color:#0d0d0b; font-family:'DM Mono',monospace;">Mais Buscado</div>
-                <h3 class="font-serif text-2xl mb-2" style="color:#f0ede6;">Pre Wedding</h3>
-                <p class="text-sm mb-8 font-light h-10" style="color:rgba(240,237,230,0.4);">Aventura e romance nas montanhas.</p>
-                <div class="mb-8">
-                    <span class="text-xs uppercase tracking-widest block mb-1" style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">A partir de</span>
-                    <span class="font-serif text-4xl" style="color:#8B6F47;">R$ 1.500</span>
-                </div>
-                <ul class="space-y-4 text-sm font-light mb-10 flex-grow" style="color:rgba(240,237,230,0.6);">
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Até 4 horas de cobertura</li>
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Mínimo 80 fotos editadas</li>
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Guiamento em trilhas</li>
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Slideshow emocional</li>
-                </ul>
-                <a href="#" data-action="whatsapp" data-msg="Olá! Gostaria de saber mais sobre o Pre Wedding."
-                   class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all font-medium"
-                   style="font-family:'DM Mono',monospace; background:#8B6F47; color:#0d0d0b;">Reservar Data</a>
-            </div>
-            <div class="flex flex-col p-8 md:p-10" style="border:1px solid rgba(240,237,230,0.1); background:#1a1915;">
-                <h3 class="font-serif text-2xl mb-2" style="color:#f0ede6;">Casamento</h3>
-                <p class="text-sm mb-8 font-light h-10" style="color:rgba(240,237,230,0.4);">Cobertura documental completa.</p>
-                <div class="mb-8">
-                    <span class="text-xs uppercase tracking-widest block mb-1" style="font-family:'DM Mono',monospace; color:rgba(240,237,230,0.5);">Orçamento</span>
-                    <span class="font-serif text-3xl" style="color:#8B6F47;">Personalizado</span>
-                </div>
-                <ul class="space-y-4 text-sm font-light mb-10 flex-grow" style="color:rgba(240,237,230,0.6);">
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Cobertura completa</li>
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Segundo fotógrafo incluso</li>
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> 500+ fotos editadas</li>
-                    <li class="flex items-start"><i class="fas fa-check mt-1 mr-3 text-[10px]" style="color:#8B6F47;"></i> Álbum Fine Art (opção)</li>
-                </ul>
-                <a href="#" data-action="whatsapp" data-msg="Olá! Gostaria de fazer um orçamento para meu casamento."
-                   class="block w-full text-center py-3 text-xs uppercase tracking-widest transition-all"
-                   style="font-family:'DM Mono',monospace; border:1px solid rgba(240,237,230,0.2); color:#f0ede6;">Conversar</a>
-            </div>
-        </div>
-        <div class="mt-12 text-center text-xs font-light px-4" style="color:rgba(240,237,230,0.35); font-family:'DM Mono',monospace;">
-            * Valores sujeitos a alteração. Taxa de deslocamento pode ser aplicada fora de São Bento do Sapucaí.
-        </div>
     </div>
 </div>
 

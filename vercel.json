@@ -2,8 +2,6 @@
   "redirects": [
     { "source": "/portfolio.html", "destination": "/pages/portfolio.html", "permanent": true },
     { "source": "/casamentos.html", "destination": "/pages/casamentos.html", "permanent": true },
-    { "source": "/paisagem.html", "destination": "/pages/paisagem.html", "permanent": true },
-    { "source": "/aventura.html", "destination": "/pages/aventura.html", "permanent": true },
     { "source": "/rua.html", "destination": "/pages/rua.html", "permanent": true },
     { "source": "/olhar.html", "destination": "/pages/olhar.html", "permanent": true },
     { "source": "/casamento-bianca-e-donizete.html", "destination": "/pages/casamento-bianca-e-donizete.html", "permanent": true },

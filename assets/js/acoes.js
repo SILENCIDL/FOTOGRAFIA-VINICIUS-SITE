@@ -13,7 +13,7 @@
      data-action="section"       data-target="id-da-view"     (SPA da home)
      data-action="galeria"       data-target="tema"
      data-action="subgaleria"    data-target="weddings"
-     data-action="rua" | "olhar" | "valores" | "depoimentos" | "blog"
+     data-action="rua" | "olhar"
      data-action="fechar-menu"
      data-fechar-menu            (modificador: fecha o menu junto)
 
@@ -34,10 +34,29 @@
   var OFFSET_TOPO = 80;   // altura da navbar fixa
 
   /* ── helpers ────────────────────────────────────────────────────────── */
-  function rolarPara(el, offset) {
+  function rolarPara(el, offset, aoTerminar) {
     if (!el) return;
     var y = el.getBoundingClientRect().top + window.scrollY - (offset || 0);
     window.scrollTo({ top: y, behavior: "smooth" });
+    if (typeof aoTerminar === "function") aguardarFimDoScroll(aoTerminar);
+  }
+
+  /* Chama o callback quando a página parar de rolar (scroll suave não tem
+     evento de término nativo, então observamos até a posição estabilizar). */
+  function aguardarFimDoScroll(callback) {
+    var ultimoY = window.scrollY;
+    var parado = 0;
+    function checar() {
+      if (window.scrollY === ultimoY) {
+        parado++;
+        if (parado >= 3) { callback(); return; }
+      } else {
+        parado = 0;
+        ultimoY = window.scrollY;
+      }
+      requestAnimationFrame(checar);
+    }
+    requestAnimationFrame(checar);
   }
 
   function fecharMenu() {
@@ -60,6 +79,18 @@
     );
   }
 
+  /* Brilho suave no formulário de contato, ao chegar por clique do menu. */
+  function destacarContato() {
+    var form = document.getElementById("contact-form");
+    if (!form) return;
+    form.classList.remove("contato-destaque");
+    void form.offsetWidth; // força reflow para reiniciar a animação
+    form.classList.add("contato-destaque");
+    setTimeout(function () {
+      form.classList.remove("contato-destaque");
+    }, 1500);
+  }
+
   /* ── 1. cliques ─────────────────────────────────────────────────────── */
   document.addEventListener("click", function (e) {
     var el = e.target.closest("[data-action], [data-fechar-menu]");
@@ -77,7 +108,11 @@
 
       case "scroll":
         e.preventDefault();
-        rolarPara(document.getElementById(alvo), OFFSET_TOPO);
+        rolarPara(
+          document.getElementById(alvo),
+          OFFSET_TOPO,
+          alvo === "contato" ? destacarContato : null
+        );
         break;
 
       case "rolar-ate":
@@ -105,12 +140,6 @@
         e.preventDefault(); if (temApp && app.openStreet) app.openStreet(); break;
       case "olhar":
         e.preventDefault(); if (temApp && app.openOlhar) app.openOlhar(); break;
-      case "valores":
-        e.preventDefault(); if (temApp && app.openPrices) app.openPrices(); break;
-      case "depoimentos":
-        e.preventDefault(); if (temApp && app.openTestimonials) app.openTestimonials(); break;
-      case "blog":
-        e.preventDefault(); if (temApp && app.openBlog) app.openBlog(); break;
 
       case "fechar-menu":
         fecharMenu();

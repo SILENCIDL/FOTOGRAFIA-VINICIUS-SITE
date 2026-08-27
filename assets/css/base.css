@@ -37,6 +37,17 @@ img { max-width: 100%; height: auto; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Brilho suave no formulário de contato ao chegar por clique do menu */
+.contato-destaque {
+  animation: contatoDestaque 1.5s ease-out;
+}
+
+@keyframes contatoDestaque {
+  0%   { box-shadow: 0 0 0 0 rgba(139, 111, 71, 0); }
+  25%  { box-shadow: 0 0 24px 4px rgba(139, 111, 71, 0.55); }
+  100% { box-shadow: 0 0 0 0 rgba(139, 111, 71, 0); }
+}
+
 /* === SECTION HEADERS ════════════════════════════════════════ */
 
 .section-tag-fotop {

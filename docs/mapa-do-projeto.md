@@ -38,7 +38,6 @@ FOTOGRAFIA-VINICIUS-SITE/
 │   ├── docker-compose.yml     # Orquestração app + banco
 │   ├── DEPLOY.md              # Guia de deploy VPS
 │   └── SECURITY.md            # Plano de segurança
-├── backups/                   # Backups do projeto
 ├── index.html                 # Página inicial
 ├── netlify.toml               # Configuração Netlify
 ├── vercel.json                # Configuração Vercel
@@ -54,14 +53,11 @@ FOTOGRAFIA-VINICIUS-SITE/
 | Arquivo | Função |
 |---------|--------|
 | `index.html` | Página inicial: hero, portfólio, sobre, serviços, contato. |
-| `pages/aventura.html` | Página da categoria Aventura com galeria. |
 | `pages/casamentos.html` | Listagem dos álbuns de casamento. |
 | `pages/casamento-*.html` | Página individual de cada álbum de casamento. |
 | `pages/olhar.html` | Página do projeto autoral "O Olhar". |
-| `pages/paisagem.html` | Galeria de fotos de paisagem. |
 | `pages/portfolio.html` | Página de portfólio com categorias. |
 | `pages/rua.html` | Galeria de fotografia de rua. |
-| `pages/indexa.html` | Variação alternativa da home. |
 
 ### CSS (`assets/css/`)
 
@@ -95,8 +91,7 @@ FOTOGRAFIA-VINICIUS-SITE/
 | `olhar/slides/` | Slides do projeto "O Olhar". |
 | `rua/slides/` | Slides da seção Rua. |
 | `portfolio/casamentos/` | Capas e álbuns de casamento. |
-| `portfolio/aventura/` | Capa da categoria Aventura. |
-| `portfolio/paisagem/` | Capa e fotos da categoria Paisagem. |
+| `portfolio/aventura/` | Capa da categoria Aventura (galeria interna da home). |
 | `portfolio/rua/` | Capa e galeria da categoria Rua. |
 | `portfolio/olhar/` | Capa e registros do projeto Olhar. |
 | `_backup/capas_erradas/` | Backup das imagens incorretas substituídas. |
